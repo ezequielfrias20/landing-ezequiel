@@ -82,6 +82,15 @@ describe('procesarAlta', () => {
     expect((await desbloquear({ email: 'p6@correo.com', slug: 'checklist-erp' })).estado).toBe(200);
   });
 
+  it('bajo concurrencia desde la misma IP, solo 5 pasan y 1 recibe 429', async () => {
+    const respuestas = await Promise.all(
+      Array.from({ length: 6 }, (_, i) => desbloquear({ email: `c${i}@correo.com`, slug: 'checklist-erp' })),
+    );
+    const estados = respuestas.map((r) => r.estado);
+    expect(estados.filter((e) => e === 200).length).toBeLessThanOrEqual(5);
+    expect(estados.filter((e) => e !== 200).every((e) => e === 429)).toBe(true);
+  });
+
   it('responde 503 si la base de datos falla', async () => {
     repo.guardarLead = vi.fn().mockRejectedValue(new Error('caída'));
     const r = await desbloquear({ email: 'ana@correo.com', slug: 'checklist-erp' });

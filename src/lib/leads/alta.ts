@@ -75,10 +75,10 @@ export async function procesarAlta(
   let lead: { id: string; brevoSincronizado: boolean };
   try {
     const desde = new Date(deps.ahora().getTime() - VENTANA_MS);
-    if ((await deps.repositorio.contarIntentosDesde(entrada.ipHash, desde)) >= LIMITE_INTENTOS) {
+    await deps.repositorio.registrarIntento(entrada.ipHash);
+    if ((await deps.repositorio.contarIntentosDesde(entrada.ipHash, desde)) > LIMITE_INTENTOS) {
       return { estado: 429, mensaje: 'Demasiados intentos. Espera un minuto y prueba de nuevo.' };
     }
-    await deps.repositorio.registrarIntento(entrada.ipHash);
     lead = await deps.repositorio.guardarLead(email);
     await deps.repositorio.registrarDesbloqueo({ leadId: lead.id, slug, origen });
   } catch (error) {
