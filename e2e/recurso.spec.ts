@@ -2,7 +2,7 @@ import { expect, test, type Response } from '@playwright/test';
 
 const MARCA = 'SECRETO-E2E-7F3A';
 // Rutas públicas que nunca deben contener contenido premium. Task 9 agrega más.
-const RUTAS_PUBLICAS = ['/r/plantilla-premium', '/r/guia-libre', '/recursos'];
+const RUTAS_PUBLICAS = ['/r/plantilla-premium', '/r/guia-libre', '/recursos', '/llms.txt', '/'];
 
 test('el contenido premium no llega al navegador sin email', async ({ page, request }) => {
   for (const ruta of RUTAS_PUBLICAS) {
