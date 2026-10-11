@@ -75,42 +75,81 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
     router.replace(pathname, { scroll: false });
   }
 
-  return (
-    <div className="mt-8">
-      <label htmlFor="buscar" className="sr-only">
-        Buscar recursos
-      </label>
-      <input
-        id="buscar"
-        type="search"
-        value={q}
-        onChange={(e) => escribir(e.target.value)}
-        onBlur={confirmarPendiente}
-        placeholder="Busca por tema, herramienta o nombre"
-        className="w-full rounded-lg border border-linea bg-superficie px-4 py-3"
-      />
+  // "/" enfoca el buscador, como en una barra de comandos.
+  const buscador = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    function alTeclear(e: KeyboardEvent) {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+      const destino = e.target as HTMLElement | null;
+      if (destino?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      e.preventDefault();
+      buscador.current?.focus();
+    }
+    window.addEventListener('keydown', alTeclear);
+    return () => window.removeEventListener('keydown', alTeclear);
+  }, []);
 
-      <div className="mt-6 space-y-4">
+  return (
+    <div className="mt-10">
+      <div className="panel group flex items-center gap-3 rounded-lg px-4 transition-[border-color,box-shadow] focus-within:border-tinta focus-within:shadow-elevada sm:px-5">
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-suave" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+        <label htmlFor="buscar" className="sr-only">
+          Buscar recursos
+        </label>
+        <input
+          ref={buscador}
+          id="buscar"
+          type="search"
+          value={q}
+          onChange={(e) => escribir(e.target.value)}
+          onBlur={confirmarPendiente}
+          placeholder="Busca por tema o la palabra del reel"
+          className="h-14 min-w-0 flex-1 bg-transparent text-base text-tinta outline-none placeholder:text-suave sm:h-16 sm:text-lg [&::-webkit-search-cancel-button]:hidden"
+        />
+        <kbd aria-hidden="true" className="chip hidden bg-superficie-2 px-2 py-1 text-suave sm:inline-flex">
+          /
+        </kbd>
+      </div>
+
+      <div className="mt-8 space-y-5">
         <GrupoFiltros titulo="Tipo" opciones={TIPOS} etiquetas={ETIQUETAS_TIPO} conteo={conteos.tipo} total={indice.length} valor={filtros.tipo} alCambiar={(tipo) => aplicar({ tipo })} />
         <GrupoFiltros titulo="Tema" opciones={TEMAS} etiquetas={ETIQUETAS_TEMA} conteo={conteos.temas} total={indice.length} valor={filtros.tema} alCambiar={(tema) => aplicar({ tema })} />
         <GrupoFiltros titulo="Herramienta" opciones={HERRAMIENTAS} etiquetas={ETIQUETAS_HERRAMIENTA} conteo={conteos.herramientas} total={indice.length} valor={filtros.herramienta} alCambiar={(herramienta) => aplicar({ herramienta })} />
       </div>
 
-      <p className="mt-6 text-sm text-suave" aria-live="polite">
-        {resultados.length} {resultados.length === 1 ? 'recurso' : 'recursos'}
-      </p>
+      <div className="mt-10 flex items-center justify-between gap-4 border-t border-linea-fuerte pt-5">
+        <p className="etiqueta text-tinta" aria-live="polite">
+          <span className="font-bold">{String(resultados.length).padStart(2, '0')}</span>{' '}
+          {resultados.length === 1 ? 'recurso' : 'recursos'}
+        </p>
+        {hayFiltros(actuales) && resultados.length > 0 && (
+          <button type="button" onClick={limpiar} className="etiqueta rounded-full px-2 py-1 text-suave underline-offset-4 hover:text-tinta hover:underline">
+            Limpiar filtros
+          </button>
+        )}
+      </div>
 
       {resultados.length === 0 ? (
-        <div className="mt-6 rounded-lg border border-dashed border-linea p-10 text-center">
-          <p>No hay recursos con esos filtros.</p>
+        <div className="mt-6 flex flex-col items-center rounded-xl border border-dashed border-linea-fuerte px-6 py-16 text-center">
+          <span aria-hidden="true" className="flex h-12 w-12 items-center justify-center rounded-full border border-linea bg-superficie text-suave">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5M8.5 11h5" />
+            </svg>
+          </span>
+          <p className="mt-5 text-xl font-black tracking-titulo">No hay recursos con esos filtros.</p>
+          <p className="mt-2 max-w-sm text-suave">Prueba con menos palabras o con la palabra que comentaste en el reel.</p>
           {hayFiltros(actuales) && (
-            <button type="button" onClick={limpiar} className="mt-3 underline">
+            <button type="button" onClick={limpiar} className="boton boton-primario mt-6">
               Limpiar filtros
             </button>
           )}
         </div>
       ) : (
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {resultados.map((e) => (
             <TarjetaRecurso key={e.slug} entrada={e} />
           ))}
