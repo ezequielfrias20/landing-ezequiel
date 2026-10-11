@@ -47,3 +47,7 @@ Si necesitas un tema o herramienta nuevos, agrégalos en `src/config/taxonomia.t
 
 Español neutro, tuteo, frases cortas y concretas. Sin emojis. Sin cifras ni resultados inventados.
 Deja libre lo suficiente para que el recurso valga por sí solo; lo premium es el detalle completo.
+Nunca menciones AIMA. No pongas llamada a la acción ni enlace de agenda dentro del recurso: la página
+ya añade "El siguiente paso". El `tipo` sigue el "Formato" de la ficha (un mapa es `guia`).
+`duracion` va en forma corta, por ejemplo `5 min` o `5 min de lectura · 20 min para armarla`.
+`descargas` del frontmatter solo para archivos libres; los PDF premium van como `<Descarga>` dentro de `<Premium>`.
