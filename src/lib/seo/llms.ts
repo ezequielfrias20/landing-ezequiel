@@ -3,7 +3,9 @@ import { ETIQUETAS_TIPO } from '@/config/taxonomia';
 import type { Recurso } from '@/lib/contenido/tipos';
 
 export function sitioUrl(): string {
-  return (process.env.SITIO_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const produccion = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const base = process.env.SITIO_URL || (produccion ? `https://${produccion}` : 'http://localhost:3000');
+  return base.replace(/\/+$/, '');
 }
 
 export function generarLlmsTxt(recursos: Recurso[], base: string): string {
