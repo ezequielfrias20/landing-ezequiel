@@ -12,7 +12,7 @@ export const revalidate = 86400;
 export default function Inicio() {
   const ultimos = crearIndice(obtenerRecursos().slice(0, 6), new Date());
   return (
-    <main className="mx-auto max-w-6xl px-4">
+    <main className="mx-auto max-w-6xl px-4 sm:px-6">
       <Hero />
       <QueEncuentras />
       <UltimosRecursos entradas={ultimos} />

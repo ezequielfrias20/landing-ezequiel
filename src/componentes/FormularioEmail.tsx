@@ -60,11 +60,21 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
   }
 
   if (estado.tipo === 'listo' && alExito === 'mensaje') {
-    return <p role="status">{estado.mensaje}</p>;
+    return (
+      <p role="status" className="panel flex items-center gap-3 rounded-lg bg-superficie-2 px-5 py-4 font-bold">
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-ok" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m5 12 5 5L20 7" />
+        </svg>
+        {estado.mensaje}
+      </p>
+    );
   }
 
   return (
-    <form onSubmit={enviar} className="flex flex-col gap-2 sm:flex-row">
+    <form
+      onSubmit={enviar}
+      className="flex flex-col gap-2 rounded-xl border border-linea-fuerte bg-fondo p-2 transition-colors focus-within:border-tinta sm:flex-row sm:flex-wrap sm:rounded-full"
+    >
       <label htmlFor={id} className="sr-only">
         Tu email
       </label>
@@ -75,7 +85,7 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
         required
         autoComplete="email"
         placeholder="tu@email.com"
-        className="flex-1 rounded-md border border-linea bg-superficie px-3 py-2"
+        className="min-h-11 min-w-0 flex-1 rounded-full bg-transparent px-4 py-2 text-tinta outline-none placeholder:text-suave"
       />
       {/* Campo trampa para bots: oculto para personas y lectores de pantalla. */}
       <div aria-hidden="true" className="absolute -left-[9999px]">
@@ -87,12 +97,12 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
       <button
         type="submit"
         disabled={estado.tipo === 'enviando' || estado.tipo === 'listo'}
-        className="rounded-md bg-acento px-4 py-2 font-medium text-white disabled:opacity-60"
+        className="boton boton-primario"
       >
         {estado.tipo === 'enviando' ? 'Enviando…' : estado.tipo === 'listo' ? 'Listo' : textoBoton}
       </button>
       {estado.tipo === 'error' && (
-        <p role="alert" className="text-sm text-red-700 sm:basis-full">
+        <p role="alert" className="px-4 pb-2 text-sm font-bold text-alerta sm:basis-full">
           {estado.mensaje}
         </p>
       )}
