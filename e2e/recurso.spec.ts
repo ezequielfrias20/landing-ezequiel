@@ -10,16 +10,25 @@ test('el contenido premium no llega al navegador sin email', async ({ page, requ
   }
 
   const cuerpos: Promise<string>[] = [];
-  // Cada cuerpo con tope de tiempo: el prefetch de /recursos (inexistente hasta Task 7) no cierra su stream.
-  const leer = (r: Response) =>
-    Promise.race([r.text().catch(() => ''), new Promise<string>((listo) => setTimeout(() => listo(''), 3000))]);
+  const sinLeer: string[] = [];
+  // Cada cuerpo con tope de tiempo. Si no se puede leer, se registra la URL para validarla abajo.
+  const leer = async (r: Response) => {
+    const texto = await Promise.race([
+      r.text().catch(() => null),
+      new Promise<null>((listo) => setTimeout(() => listo(null), 3000)),
+    ]);
+    if (texto === null) sinLeer.push(r.url());
+    return texto ?? '';
+  };
   page.on('response', (r) => cuerpos.push(leer(r)));
   await page.goto('/r/plantilla-premium');
   await expect(page.getByRole('button', { name: 'Desbloquear' })).toBeVisible();
-  // No usamos 'networkidle': el prefetch de /recursos (aún inexistente, Task 7) queda abierto en Chromium.
+  // Task 7 crea /recursos: volver a networkidle y quitar esta excepción.
   await page.waitForLoadState('load');
   await page.waitForTimeout(1500);
   for (const cuerpo of await Promise.all(cuerpos)) expect(cuerpo).not.toContain(MARCA);
+  // Única respuesta ilegible permitida: el prefetch de la ruta aún inexistente /recursos.
+  for (const url of sinLeer) expect(new URL(url).pathname, `cuerpo ilegible: ${url}`).toBe('/recursos');
 });
 
 test('desbloquear con email muestra el contenido y persiste al recargar', async ({ page }) => {
