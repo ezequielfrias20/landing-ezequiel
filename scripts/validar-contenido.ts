@@ -1,13 +1,23 @@
 import { ErrorContenido } from '@/lib/contenido/analizar';
 import { obtenerRecursos } from '@/lib/contenido/recursos';
+import { verificarRender } from '@/lib/contenido/verificarRender';
 
-try {
-  const recursos = obtenerRecursos();
-  console.log(`Contenido válido: ${recursos.length} recursos.`);
-} catch (error) {
-  if (error instanceof ErrorContenido) {
-    console.error(`\nContenido inválido:\n${error.message}\n`);
-    process.exit(1);
+async function main() {
+  try {
+    const recursos = obtenerRecursos();
+    const errores = await verificarRender(recursos);
+    if (errores.length > 0) throw new ErrorContenido(errores.join('\n'));
+    console.log(`Contenido válido: ${recursos.length} recursos.`);
+  } catch (error) {
+    if (error instanceof ErrorContenido) {
+      console.error(`\nContenido inválido:\n${error.message}\n`);
+      process.exit(1);
+    }
+    throw error;
   }
-  throw error;
 }
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
