@@ -1,0 +1,118 @@
+---
+titulo: "Plantilla de inventario: controla stock mínimo, agotados y reposición antes de perder ventas"
+resumen: "Las tres pestañas que hay que armar para responder qué tienes, qué está por agotarse y qué hay que reponer."
+palabraClave: STOCK
+tipo: plantilla
+temas: [retail]
+herramientas: [google-sheets, excel]
+fecha: 2026-09-02
+duracion: Se lee en 5 minutos, se arma en 20
+relacionados: [checklist-erp, mapa-venta-pos, plantilla-usd-ves]
+---
+
+Vendes y el número de la hoja deja de coincidir con el estante. Aquí están las tres pestañas que hay que armar para responder qué tienes, qué está por agotarse y qué hay que reponer.
+
+Es para tiendas con variantes, mínimos o varias sucursales.
+
+Abre una hoja de cálculo y crea tres pestañas. Cada paso te da las columnas exactas de una, en orden, y las dos fórmulas que hacen el trabajo. Se arma en veinte minutos y responde tres preguntas: qué tengo, qué está por agotarse y qué necesito reponer. Los números de los ejemplos están solo para ver la mecánica.
+
+<Paso n="1" titulo="Hoja 1: el inventario, una línea por SKU y sucursal">
+
+Crea la primera pestaña con estas catorce columnas, en este orden.
+
+- **El producto.** SKU, Producto, Categoría, Marca y Variante: talla, color o presentación.
+- **Dónde está.** Sucursal, y Última actualización con la fecha de la revisión.
+- **Cuántas hay.** Stock actual, Stock reservado, Stock disponible y Stock mínimo.
+- **Cuánto vale.** Costo unitario y Valor inventario, que es el stock por el costo.
+- **Cómo está.** Estado: en stock, stock bajo o agotado. Lo calcula la fórmula, no tú.
+
+Una línea por SKU y sucursal. El mismo producto en dos tiendas son dos líneas, nunca una con la suma: si no, no sabes en cuál falta.
+
+<Nota tipo="truco">
+Crea la pestaña y carga los diez productos que más vendes. Diez, no el catálogo entero: hoy lo que importa es que la mecánica quede montada.
+</Nota>
+
+</Paso>
+
+<Premium>
+
+<Paso n="2" titulo="El disponible y el semáforo">
+
+Escribe estas dos fórmulas y deja que la hoja marque el estado de cada línea. Son las dos únicas fórmulas de toda la plantilla. Todo lo demás es escribir columnas.
+
+- **Stock disponible.** Stock actual menos stock reservado. Con 10 en el estante y 3 comprometidas, disponible son 7.
+- **En stock.** Disponible por encima del mínimo. Verde: no requiere acción.
+- **Stock bajo.** Disponible igual o por debajo del mínimo. Amarillo: entra en la próxima reposición.
+- **Agotado.** Disponible en cero. Rojo: riesgo inmediato de perder ventas.
+
+El stock reservado es lo que ya prometiste y todavía está en el estante. Si no lo restas, vendes dos veces la misma unidad.
+
+<Nota tipo="truco">
+Define el stock mínimo de esos diez productos y mira cuántos salen ya en amarillo o en rojo. Ese es tu primer pedido de reposición.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Hoja 2: los productos por reponer">
+
+Crea la segunda pestaña y filtra solo lo que esté en stock bajo o agotado. Esta hoja no se llena a mano: se filtra de la primera. Si hay que copiar filas, la dejas de usar en dos semanas.
+
+- **Las columnas.** SKU, Producto, Sucursal, Disponible, Mínimo y Cantidad sugerida.
+- **El filtro.** Solo las líneas cuyo estado sea stock bajo o agotado. Nada más.
+- **Cantidad sugerida.** Stock objetivo menos stock disponible. Si quieres mantener 20 y tienes 6, repones 14.
+
+El stock objetivo no es el mínimo. El mínimo es cuándo pides; el objetivo es hasta dónde llenas. Confundirlos es pedir de a poco todo el tiempo.
+
+<Nota tipo="truco">
+Arma la hoja filtrada y define el stock objetivo de los tres productos que más se te agotan. Ahí ya tienes la cantidad a pedir.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Hoja 3: el resumen">
+
+Crea la tercera pestaña con estos cinco números, contados de la primera hoja. Es lo que miras antes de decidir una compra. Cinco celdas, ningún informe.
+
+- **Los cinco números.** Total de SKUs, productos en stock, con stock bajo, agotados y valor total del inventario.
+- **De dónde salen.** Los cuatro primeros son conteos de la columna Estado. El valor total es la suma de Valor inventario.
+- **Qué te dice.** Cuántos rojos tienes hoy y cuánto dinero está parado en el estante.
+
+Un valor de inventario alto con muchos agotados no es un inventario grande: es dinero en lo que no se vende y faltante en lo que sí.
+
+<Nota tipo="truco">
+Cuenta hoy tus rojos y tus amarillos y anótalos. La semana que viene los vuelves a contar: eso es todo el tablero.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Las 5 preguntas de la semana">
+
+Una vez por semana, con la plantilla delante, responde estas cinco. Son cinco minutos.
+
+- **¿Qué se agotó?** Hoja 3, el conteo de rojos de la semana.
+- **¿Qué está cerca del mínimo?** Hoja 2, la lista filtrada.
+- **¿Qué tiene más rotación?** Lo que vuelve a aparecer en la hoja 2 cada semana.
+- **¿Qué tiene demasiado inventario?** Hoja 1, disponible muy por encima del mínimo.
+- **¿Cuadra el registro con el físico?** Cuenta tres productos al azar y compara.
+
+La quinta es la que nadie hace y la única que descubre si la plantilla te está mintiendo.
+
+<Nota tipo="truco">
+Haz la revisión de esta semana ahora, aunque la hoja tenga diez productos. Marca cuántas pudiste responder sin salir de la plantilla.
+</Nota>
+
+</Paso>
+
+## Ya la tienes armada: ¿quién la actualiza?
+
+Cuando alguien vende un producto, ¿el inventario se descuenta solo?
+
+- **Si la respuesta es no.** Tu stock depende de que una persona se acuerde, y de que lo haga bien.
+- **Cuando sube el volumen.** Esa tarea de un minuto pasa a ser cientos de actualizaciones al mes.
+- **Cuando hay varias sucursales.** Cada una con su hoja, y ninguna cuadrando con la otra.
+
+Un sistema conectado hace sola la cadena: venta, inventario descontado, mínimo revisado, alerta, tablero. Sin volver a escribir el mismo dato.
+
+<Descarga archivo="plantilla-inventario.pdf" nombre="Plantilla de inventario en PDF" />
+
+</Premium>

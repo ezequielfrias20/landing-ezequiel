@@ -1,0 +1,120 @@
+---
+titulo: "Plantilla Cashea: inicial, financiado, comisión y estado, una línea por orden"
+resumen: "Tres hojas armadas donde cada orden dice cuánto cobraste, cuánto te deben y en qué estado está."
+palabraClave: CASHEA
+tipo: plantilla
+temas: [retail, finanzas]
+herramientas: [google-sheets, excel]
+fecha: 2026-09-06
+duracion: Se lee en 5 minutos, se arma en 20
+relacionados: [plantilla-usd-ves, plantilla-inventario]
+---
+
+Cobraste la inicial y el cliente salió con el producto. Lo que queda vivo (cuánto te debe Cashea, cuánto se va en comisión y cuándo entra) está en otra pantalla y casi nunca cuadra con tus números. Al terminar estas páginas tienes tres hojas armadas donde cada orden dice cuánto cobraste, cuánto te deben y en qué estado está.
+
+Es para negocios que venden con Cashea en tienda y online.
+
+Ten al lado tu panel de Cashea y el movimiento de la cuenta donde recibes los depósitos. Lo que está [entre corchetes] lo completas tú: tu comisión y tus plazos son los de tu acuerdo, no los de nadie más, y no los vas a encontrar escritos aquí.
+
+<Paso n="1" titulo="La hoja de órdenes: una línea por orden">
+
+Crea la primera pestaña con estas nueve columnas, en este orden. Una línea por orden, escrita el mismo día de la venta. Una venta con Cashea no termina cuando el cliente sale de la tienda: termina cuando el monto financiado entra a tu cuenta.
+
+- **La venta.** Fecha, N.º de factura y Cliente.
+- **El enlace.** Referencia Cashea: el código con el que la orden aparece en tu panel.
+- **El canal.** Tienda u online, en columna aparte. Nunca mezclados.
+- **El dinero.** Total de la venta, Inicial cobrada y Monto financiado.
+- **El estado.** Pendiente, cobrada o anulada. La regla está en el paso 4.
+
+La referencia Cashea es la única columna que une tu venta con el depósito que vas a recibir. Sin ella no estás conciliando: estás adivinando.
+
+<Nota tipo="truco">
+Crea la pestaña y carga tus últimas diez órdenes Cashea. Anota en cuántas te faltó la referencia: ese número es el tamaño real del problema.
+</Nota>
+
+</Paso>
+
+<Premium>
+
+<Paso n="2" titulo="Parte la venta en dos: un total, dos destinos">
+
+Separa en dos columnas lo que cobraste hoy y lo que todavía te deben. La inicial y el monto financiado son dinero de dos naturalezas distintas. Guardarlos en una sola casilla infla la caja del día y esconde lo que falta por cobrar.
+
+- **La inicial.** Lo que el cliente pagó en el momento. Es caja de hoy y entra en el arqueo del día.
+- **El monto financiado.** Lo que Cashea te va a depositar. No es caja: es una cuenta por cobrar, con fecha y con dueño.
+- **La comprobación.** Inicial más financiado tiene que dar el total de la factura. Si no da, la línea está mal escrita.
+
+Si tu cierre de caja suma la venta completa el día que se hizo, estás contando dos veces el mismo dinero: hoy en el arqueo y otra vez cuando llega el depósito.
+
+<Nota tipo="truco">
+Toma una orden de la hoja de órdenes y comprueba la suma a mano: Total = Inicial + Financiado.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="La hoja de cobros: lo que entra al banco">
+
+Cada vez que Cashea te deposita, escribe una línea con el bruto, la comisión y el neto. Lo que ves en el banco nunca es igual al monto financiado que registraste. La diferencia es la comisión, y esa diferencia tienes que poder explicarla orden por orden.
+
+- **Las columnas.** Fecha del depósito, Referencia del pago, Órdenes que cubre, Monto bruto, Comisión, Neto recibido y Cuenta donde entró.
+- **La comisión no se estima.** Se copia del reporte, no se calcula a ojo sobre el total de la venta.
+- **Un depósito, varias órdenes.** Si un pago cubre más de una, escribe cuáles: es la única forma de cerrar cada línea de la hoja de órdenes.
+
+Tu porcentaje de comisión y tus plazos de depósito son los de tu acuerdo. Escríbelos una vez en la cabecera de la hoja y deja de teclearlos de memoria en cada línea.
+
+<Prompt titulo="Cabecera y primera línea de cobros">{`Comisión pactada: [%]
+Bruto: [monto] · Comisión: [monto] · Neto: [monto]`}</Prompt>
+
+<Nota tipo="truco">
+Abre tu último depósito de Cashea y escríbelo completo.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Los tres estados: dónde está cada orden">
+
+Ponle a cada orden un solo estado y la fecha en que cambió. Un estado sin fecha no sirve de nada. Lo que necesitas saber no es solo cuáles están pendientes: es cuánto llevan pendientes.
+
+- **Pendiente.** La venta está hecha y el monto financiado no ha entrado. Fecha: la de la venta.
+- **Cobrada.** El depósito entró y lo cruzaste con la referencia en la hoja de cobros. Fecha: la del depósito.
+- **Anulada.** La orden se cayó por devolución o cancelación. Anota además qué pasó con la inicial que ya habías cobrado.
+
+Una orden que lleva semanas en pendiente no es una orden pendiente: es una orden que se te perdió. Solo la vas a ver si la fecha está escrita.
+
+<Nota tipo="truco">
+Marca el estado de las diez órdenes del paso 1 y compáralas con el plazo en que normalmente te depositan. Anota cuántos días tarda tu depósito y cuántas órdenes pasaron de ese plazo.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="El cuadre semanal: un día fijo a la semana">
+
+Un día fijo cada semana, saca estos cinco números y compáralos con tu reporte. Si alguno no lo puedes responder sin abrir tres pantallas, ahí está la fuga.
+
+- **Cuánto vendiste.** Total Cashea de la semana, separado en tienda y online.
+- **Cómo se repartió.** Cuánto entró como inicial y cuánto quedó financiado.
+- **Cuánto te depositaron.** Y a qué órdenes de la hoja de órdenes corresponde.
+- **Cuánto pagaste de comisión.** Sumando la columna de la hoja de cobros.
+- **Cuánto sigue pendiente.** Y desde cuándo.
+
+Separar tienda de online no es un capricho: son dos operaciones con personas distintas registrando, y casi siempre una de las dos es la que descuadra.
+
+<Nota tipo="truco">
+Haz el cuadre de la semana que pasó y anota cuántos de los cinco números respondiste sin salir de la plantilla.
+</Nota>
+
+</Paso>
+
+## Ya la tienes armada: cómo leer el resultado
+
+Mira el último micro-paso: cuántos de los cinco números respondiste sin salir de la plantilla.
+
+- **Cinco de cinco.** Tu operación está bajo control. Lo que te cuesta ahora es el tiempo de mantenerla así.
+- **Tres o cuatro.** Hay órdenes perdiéndose entre tienda y online. Empieza por la columna de canal.
+- **Dos o menos.** Hoy no sabes cuánto te debe Cashea. Carga el último mes antes de seguir.
+
+Esta plantilla aguanta mientras alguien escriba cada línea el mismo día y cruce cada depósito a mano. Con dos canales, varias personas cobrando y pagos que cubren varias órdenes, el cuadre se atrasa y deja de servir.
+
+<Descarga archivo="plantilla-cashea.pdf" nombre="Plantilla Cashea en PDF" />
+
+</Premium>

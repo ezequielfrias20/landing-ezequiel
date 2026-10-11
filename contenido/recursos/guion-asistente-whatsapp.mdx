@@ -1,0 +1,123 @@
+---
+titulo: "El guion del asistente: qué pregunta tu WhatsApp antes de pasarte al paciente"
+resumen: "La conversación escrita entera: qué contesta solo el asistente, qué pregunta, qué datos pide y en qué momento entrega el chat a una persona de tu equipo."
+palabraClave: CLÍNICA
+tipo: guia
+temas: [clinicas, atencion-cliente]
+herramientas: [whatsapp]
+fecha: 2026-09-08
+duracion: Menos de 5 minutos
+relacionados: [confirmacion-de-citas, base-de-conocimiento]
+---
+
+Preguntan a media mañana, nadie está libre y para cuando alguien abre el chat esa persona ya le escribió a otra clínica. Aquí tienes la conversación escrita entera: qué contesta solo, qué pregunta, qué datos pide y en qué momento se la entrega a una persona de tu equipo.
+
+Es para clínicas que contestan cuando alguien se desocupa.
+
+Léelo con el WhatsApp de la clínica abierto al lado. Lo que está [entre corchetes] lo cambias por tus datos. Las señales de traspaso del paso 5 las escribes tú: qué no puede contestar un asistente en tu especialidad no lo decide nadie de fuera.
+
+<Paso n="1" titulo="Lo que contesta solo">
+
+Escribe las cinco preguntas que tu clínica contesta todos los días. Ninguna respuesta termina en punto: termina en pregunta. Una respuesta cerrada deja la conversación muerta en la mano del paciente. La misma respuesta, con una pregunta al final, mantiene el hilo abierto y te trae el dato siguiente.
+
+- **Horario y dirección.** Con cómo llegar y dónde estacionar.
+- **Qué tratamientos hacen.** La lista corta, no el catálogo entero.
+- **Si atienden su caso.** Un sí o un no claro, sin diagnosticar nada.
+- **Formas de pago.** Qué aceptan, sin entrar todavía en montos.
+- **Cuánto dura la primera cita.** Y qué tiene que traer.
+
+<Prompt titulo="Respuesta de horario y dirección">{`Atendemos de [horario] en [dirección], a [referencia para llegar].
+¿Le muestro los espacios que quedan libres esta semana?`}</Prompt>
+
+<Nota tipo="truco">
+Abre el WhatsApp de la clínica y lee los últimos veinte mensajes recibidos. Tus cinco preguntas ya están ahí: cópialas tal como las escribe la gente.
+</Nota>
+
+</Paso>
+
+<Premium>
+
+<Paso n="2" titulo="Qué vino a buscar">
+
+Pregunta el tratamiento con opciones cerradas, nunca con un campo abierto. "¿En qué podemos ayudarle?" devuelve párrafos que no se pueden clasificar ni responder bien. Tres o cuatro opciones devuelven una palabra, y esa palabra decide todo lo que viene después: qué se contesta, cuánto dura la cita y con quién va.
+
+Pon primero lo que más agendas. La mayoría elige entre las dos primeras.
+
+<Prompt titulo="Pregunta con opciones cerradas">{`Para orientarle mejor, ¿qué está buscando?
+1 · [tratamiento]
+2 · [tratamiento]
+3 · [tratamiento]
+4 · Otra cosa — cuéntemelo en una línea
+Puede responder solo con el número.`}</Prompt>
+
+<Nota tipo="truco">
+Escribe tus cuatro opciones ahora, con tus palabras y no con las del folleto. Si no te salen cuatro, tu guion se simplifica: mejor.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Los tres datos">
+
+Pide tres datos, uno por mensaje, en este orden: tratamiento, nombre, disponibilidad. El formulario de cinco campos lo abandona todo el mundo. Una pregunta por mensaje se contesta con el pulgar, en una fila, sin pensarlo.
+
+- **Tratamiento.** Ya lo tienes del paso 2. No lo preguntes otra vez.
+- **Nombre.** "¿Con quién tengo el gusto?"
+- **Disponibilidad.** Mañana o tarde, y qué día no le sirve.
+
+El nombre va en segundo lugar a propósito. Pedirlo de entrada suena a que le van a vender algo; pedirlo cuando ya dijo qué quiere suena a que lo van a atender.
+
+<Nota tipo="ojo">
+No preguntes por WhatsApp nada que no vayas a usar en la primera cita. Cada dato de más es una oportunidad de que dejen de contestar.
+</Nota>
+
+<Nota tipo="truco">
+Escribe los tres mensajes seguidos y léelos en voz alta como si fueran una conversación. Si suena a formulario, te sobra una pregunta.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Cuando preguntan el precio">
+
+Contesta con un rango y la condición que lo mueve, y devuelve la conversación a la cita. Soltar el número cierra la conversación: comparan y se van. Esquivarlo con "depende del caso" también la cierra, porque suena a que le van a inflar el presupuesto.
+
+El rango con la condición hace las dos cosas a la vez: da una referencia real y explica por qué el número exacto necesita verlo a él.
+
+<Prompt titulo="Respuesta de precio">{`[Tratamiento] va de [rango], según [lo que lo cambia: sesiones, materiales, estado inicial].
+El número exacto sale de la valoración, que dura [tiempo].
+¿Le busco un espacio esta semana?`}</Prompt>
+
+<Nota tipo="truco">
+Escribe tu rango para los dos tratamientos que más te preguntan, con la condición que lo mueve. Diez minutos, y ya tienes la respuesta más repetida del mes.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Dónde termina el asistente">
+
+Define las tres señales que apagan al asistente y entregan la conversación a una persona. Es la parte que casi nadie escribe, y es la que decide si el paciente confía. El asistente solo tiene dos salidas: una cita propuesta o una persona de tu equipo. Insistir cuando ya no toca hace más daño que los veinte minutos de silencio.
+
+- **Lo pide.** "Quiero hablar con alguien" corta el guion, siempre.
+- **Urge o duele.** [Tus señales de urgencia] van directo a una persona.
+- **Se traba.** Dos respuestas seguidas que no encajan: se traspasa.
+
+<Prompt titulo="Mensaje de traspaso">{`Con esto ya tengo lo necesario. Le paso con [nombre o equipo], que le confirma el horario y le resuelve el resto. Le escribe [día y hora concretos].`}</Prompt>
+
+<Nota tipo="truco">
+Escribe tus tres señales y pégalas donde las vea todo el equipo: "Se traspasa si [señal] y le escribe [quién, cuándo]".
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: cómo leer el resultado
+
+Mira quién contesta hoy el primer mensaje en tu clínica. Ahí está tu punto de partida.
+
+- **Nadie, fuera del horario de recepción.** El guion ya te sirve guardado como respuestas rápidas.
+- **Un automático de un solo mensaje.** Cámbialo por los pasos 1 y 2: pregunta en vez de solo avisar.
+- **Una persona, a mano.** Funciona, y es justo el trabajo que se cae cuando entra un paciente por la puerta.
+
+Este guion sabe preguntar, no sabe responder: no conoce tus horarios libres, tus tratamientos ni qué pasó con esa persona la última vez. Y el dato que recoge se queda en el chat si no hay una agenda detrás.
+
+<Descarga archivo="guion-asistente-whatsapp.pdf" nombre="El guion del asistente en PDF" />
+
+</Premium>

@@ -1,0 +1,123 @@
+---
+titulo: "La base de conocimiento: las respuestas que tu equipo repite, escritas una sola vez"
+resumen: "Una plantilla para juntar en un solo sitio los horarios, precios y requisitos que tu equipo contesta todos los días, y dejarlos escritos una sola vez."
+palabraClave: RESPUESTAS
+tipo: guia
+temas: [atencion-cliente]
+herramientas: [whatsapp]
+fecha: 2026-09-09
+duracion: Se lee en 5 minutos, la primera versión se llena en 30
+relacionados: [guion-asistente-whatsapp, confirmacion-de-citas]
+---
+
+El mismo horario, el mismo precio y la misma dirección, otra vez. Esas respuestas ya existen en tu negocio: están repartidas entre chats viejos, la cabeza de dos personas y un folleto que nadie abre. Aquí tienes la plantilla para juntarlas en un solo sitio.
+
+Es para negocios donde dos o tres personas contestan lo mismo todos los días.
+
+Hazla con el WhatsApp o el correo del negocio abierto al lado: casi todo el contenido de tu base ya está escrito ahí. Lo que está [entre corchetes] lo cambias por tus datos.
+
+<Paso n="1" titulo="De dónde salen las respuestas">
+
+No inventes preguntas. Copia las que ya te hicieron, con las palabras con que te las hicieron. Una base escrita desde cero se llena de preguntas que nadie hace y le faltan las tres que llegan cada día.
+
+Las que importan ya están escritas en algún sitio de tu negocio:
+
+- **Los últimos mensajes recibidos.** WhatsApp, Instagram y correo. Ahí está la mayoría.
+- **La cabeza del equipo.** Pregúntale a quien contesta: "¿Qué te preguntan todos los días?".
+- **Lo que ya está escrito.** Folleto, web, respuestas rápidas guardadas.
+
+Copia la pregunta tal como la escribe el cliente, no como la escribirías tú. "¿Abren los sábados?" y "Horario de atención" son la misma información, y solo una de las dos la escribe alguien de verdad.
+
+<Nota tipo="truco">
+Abre una hoja con dos columnas: PREGUNTA y QUIÉN LA CONTESTA HOY. Llénala con quince líneas en diez minutos. Esa hoja ya es tu versión cero.
+</Nota>
+
+</Paso>
+
+<Premium>
+
+<Paso n="2" titulo="Las seis carpetas">
+
+Reparte cada pregunta en una de estas seis. Si no entra en ninguna, no va en la base. Sin carpetas la base es una lista larga que nadie mantiene. Con seis, cualquiera del equipo sabe dónde va lo nuevo y dónde buscar lo viejo.
+
+- **Horarios.** Días, franjas, feriados y excepciones.
+- **Precios.** Rangos, qué incluye y qué los mueve.
+- **Ubicaciones.** Cómo llegar, estacionamiento, sucursales.
+- **Requisitos.** Qué traer y qué hace falta antes.
+- **Políticas.** Cancelación, garantía, devoluciones, pagos.
+- **Frecuentes.** Todo lo demás que se repite.
+
+<Nota tipo="truco">
+Ponle una letra a cada línea de tu hoja. En cinco minutos ves cuál es la carpeta que más te preguntan, y esa es por la que empiezas a escribir.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="La ficha de cada respuesta">
+
+Escribe cada respuesta en cuatro campos fijos. Siempre los mismos cuatro. Este formato convierte un montón de notas sueltas en información aprobada: cualquiera lee una ficha y sabe si sirve, quién la aprobó y cuándo caduca.
+
+Dos campos merecen atención:
+
+- **No decir.** El campo que casi nadie pone, y el que evita que se conteste de más.
+- **Revisada.** Sin fecha, nadie sabe si ese precio sigue siendo el de hoy.
+
+<Prompt titulo="Ficha de respuesta">{`PREGUNTA · [tal como la escribe el cliente]
+RESPUESTA · [dos o tres líneas, sin rodeos]
+NO DECIR · [qué no se contesta aquí y a quién se pasa]
+REVISADA · [fecha] por [nombre]`}</Prompt>
+
+<Nota tipo="truco">
+Escribe la ficha completa de tu pregunta más repetida. Una sola. Si los cuatro campos te salen en tres minutos, el formato te sirve.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Lo que nunca entra">
+
+Marca las consultas que necesitan criterio humano y déjalas fuera de la base. Tu equipo no está para copiar y pegar el horario: está para lo que viene después. Si la base intenta cubrir eso también, contesta mal justo en el momento en el que más te juegas.
+
+- **"¿Qué me conviene?"** Cualquier recomendación va a una persona.
+- **Excepciones y reclamos.** Algo salió mal o se discute una condición.
+- **Decisiones de dinero.** Descuentos y condiciones que no están publicadas.
+- **Datos de un caso concreto.** Lo que solo se sabe mirando su historial.
+
+Cada una de estas necesita una frase de salida escrita, no un silencio:
+
+<Prompt titulo="Frase de salida">{`Esto lo revisa [nombre o equipo] y le escribe [cuándo].`}</Prompt>
+
+<Nota tipo="truco">
+Escribe tu lista de excepciones, una línea cada una, y pégala junto a la base. Es la parte que protege al negocio, no la que lo automatiza.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="La fecha de caducidad">
+
+Ponle un dueño y una fecha de revisión antes de dar la base por terminada. Una base sin dueño se desactualiza en semanas y empieza a contestar cosas que ya no son ciertas, con el nombre de tu negocio encima. Eso es peor que no tener nada.
+
+- **Un dueño.** Una persona con nombre, nunca "el equipo".
+- **Una revisión fija.** Un día al mes para las fichas con fecha vieja.
+- **Un disparador.** Cambia un precio: se edita ese día, no en la revisión.
+- **Una bandeja de faltantes.** Lo que preguntaron y no estaba, se anota.
+
+<Prompt titulo="Dueño y revisión">{`Dueño: [nombre]
+Se revisa el [día del mes] de cada mes`}</Prompt>
+
+Escríbelo y ponlo en la primera página de la base.
+
+</Paso>
+
+## Ya la aplicaste: cómo leer el resultado
+
+Mira dónde acabas de guardar la base. Ahí está lo que te falta.
+
+- **En la cabeza de alguien.** No es una base, es una dependencia. Pásala hoy a un documento.
+- **En un documento compartido.** Ya sirve: el equipo deja de improvisar y contesta igual.
+- **En respuestas rápidas.** Funciona mientras haya alguien con el teléfono en la mano.
+
+La base no contesta sola: es un documento. Para que responda hace falta un asistente que la lea y se ciña a ella, y un circuito que avise cuando una ficha queda vieja o cuando entra una pregunta que no está.
+
+<Descarga archivo="base-de-conocimiento.pdf" nombre="La base de conocimiento en PDF" />
+
+</Premium>

@@ -1,0 +1,116 @@
+---
+titulo: "Plantilla USD / VES: controla tus ventas en dólares y bolívares sin perder el rastro de la tasa"
+resumen: "Las cuatro hojas que hay que armar, con sus columnas exactas, para saber cuánto vendiste de verdad cuando cobras mezclado y la tasa se mueve."
+palabraClave: TASA
+tipo: plantilla
+temas: [retail, finanzas]
+herramientas: [google-sheets, excel]
+fecha: 2026-09-02
+duracion: Se lee en 5 minutos, se arma en 20
+relacionados: [plantilla-cashea, plantilla-inventario, mapa-venta-pos]
+---
+
+Cobras mezclado, la tasa se movió dos veces esta semana y al cerrar el día no sabes cuánto vendiste de verdad. Aquí están las cuatro hojas que hay que armar, con sus columnas exactas.
+
+Es para negocios que cobran en USD y VES con pagos mixtos.
+
+Abre una hoja de cálculo nueva y crea cuatro pestañas. Cada paso te da las columnas exactas de una, en orden. Se arma en veinte minutos y se usa desde la primera venta de mañana. Los números de los ejemplos están solo para que veas la mecánica: pon los tuyos.
+
+<Paso n="1" titulo="Hoja 1: el registro de ventas, una línea por venta">
+
+Crea la primera pestaña con estas once columnas, en este orden. Una línea por venta, no por pago. Si falta la columna de la tasa, en un mes ya no puedes reconstruir la operación.
+
+- **La venta.** Fecha, N.º de venta y Cliente, con nombre o referencia.
+- **El monto.** Total USD, Tasa utilizada y Total equivalente VES, que es el total en dólares por la tasa.
+- **El cobro.** Método de pago, Moneda recibida, Monto recibido y Referencia bancaria si aplica.
+- **La firma.** Responsable: quién registró la operación.
+
+El Total equivalente VES se calcula, no se teclea. Escrito a mano, tarde o temprano deja de cuadrar con la tasa de su propia línea.
+
+<Nota tipo="truco">
+Crea la pestaña y registra la última venta de ayer. Si te falta un dato para llenar una columna, ahí está el primer agujero.
+</Nota>
+
+</Paso>
+
+<Premium>
+
+<Paso n="2" titulo="Hoja 2: los métodos de pago">
+
+Crea la segunda pestaña con cuatro columnas y una fila por método. Esta hoja responde una sola pregunta: cómo recibiste realmente el dinero que vendiste hoy.
+
+- **Las columnas.** Método, USD recibido, VES recibido y Equivalente USD.
+- **Las filas.** Efectivo USD, Efectivo VES, Pago móvil, Transferencia, Tarjeta y Otros.
+- **El pago mixto.** Una venta de $100 a tasa 150 son 15.000 VES. Si paga $40 en efectivo y 9.000 VES en pago móvil, es una sola venta con dos líneas de pago.
+
+Una venta, un número de venta. Los pagos se parten; la venta no. Si la partes en dos, tus ventas del día se duplican solas.
+
+<Nota tipo="truco">
+Toma la última venta mixta y regístrala: una línea en la hoja de ventas, dos en esta. Comprueba que las dos suman el total.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Hoja 3: el control de tasa, cada cambio una línea">
+
+Crea la tercera pestaña con tres columnas y escribe una línea cada vez que cambies la tasa. La tasa es el único dato de la venta que no se puede recuperar después. El monto está en la factura; la tasa solo está donde la escribiste.
+
+- **Las columnas.** Fecha, Tasa utilizada y Responsable.
+- **Cuándo se escribe.** En el momento en que cambias la tasa con la que cobras, antes de la siguiente venta. No una línea por día: una por cambio.
+- **Para qué sirve después.** Para saber con qué tasa se registró una operación de hace tres semanas, sin abrir una discusión.
+
+La tasa que no queda escrita en el momento se convierte en la palabra de uno contra la del otro. Y la pierde quien no la anotó.
+
+<Nota tipo="truco">
+Escribe la línea de hoy: fecha, la tasa con la que estás cobrando ahora mismo y tu nombre. Esa es la primera línea del historial.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Hoja 4: el cierre diario">
+
+Crea la cuarta pestaña y al terminar el día registra estos seis datos. Es el resumen que deberías poder leer en treinta segundos, sin sumar nada a mano.
+
+- **Los seis datos.** Ventas totales en USD, VES recibidos, USD recibidos, Equivalente total en USD, Cantidad de transacciones y Ticket promedio.
+- **El ticket promedio.** Ventas totales entre número de ventas. En el ejemplo, $2.000 en 40 operaciones dan $50.
+- **El cuadre.** El equivalente total en USD tiene que dar lo mismo que la suma de la hoja de métodos de pago.
+
+Si el cierre no cuadra con la hoja de métodos de pago, el error está en una tasa mal anotada. Casi siempre.
+
+<Nota tipo="truco">
+Cierra hoy con esta hoja antes de cerrar la tienda, con la plantilla delante. Anota las ventas del día y el ticket promedio.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Las 5 preguntas del cierre">
+
+Al cerrar el día responde estas cinco sin salir de la plantilla.
+
+- **¿Cuánto vendimos realmente?** Hoja 4, ventas totales en USD.
+- **¿Cuánto recibimos en USD?** Hoja 2, columna USD recibido.
+- **¿Cuánto recibimos en VES?** Hoja 2, columna VES recibido.
+- **¿Qué tasa se utilizó?** Hoja 3, la línea vigente en el momento de la venta.
+- **¿Por qué métodos entró?** Hoja 2, una fila por método.
+
+Si alguna te obliga a buscar en una conversación, en otro Excel o en el estado de cuenta, tu cierre todavía depende de que alguien se acuerde.
+
+<Nota tipo="truco">
+Cierra el día de hoy y responde las cinco en voz alta. Marca cuántas pudiste sin buscar en otro sitio.
+</Nota>
+
+</Paso>
+
+## Ya la tienes armada: ¿cuándo deja de alcanzar?
+
+Deja de alcanzar el día que aparecen estas tres cosas juntas.
+
+- **Varias sucursales y varios vendedores.** Todos escribiendo en la misma hoja.
+- **Cientos de operaciones.** Registrar deja de ser un minuto y pasa a ser un puesto de trabajo.
+- **La tasa cambiando varias veces al día.** Con pagos mixtos en casi todas las ventas.
+
+Un sistema hace solo la cadena que aquí haces a mano: venta, tasa, método de pago, conversión, reporte.
+
+<Descarga archivo="plantilla-usd-ves.pdf" nombre="Plantilla USD / VES en PDF" />
+
+</Premium>
