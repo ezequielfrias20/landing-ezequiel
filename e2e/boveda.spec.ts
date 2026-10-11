@@ -39,3 +39,15 @@ test('el enlace Recursos del encabezado limpia la búsqueda anterior', async ({ 
   await expect(page.getByLabel('Buscar recursos')).toHaveValue('');
   await expect(tarjetas(page)).toHaveCount(2);
 });
+
+test('escribir una búsqueda de dos palabras conserva el espacio y cada letra', async ({ page }) => {
+  await page.goto('/recursos');
+  const buscador = page.getByLabel('Buscar recursos');
+  // Tecla por tecla, como una persona: antes la URL recortada pisaba el espacio y algunas letras.
+  await buscador.pressSequentially('plantilla inventario', { delay: 5 });
+  await expect(buscador).toHaveValue('plantilla inventario');
+  await expect(page).toHaveURL(/\?q=plantilla\+inventario$/);
+  await expect(buscador).toHaveValue('plantilla inventario');
+  await expect(tarjetas(page)).toHaveCount(1);
+  await expect(page.getByText('Plantilla de inventario')).toBeVisible();
+});

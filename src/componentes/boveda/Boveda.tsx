@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { TarjetaRecurso } from '@/componentes/TarjetaRecurso';
 import {
   ETIQUETAS_HERRAMIENTA, ETIQUETAS_TEMA, ETIQUETAS_TIPO, HERRAMIENTAS, TEMAS, TIPOS,
@@ -16,12 +16,18 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
   const pathname = usePathname();
   const filtros = useMemo(() => leerFiltros(new URLSearchParams(params.toString())), [params]);
   const [q, setQ] = useState(filtros.q);
+  // La búsqueda llega a la URL con debounce: escribir en la URL en cada tecla hacía que URLs
+  // intermedias (y recortadas) volvieran tarde y pisaran el espacio o letras ya escritas.
+  const temporizador = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const [pendiente, setPendiente] = useState(false);
   // Si la URL cambia desde fuera (p. ej. el enlace "Recursos" del encabezado), el input la sigue.
+  // Solo si de verdad difiere de lo escrito (recortado) y no hay una escritura en camino.
   const [qUrl, setQUrl] = useState(filtros.q);
   if (filtros.q !== qUrl) {
     setQUrl(filtros.q);
-    setQ(filtros.q);
+    if (!pendiente && filtros.q !== q.trim()) setQ(filtros.q);
   }
+  useEffect(() => () => clearTimeout(temporizador.current), []);
 
   const actuales: Filtros = { ...filtros, q };
   const resultados = useMemo(() => filtrarRecursos(indice, { ...filtros, q }), [indice, filtros, q]);
@@ -30,11 +36,41 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
     [indice],
   );
 
+  function navegar(f: Filtros) {
+    router.replace(`${pathname}${escribirFiltros(f)}`, { scroll: false });
+  }
+
+  function cancelarPendiente() {
+    clearTimeout(temporizador.current);
+    temporizador.current = undefined;
+    setPendiente(false);
+  }
+
   function aplicar(cambios: Partial<Filtros>) {
-    router.replace(`${pathname}${escribirFiltros({ ...actuales, ...cambios })}`, { scroll: false });
+    cancelarPendiente();
+    navegar({ ...actuales, ...cambios });
+  }
+
+  function escribir(valor: string) {
+    setQ(valor);
+    clearTimeout(temporizador.current);
+    setPendiente(true);
+    temporizador.current = setTimeout(() => {
+      temporizador.current = undefined;
+      setPendiente(false);
+      navegar({ ...filtros, q: valor });
+    }, 300);
+  }
+
+  // Al salir del buscador (p. ej. para tocar un enlace) la búsqueda pendiente se escribe ya,
+  // para que no llegue después y deshaga esa navegación.
+  function confirmarPendiente() {
+    if (temporizador.current === undefined) return;
+    aplicar({});
   }
 
   function limpiar() {
+    cancelarPendiente();
     setQ('');
     router.replace(pathname, { scroll: false });
   }
@@ -48,10 +84,8 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
         id="buscar"
         type="search"
         value={q}
-        onChange={(e) => {
-          setQ(e.target.value);
-          aplicar({ q: e.target.value });
-        }}
+        onChange={(e) => escribir(e.target.value)}
+        onBlur={confirmarPendiente}
         placeholder="Busca por tema, herramienta o nombre"
         className="w-full rounded-lg border border-linea bg-superficie px-4 py-3"
       />
