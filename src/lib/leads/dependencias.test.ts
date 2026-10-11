@@ -34,4 +34,22 @@ describe('crearDependencias', () => {
     vi.stubEnv('BREVO_LISTA_ID', '3');
     expect(crearDependencias().repositorio).toBeInstanceOf(RepositorioSupabase);
   });
+
+  it.each(['Bóveda', '', '0', '-3', '2.5'])('rechaza BREVO_LISTA_ID inválido (%j)', (valor) => {
+    vi.stubEnv('ALMACEN_LEADS', '');
+    vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co');
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'clave');
+    vi.stubEnv('BREVO_API_KEY', 'clave');
+    vi.stubEnv('BREVO_LISTA_ID', valor);
+    expect(() => crearDependencias()).toThrow(ErrorConfiguracion);
+  });
+
+  it('BREVO_LISTA_ID no numérico dice cuál variable falla', () => {
+    vi.stubEnv('ALMACEN_LEADS', '');
+    vi.stubEnv('SUPABASE_URL', 'https://x.supabase.co');
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'clave');
+    vi.stubEnv('BREVO_API_KEY', 'clave');
+    vi.stubEnv('BREVO_LISTA_ID', 'Bóveda');
+    expect(() => crearDependencias()).toThrow('BREVO_LISTA_ID debe ser un número entero positivo');
+  });
 });

@@ -4,13 +4,19 @@ vi.mock('@/lib/contenido/recursos', () => ({
   obtenerRecurso: (slug: string) => (slug === 'checklist-erp' ? { slug } : null),
 }));
 
+vi.mock('./dependencias', async (importarOriginal) => {
+  const original = await importarOriginal<typeof import('./dependencias')>();
+  return { ...original, crearDependencias: vi.fn(original.crearDependencias) };
+});
+
+import { crearDependencias } from './dependencias';
 import { manejarAlta } from './manejador';
 
 let ip = 0;
-const pedir = (cuerpo: unknown, url = 'https://sitio.com/api/desbloquear') =>
+const pedir = (cuerpo: unknown, url = 'https://sitio.com/api/desbloquear', direccion = `10.0.0.${++ip}`) =>
   new Request(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/json', 'x-forwarded-for': `10.0.0.${++ip}` },
+    headers: { 'content-type': 'application/json', 'x-forwarded-for': direccion },
     body: typeof cuerpo === 'string' ? cuerpo : JSON.stringify(cuerpo),
   });
 
@@ -56,6 +62,54 @@ describe('manejarAlta', () => {
     vi.stubEnv('ACCESO_SECRET', '');
     const r = await manejarAlta(pedir({ email: 'ana@correo.com', slug: 'checklist-erp' }), 'desbloqueo');
     expect(r.status).toBe(503);
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('honeypot: 200 ok sin cookie', async () => {
+    const r = await manejarAlta(
+      pedir({ email: 'ana@correo.com', slug: 'checklist-erp', sitio_web: 'http://spam' }),
+      'desbloqueo',
+    );
+    expect(r.status).toBe(200);
+    expect((await r.json()).ok).toBe(true);
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('slug desconocido: 400 sin cookie', async () => {
+    const r = await manejarAlta(pedir({ email: 'ana@correo.com', slug: 'no-existe' }), 'desbloqueo');
+    expect(r.status).toBe(400);
+    expect((await r.json()).ok).toBe(false);
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('la sexta petición desde la misma IP: 429 sin cookie', async () => {
+    const cuerpo = { email: 'ana@correo.com', slug: 'checklist-erp' };
+    for (let i = 0; i < 5; i++) {
+      const ok = await manejarAlta(pedir(cuerpo, undefined, '203.0.113.9'), 'desbloqueo');
+      expect(ok.status).toBe(200);
+    }
+    const r = await manejarAlta(pedir(cuerpo, undefined, '203.0.113.9'), 'desbloqueo');
+    expect(r.status).toBe(429);
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('falla del repositorio: 503 con mensaje y sin cookie', async () => {
+    const reales = vi.mocked(crearDependencias)();
+    vi.mocked(crearDependencias).mockReturnValueOnce({
+      ...reales,
+      repositorio: {
+        ...reales.repositorio,
+        contarIntentosDesde: async () => 0,
+        registrarIntento: async () => {},
+        guardarLead: async () => {
+          throw new Error('base caída');
+        },
+      },
+      registrarError: () => {},
+    });
+    const r = await manejarAlta(pedir({ email: 'ana@correo.com', slug: 'checklist-erp' }), 'desbloqueo');
+    expect(r.status).toBe(503);
+    expect((await r.json()).mensaje).toBe('No pudimos guardar tu email, prueba de nuevo.');
     expect(r.headers.get('set-cookie')).toBeNull();
   });
 });

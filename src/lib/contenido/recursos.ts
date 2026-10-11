@@ -4,11 +4,11 @@ import { leerRecursos, validarColeccion } from './analizar';
 import type { Recurso } from './tipos';
 
 export function dirRecursos(): string {
-  return path.join(process.cwd(), process.env.DIR_RECURSOS ?? 'contenido/recursos');
+  return path.join(/*turbopackIgnore: true*/ process.cwd(), process.env.DIR_RECURSOS ?? 'contenido/recursos');
 }
 
 export function dirDescargas(): string {
-  return path.join(process.cwd(), process.env.DIR_DESCARGAS ?? 'contenido/descargas');
+  return path.join(/*turbopackIgnore: true*/ process.cwd(), process.env.DIR_DESCARGAS ?? 'contenido/descargas');
 }
 
 let cache: Recurso[] | null = null;

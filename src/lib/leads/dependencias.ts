@@ -27,9 +27,13 @@ export function crearDependencias(): DependenciasAlta {
       'Faltan variables: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, BREVO_API_KEY o BREVO_LISTA_ID',
     );
   }
+  const listaId = Number(BREVO_LISTA_ID);
+  if (!Number.isInteger(listaId) || listaId <= 0) {
+    throw new ErrorConfiguracion('BREVO_LISTA_ID debe ser un número entero positivo');
+  }
   return {
     ...comunes,
     repositorio: new RepositorioSupabase(crearClienteSupabase(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)),
-    brevo: new ClienteBrevoHttp(BREVO_API_KEY, Number(BREVO_LISTA_ID)),
+    brevo: new ClienteBrevoHttp(BREVO_API_KEY, listaId),
   };
 }
