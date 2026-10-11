@@ -13,10 +13,15 @@ import { crearDependencias } from './dependencias';
 import { manejarAlta } from './manejador';
 
 let ip = 0;
-const pedir = (cuerpo: unknown, url = 'https://sitio.com/api/desbloquear', direccion = `10.0.0.${++ip}`) =>
+const pedir = (
+  cuerpo: unknown,
+  url = 'https://sitio.com/api/desbloquear',
+  direccion = `10.0.0.${++ip}`,
+  extra: Record<string, string> = {},
+) =>
   new Request(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/json', 'x-forwarded-for': direccion },
+    headers: { 'content-type': 'application/json', 'x-forwarded-for': direccion, ...extra },
     body: typeof cuerpo === 'string' ? cuerpo : JSON.stringify(cuerpo),
   });
 
@@ -111,5 +116,56 @@ describe('manejarAlta', () => {
     expect(r.status).toBe(503);
     expect((await r.json()).mensaje).toBe('No pudimos guardar tu email, prueba de nuevo.');
     expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('x-real-ip manda sobre x-forwarded-for: misma cubeta aunque cambie el reenviado', async () => {
+    const cuerpo = { email: 'ana@correo.com', slug: 'checklist-erp' };
+    for (let i = 0; i < 5; i++) {
+      const ok = await manejarAlta(
+        pedir(cuerpo, undefined, `198.51.100.${i}`, { 'x-real-ip': '192.0.2.77' }),
+        'desbloqueo',
+      );
+      expect(ok.status).toBe(200);
+    }
+    const r = await manejarAlta(pedir(cuerpo, undefined, '198.51.100.99', { 'x-real-ip': '192.0.2.77' }), 'desbloqueo');
+    expect(r.status).toBe(429);
+  });
+
+  it('content-type que no es JSON: 415 sin cookie', async () => {
+    const r = await manejarAlta(
+      pedir('{"email":"ana@correo.com","slug":"checklist-erp"}', undefined, undefined, { 'content-type': 'text/plain' }),
+      'desbloqueo',
+    );
+    expect(r.status).toBe(415);
+    expect(await r.json()).toEqual({ ok: false, mensaje: 'Formato no soportado.' });
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('Origin de otro sitio: 403 sin cookie', async () => {
+    const r = await manejarAlta(
+      pedir({ email: 'ana@correo.com', slug: 'checklist-erp' }, undefined, undefined, { origin: 'https://malicioso.com' }),
+      'desbloqueo',
+    );
+    expect(r.status).toBe(403);
+    expect(await r.json()).toEqual({ ok: false, mensaje: 'Origen no permitido.' });
+    expect(r.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('Origin del mismo sitio: 200', async () => {
+    const r = await manejarAlta(
+      pedir({ email: 'ana@correo.com', slug: 'checklist-erp' }, undefined, undefined, { origin: 'https://sitio.com' }),
+      'desbloqueo',
+    );
+    expect(r.status).toBe(200);
+  });
+
+  it('detrás de proxy (x-forwarded-proto https) la cookie lleva Secure', async () => {
+    const r = await manejarAlta(
+      pedir({ email: 'ana@correo.com', slug: 'checklist-erp' }, 'http://sitio.com/api/desbloquear', undefined, {
+        'x-forwarded-proto': 'https',
+      }),
+      'desbloqueo',
+    );
+    expect(r.headers.get('set-cookie')).toMatch(/Secure/i);
   });
 });
