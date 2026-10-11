@@ -9,13 +9,13 @@ export class ClienteBrevoHttp implements ClienteBrevo {
     private readonly fetchImpl: Fetch = (url, init) => fetch(url, init),
   ) {}
 
-  async sincronizarContacto(email: string, ultimoRecurso: string): Promise<void> {
+  async sincronizarContacto(email: string, ultimoRecurso: string | null): Promise<void> {
     const respuesta = await this.fetchImpl('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: { 'api-key': this.apiKey, 'content-type': 'application/json', accept: 'application/json' },
       body: JSON.stringify({
         email,
-        attributes: { ULTIMO_RECURSO: ultimoRecurso },
+        ...(ultimoRecurso === null ? {} : { attributes: { ULTIMO_RECURSO: ultimoRecurso } }),
         listIds: [this.listaId],
         updateEnabled: true,
       }),

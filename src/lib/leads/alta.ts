@@ -9,7 +9,7 @@ export interface RepositorioLeads {
 }
 
 export interface ClienteBrevo {
-  sincronizarContacto(email: string, ultimoRecurso: string): Promise<void>;
+  sincronizarContacto(email: string, ultimoRecurso: string | null): Promise<void>;
 }
 
 export interface DependenciasAlta {
@@ -87,7 +87,7 @@ export async function procesarAlta(
   }
 
   try {
-    await deps.brevo.sincronizarContacto(email, slug);
+    await deps.brevo.sincronizarContacto(email, entrada.modo === 'desbloqueo' ? slug : null);
     if (!lead.brevoSincronizado) await deps.repositorio.marcarBrevoSincronizado(lead.id);
   } catch (error) {
     deps.registrarError('No se pudo sincronizar con Brevo', error);

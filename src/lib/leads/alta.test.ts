@@ -64,7 +64,7 @@ describe('procesarAlta', () => {
     const r = await procesarAlta({ cuerpo: { email: 'ana@correo.com' }, ipHash: 'ip-1', modo: 'newsletter' }, deps);
     expect(r.estado).toBe(200);
     expect(repo.desbloqueos[0].slug).toBe('newsletter');
-    expect(brevo.sincronizarContacto).toHaveBeenCalledWith('ana@correo.com', 'newsletter');
+    expect(brevo.sincronizarContacto).toHaveBeenCalledWith('ana@correo.com', null);
   });
 
   it('limpia el origen', async () => {

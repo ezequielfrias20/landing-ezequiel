@@ -17,6 +17,16 @@ describe('ClienteBrevoHttp', () => {
     });
   });
 
+  it('sin último recurso (newsletter) no envía el atributo', async () => {
+    const fetchFalso = vi.fn().mockResolvedValue(new Response(null, { status: 201 }));
+    await new ClienteBrevoHttp('clave', 7, fetchFalso).sincronizarContacto('ana@correo.com', null);
+    expect(JSON.parse(fetchFalso.mock.calls[0][1].body)).toEqual({
+      email: 'ana@correo.com',
+      listIds: [7],
+      updateEnabled: true,
+    });
+  });
+
   it('lanza si Brevo responde con error', async () => {
     const fetchFalso = vi.fn().mockResolvedValue(new Response('mal', { status: 401 }));
     await expect(new ClienteBrevoHttp('clave', 7, fetchFalso).sincronizarContacto('a@b.co', 'x')).rejects.toThrow(/401/);
