@@ -27,8 +27,9 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
     const datos = new FormData(evento.currentTarget);
     const params = new URLSearchParams(window.location.search);
     setEstado({ tipo: 'enviando' });
+    let respuesta: Response;
     try {
-      const respuesta = await fetch(endpoint, {
+      respuesta = await fetch(endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
@@ -38,16 +39,24 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
           origen: params.get('ref') ?? params.get('utm_source'),
         }),
       });
-      const cuerpo = (await respuesta.json()) as { ok: boolean; mensaje: string };
-      if (!respuesta.ok || !cuerpo.ok) {
-        setEstado({ tipo: 'error', mensaje: cuerpo.mensaje });
-        return;
-      }
-      setEstado({ tipo: 'listo', mensaje: cuerpo.mensaje });
-      if (alExito === 'refrescar') router.refresh();
     } catch {
       setEstado({ tipo: 'error', mensaje: 'No hubo conexión. Prueba de nuevo.' });
+      return;
     }
+    let cuerpo: { ok: boolean; mensaje: string };
+    try {
+      cuerpo = (await respuesta.json()) as { ok: boolean; mensaje: string };
+    } catch {
+      // Respuesta que no es JSON (p. ej. un 5xx en HTML de la plataforma).
+      setEstado({ tipo: 'error', mensaje: 'Algo falló de nuestro lado. Prueba de nuevo en un momento.' });
+      return;
+    }
+    if (!respuesta.ok || !cuerpo.ok) {
+      setEstado({ tipo: 'error', mensaje: cuerpo.mensaje });
+      return;
+    }
+    setEstado({ tipo: 'listo', mensaje: cuerpo.mensaje });
+    if (alExito === 'refrescar') router.refresh();
   }
 
   if (estado.tipo === 'listo' && alExito === 'mensaje') {
@@ -77,10 +86,10 @@ export function FormularioEmail({ endpoint, slug, textoBoton, alExito }: Props) 
       </div>
       <button
         type="submit"
-        disabled={estado.tipo === 'enviando'}
+        disabled={estado.tipo === 'enviando' || estado.tipo === 'listo'}
         className="rounded-md bg-acento px-4 py-2 font-medium text-white disabled:opacity-60"
       >
-        {estado.tipo === 'enviando' ? 'Enviando…' : textoBoton}
+        {estado.tipo === 'enviando' ? 'Enviando…' : estado.tipo === 'listo' ? 'Listo' : textoBoton}
       </button>
       {estado.tipo === 'error' && (
         <p role="alert" className="text-sm text-red-700 sm:basis-full">
