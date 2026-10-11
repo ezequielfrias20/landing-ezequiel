@@ -104,6 +104,37 @@ describe('validarColeccion', () => {
   });
 });
 
+describe('validarColeccion: sintaxis del cuerpo', () => {
+  const r = (cuerpo: string) => analizarRecurso('a.mdx', mdx(BASE, cuerpo));
+  const siempre = () => true;
+
+  it('rechaza <Premium> con espacios o atributos', () => {
+    expect(() => validarColeccion([r('<Premium >\nx\n</Premium>')], siempre)).toThrow(/a\.mdx.*<Premium>/);
+    expect(() => validarColeccion([r('<Premium plan="x">\nx\n</Premium>')], siempre)).toThrow(/a\.mdx.*<Premium>/);
+  });
+
+  it('rechaza <Premium> sin cierre', () => {
+    expect(() => validarColeccion([r('<Premium>\n<Descarga archivo="p.pdf" nombre="P" />')], siempre)).toThrow(/a\.mdx.*<Premium>/);
+  });
+
+  it('rechaza <Descarga> sin archivo entre comillas dobles', () => {
+    expect(() => validarColeccion([r("<Descarga archivo='x.pdf' nombre=\"X\" />")], siempre)).toThrow(/a\.mdx.*comillas dobles/);
+    expect(() => validarColeccion([r('<Descarga nombre="X" />')], siempre)).toThrow(/comillas dobles/);
+  });
+
+  it('rechaza nombres de archivo inválidos en el cuerpo', () => {
+    expect(() => validarColeccion([r('<Descarga archivo="../../.env" nombre="X" />')], siempre)).toThrow(/a\.mdx[\s\S]*\.\.\/\.\.\/\.env/);
+  });
+});
+
+describe('YAML inválido', () => {
+  it('nombra el archivo', () => {
+    const fuente = '---\ntitulo: [sin cerrar\n---\nx\n';
+    expect(() => analizarRecurso('roto.mdx', fuente)).toThrow(ErrorContenido);
+    expect(() => analizarRecurso('roto.mdx', fuente)).toThrow(/roto\.mdx: el frontmatter no es YAML válido/);
+  });
+});
+
 describe('normalizarClave', () => {
   it('quita tildes y pasa a mayúsculas', () => {
     expect(normalizarClave('Clínica')).toBe('CLINICA');

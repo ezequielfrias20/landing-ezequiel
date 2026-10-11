@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { esquemaFrontmatter } from './esquema';
+import { esquemaFrontmatter, PATRON_ARCHIVO_DESCARGA } from './esquema';
 import type { Recurso } from './tipos';
 
 export class ErrorContenido extends Error {}
@@ -19,12 +19,24 @@ function extraerDescargasPremium(cuerpo: string): string[] {
   return [...new Set(bloques.flatMap(archivosEn))];
 }
 
+function contar(texto: string, patron: RegExp): number {
+  return [...texto.matchAll(patron)].length;
+}
+
 export function analizarRecurso(archivo: string, fuente: string): Recurso {
   const slug = path.basename(archivo, '.mdx');
   if (!PATRON_SLUG.test(slug)) {
     throw new ErrorContenido(`${archivo}: el nombre debe ir en minúsculas y con guiones (ej. checklist-erp.mdx)`);
   }
-  const { data, content } = matter(fuente);
+  let parseado: matter.GrayMatterFile<string>;
+  try {
+    // Con opciones, gray-matter no usa su caché (que tras un YAML roto devolvería datos vacíos).
+    parseado = matter(fuente, {});
+  } catch (error) {
+    const mensaje = error instanceof Error ? error.message : String(error);
+    throw new ErrorContenido(`${archivo}: el frontmatter no es YAML válido\n  - ${mensaje}`);
+  }
+  const { data, content } = parseado;
   const resultado = esquemaFrontmatter.safeParse(data);
   if (!resultado.success) {
     const detalle = resultado.error.issues
@@ -70,6 +82,18 @@ export function validarColeccion(recursos: Recurso[], existeDescarga: (archivo: 
       const otro = claves.get(clave);
       if (otro) errores.push(`${r.archivo}: la palabra clave ${clave} ya la usa ${otro}`);
       else claves.set(clave, r.archivo);
+    }
+    if (/<Premium\b(?!>)/.test(r.cuerpo) || contar(r.cuerpo, /<Premium>/g) !== contar(r.cuerpo, /<\/Premium>/g)) {
+      errores.push(`${r.archivo}: escribe el bloque premium exactamente como <Premium> … </Premium>`);
+    }
+    const enCuerpo = archivosEn(r.cuerpo);
+    if (contar(r.cuerpo, /<Descarga\b/g) !== enCuerpo.length) {
+      errores.push(`${r.archivo}: cada <Descarga> necesita archivo="nombre.ext" entre comillas dobles`);
+    }
+    for (const archivo of enCuerpo) {
+      if (!PATRON_ARCHIVO_DESCARGA.test(archivo)) {
+        errores.push(`${r.archivo}: el archivo "${archivo}" de <Descarga> debe ir en minúsculas, números, punto, guion o guion bajo`);
+      }
     }
     for (const rel of r.relacionados) {
       if (!slugs.has(rel)) errores.push(`${r.archivo}: relacionados incluye "${rel}", que no existe`);

@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { HERRAMIENTAS, TEMAS, TIPOS } from '@/config/taxonomia';
 
+export const PATRON_ARCHIVO_DESCARGA = /^[a-z0-9][a-z0-9._-]*$/;
+
 export const esquemaFrontmatter = z.strictObject({
   titulo: z.string().min(1),
   resumen: z.string().min(1).max(300),
@@ -18,7 +20,7 @@ export const esquemaFrontmatter = z.strictObject({
     .array(
       z.strictObject({
         nombre: z.string().min(1),
-        archivo: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/, 'minúsculas, números, punto, guion o guion bajo'),
+        archivo: z.string().regex(PATRON_ARCHIVO_DESCARGA, 'minúsculas, números, punto, guion o guion bajo'),
       }),
     )
     .default([]),
