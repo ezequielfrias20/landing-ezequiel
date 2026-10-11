@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marca personal web
 
-## Getting Started
+Sitio de marca personal con una bóveda de recursos en MDX. Algunos recursos son libres y otros desbloquean contenido y descargas a cambio del email. Hecho con Next.js 16, Supabase (leads) y Brevo (lista de email).
 
-First, run the development server:
+## Desarrollo
 
 ```bash
+cp .env.example .env.local   # completa los valores; ver .env.example
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Las variables de entorno están documentadas en `.env.example`. Para probar sin Supabase ni Brevo usa `ALMACEN_LEADS=memoria`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run validar-contenido`: valida frontmatter, sintaxis y renderizado de todos los recursos (también corre antes de `npm run build`).
+- `npm test`: pruebas unitarias (Vitest).
+- `npm run test:e2e`: pruebas de extremo a extremo (Playwright, build de producción con fixtures).
+- `npm run lint` y `npx tsc --noEmit`: lint y tipos.
 
-## Learn More
+## Agregar un recurso
 
-To learn more about Next.js, take a look at the following resources:
+Crea un archivo `.mdx` en `contenido/recursos/`. La guía completa está en `contenido/COMO-ESCRIBIR-RECURSOS.md`. Después corre `npm run validar-contenido`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Supabase: crea el proyecto y aplica la migración de `supabase/migrations/`.
+2. Brevo: crea la lista de la bóveda, el atributo de contacto `ULTIMO_RECURSO` (texto) y una API key.
+3. Vercel: importa el repositorio y define las variables de `.env.example`, incluida `SITIO_URL` (URL pública sin barra final). Sin ella se usa el dominio de producción de Vercel.
