@@ -30,3 +30,12 @@ test('un filtro desconocido en la URL se ignora', async ({ page }) => {
   await page.goto('/recursos?tema=viejo');
   await expect(tarjetas(page)).toHaveCount(2);
 });
+
+test('el enlace Recursos del encabezado limpia la búsqueda anterior', async ({ page }) => {
+  await page.goto('/recursos?q=zzzz');
+  await expect(page.getByLabel('Buscar recursos')).toHaveValue('zzzz');
+  await page.getByRole('banner').getByRole('link', { name: 'Recursos' }).click();
+  await expect(page).toHaveURL(/\/recursos$/);
+  await expect(page.getByLabel('Buscar recursos')).toHaveValue('');
+  await expect(tarjetas(page)).toHaveCount(2);
+});

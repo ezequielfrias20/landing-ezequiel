@@ -16,6 +16,12 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
   const pathname = usePathname();
   const filtros = useMemo(() => leerFiltros(new URLSearchParams(params.toString())), [params]);
   const [q, setQ] = useState(filtros.q);
+  // Si la URL cambia desde fuera (p. ej. el enlace "Recursos" del encabezado), el input la sigue.
+  const [qUrl, setQUrl] = useState(filtros.q);
+  if (filtros.q !== qUrl) {
+    setQUrl(filtros.q);
+    setQ(filtros.q);
+  }
 
   const actuales: Filtros = { ...filtros, q };
   const resultados = useMemo(() => filtrarRecursos(indice, { ...filtros, q }), [indice, filtros, q]);
