@@ -19,6 +19,27 @@ function extraerDescargasPremium(cuerpo: string): string[] {
   return [...new Set(bloques.flatMap(archivosEn))];
 }
 
+const COMPONENTES = ['Premium', 'Paso', 'Prompt', 'Nota', 'Descarga', 'Video'];
+const PATRON_ETIQUETA_COMPONENTE = /<\/?(premium|paso|prompt|nota|descarga|video)\b/gi;
+
+/** Etiquetas de componentes escritas con otra capitalización: MDX las trataría como HTML y no como componente. */
+function erroresDeMayusculas(archivo: string, cuerpo: string): string[] {
+  const errores: string[] = [];
+  for (const m of cuerpo.matchAll(PATRON_ETIQUETA_COMPONENTE)) {
+    const escrito = m[1];
+    const correcto = COMPONENTES.find((c) => c.toLowerCase() === escrito.toLowerCase())!;
+    if (escrito === correcto) continue;
+    const etiqueta = m[0].slice(1).startsWith('/') ? `</${escrito}>` : `<${escrito}>`;
+    const debe = m[0].startsWith('</') ? `</${correcto}>` : `<${correcto}>`;
+    errores.push(
+      correcto === 'Video'
+        ? `${archivo}: ${etiqueta} en minúsculas es HTML, no el componente; usa <Video url="…" />`
+        : `${archivo}: ${etiqueta} debe escribirse ${debe} (con mayúscula inicial exacta)`,
+    );
+  }
+  return [...new Set(errores)];
+}
+
 function contar(texto: string, patron: RegExp): number {
   return [...texto.matchAll(patron)].length;
 }
@@ -86,6 +107,7 @@ export function validarColeccion(recursos: Recurso[], existeDescarga: (archivo: 
     if (/<Premium\b(?!>)/.test(r.cuerpo) || contar(r.cuerpo, /<Premium>/g) !== contar(r.cuerpo, /<\/Premium>/g)) {
       errores.push(`${r.archivo}: escribe el bloque premium exactamente como <Premium> … </Premium>`);
     }
+    errores.push(...erroresDeMayusculas(r.archivo, r.cuerpo));
     const enCuerpo = archivosEn(r.cuerpo);
     if (contar(r.cuerpo, /<Descarga\b/g) !== enCuerpo.length) {
       errores.push(`${r.archivo}: cada <Descarga> necesita archivo="nombre.ext" entre comillas dobles`);

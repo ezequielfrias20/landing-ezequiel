@@ -140,3 +140,37 @@ describe('normalizarClave', () => {
     expect(normalizarClave('Clínica')).toBe('CLINICA');
   });
 });
+
+describe('validarColeccion: mayúsculas de los componentes', () => {
+  const r = (cuerpo: string) => analizarRecurso('a.mdx', mdx(BASE, cuerpo));
+  const siempre = () => true;
+
+  it('rechaza <premium> en minúsculas (se publicaría abierto)', () => {
+    expect(() => validarColeccion([r('<premium>SECRETO</premium>')], siempre)).toThrow(/a\.mdx[\s\S]*<premium>[\s\S]*<Premium>/);
+  });
+
+  it.each(['<PREMIUM>x</PREMIUM>', '<Premium>x</premium>'])(
+    'rechaza variantes mal escritas de Premium: %s',
+    (cuerpo) => {
+      expect(() => validarColeccion([r(cuerpo)], siempre)).toThrow(/a\.mdx/);
+    },
+  );
+
+  it.each([
+    ['<paso n="1">x</paso>', 'Paso'],
+    ['<prompt>x</prompt>', 'Prompt'],
+    ['<nota tipo="truco">x</nota>', 'Nota'],
+    ['<descarga archivo="a.pdf" />', 'Descarga'],
+  ])('rechaza %s y pide %s', (cuerpo, esperado) => {
+    expect(() => validarColeccion([r(cuerpo)], siempre)).toThrow(new RegExp(`a\\.mdx[\\s\\S]*<${esperado}>`));
+  });
+
+  it('rechaza <video> en minúsculas y apunta a <Video url="…" />', () => {
+    expect(() => validarColeccion([r('<video src="x.mp4"></video>')], siempre)).toThrow(/a\.mdx[\s\S]*<Video url="…" \/>/);
+  });
+
+  it('acepta los componentes bien escritos', () => {
+    const cuerpo = '<Paso n="1">x</Paso>\n\n<Nota tipo="truco">y</Nota>\n\n<Video url="https://youtu.be/abcdefghijk" />\n\n<Prompt>z</Prompt>\n\n<Premium>w</Premium>';
+    expect(() => validarColeccion([r(cuerpo)], siempre)).not.toThrow();
+  });
+});
