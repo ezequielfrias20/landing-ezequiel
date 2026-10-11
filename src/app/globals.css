@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Tokens neutros provisorios: la fase de diseño los reemplaza por el branding. */
+@theme {
+  --color-fondo: #fafafa;
+  --color-superficie: #ffffff;
+  --color-tinta: #171717;
+  --color-suave: #5f5f5f;
+  --color-linea: #e5e5e5;
+  --color-acento: #171717;
+}
+
+body {
+  background: var(--color-fondo);
+  color: var(--color-tinta);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
