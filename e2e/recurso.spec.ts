@@ -1,8 +1,8 @@
 import { expect, test, type Response } from '@playwright/test';
 
 const MARCA = 'SECRETO-E2E-7F3A';
-// Rutas públicas que nunca deben contener contenido premium. Tasks 7 y 9 agregan más.
-const RUTAS_PUBLICAS = ['/r/plantilla-premium', '/r/guia-libre'];
+// Rutas públicas que nunca deben contener contenido premium. Task 9 agrega más.
+const RUTAS_PUBLICAS = ['/r/plantilla-premium', '/r/guia-libre', '/recursos'];
 
 test('el contenido premium no llega al navegador sin email', async ({ page, request }) => {
   for (const ruta of RUTAS_PUBLICAS) {
@@ -11,7 +11,7 @@ test('el contenido premium no llega al navegador sin email', async ({ page, requ
 
   const cuerpos: Promise<string>[] = [];
   const sinLeer: string[] = [];
-  // Cada cuerpo con tope de tiempo. Si no se puede leer, se registra la URL para validarla abajo.
+  // Cada cuerpo con tope de tiempo. Si no se puede leer, se registra la URL para fallar abajo.
   const leer = async (r: Response) => {
     const texto = await Promise.race([
       r.text().catch(() => null),
@@ -23,12 +23,10 @@ test('el contenido premium no llega al navegador sin email', async ({ page, requ
   page.on('response', (r) => cuerpos.push(leer(r)));
   await page.goto('/r/plantilla-premium');
   await expect(page.getByRole('button', { name: 'Desbloquear' })).toBeVisible();
-  // Task 7 crea /recursos: volver a networkidle y quitar esta excepción.
-  await page.waitForLoadState('load');
-  await page.waitForTimeout(1500);
+  await page.waitForLoadState('networkidle');
   for (const cuerpo of await Promise.all(cuerpos)) expect(cuerpo).not.toContain(MARCA);
-  // Única respuesta ilegible permitida: el prefetch de la ruta aún inexistente /recursos.
-  for (const url of sinLeer) expect(new URL(url).pathname, `cuerpo ilegible: ${url}`).toBe('/recursos');
+  // Ninguna respuesta puede quedar sin leer: no se podría verificar que no contenga la marca.
+  expect(sinLeer, `cuerpos ilegibles: ${sinLeer.join(', ')}`).toEqual([]);
 });
 
 test('desbloquear con email muestra el contenido y persiste al recargar', async ({ page }) => {
