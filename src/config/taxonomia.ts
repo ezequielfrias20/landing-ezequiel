@@ -10,6 +10,7 @@ export const ETIQUETAS_TIPO: Record<TipoRecurso, string> = {
 export const TEMAS = [
   'clinicas', 'inmobiliarias', 'retail', 'gestion',
   'atencion-cliente', 'finanzas', 'contenido', 'productividad',
+  'ia-practica',
 ] as const;
 export type Tema = (typeof TEMAS)[number];
 export const ETIQUETAS_TEMA: Record<Tema, string> = {
@@ -21,6 +22,7 @@ export const ETIQUETAS_TEMA: Record<Tema, string> = {
   finanzas: 'Finanzas',
   contenido: 'Contenido',
   productividad: 'Productividad',
+  'ia-practica': 'IA práctica',
 };
 
 export const HERRAMIENTAS = [

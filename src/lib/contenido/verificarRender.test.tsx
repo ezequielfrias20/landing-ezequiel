@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import type { Recurso } from './tipos';
 import { verificarRender } from './verificarRender';
 
-const rec = (cuerpo: string) => [{ archivo: 'a.mdx', cuerpo }];
+const rec = (cuerpo: string): Recurso[] => [{
+  origen: 'mdx', archivo: 'a.mdx', cuerpo, slug: 'a', titulo: 'A', resumen: 'A', tipo: 'guia', temas: ['retail'],
+  herramientas: [], nombresHerramientas: [], fecha: new Date('2026-10-01'), descargas: [], relacionados: [], borrador: false,
+  premium: false, pasos: 0, archivosDescarga: [], descargasPremium: [],
+}];
 
 describe('verificarRender', () => {
   it('un cuerpo válido no da errores', async () => {

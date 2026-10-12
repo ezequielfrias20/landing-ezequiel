@@ -1,6 +1,6 @@
 import {
-  ETIQUETAS_HERRAMIENTA, ETIQUETAS_TEMA, ETIQUETAS_TIPO, HERRAMIENTAS, TEMAS, TIPOS,
-  type Herramienta, type Tema, type TipoRecurso,
+  ETIQUETAS_TEMA, ETIQUETAS_TIPO, HERRAMIENTAS, TEMAS, TIPOS,
+  type Tema, type TipoRecurso,
 } from '@/config/taxonomia';
 import type { EntradaIndice } from '@/lib/contenido/tipos';
 
@@ -8,7 +8,7 @@ export interface Filtros {
   q: string;
   tipo: TipoRecurso | null;
   tema: Tema | null;
-  herramienta: Herramienta | null;
+  herramienta: string | null;
 }
 
 export const FILTROS_VACIOS: Filtros = { q: '', tipo: null, tema: null, herramienta: null };
@@ -52,7 +52,7 @@ function textoBuscable(e: EntradaIndice): string {
       e.palabraClave ?? '',
       ETIQUETAS_TIPO[e.tipo],
       ...e.temas.map((t) => ETIQUETAS_TEMA[t]),
-      ...e.herramientas.map((h) => ETIQUETAS_HERRAMIENTA[h]),
+      ...e.nombresHerramientas,
     ].join(' '),
   );
 }

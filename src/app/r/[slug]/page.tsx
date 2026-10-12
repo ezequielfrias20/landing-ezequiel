@@ -8,7 +8,7 @@ import { Video } from '@/componentes/mdx/Video';
 import { SiguientePaso } from '@/componentes/SiguientePaso';
 import { TarjetaRecurso } from '@/componentes/TarjetaRecurso';
 import { emailActivo } from '@/config/email';
-import { ETIQUETAS_HERRAMIENTA, ETIQUETAS_TIPO } from '@/config/taxonomia';
+import { ETIQUETAS_TIPO } from '@/config/taxonomia';
 import { crearIndice, metaRecurso, recursosRelacionados } from '@/lib/contenido/consultas';
 import { compilarMdx } from '@/lib/contenido/mdx';
 import { obtenerRecurso, obtenerRecursos } from '@/lib/contenido/recursos';
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PaginaRecurso({ params }: Props) {
   const { slug } = await params;
   const recurso = obtenerRecurso(slug);
-  if (!recurso) notFound();
+  if (!recurso || recurso.origen !== 'mdx') notFound();
 
   const Contenido = await compilarMdx(recurso.slug, recurso.cuerpo);
   const relacionados = crearIndice(recursosRelacionados(recurso, obtenerRecursos()), new Date());
@@ -69,7 +69,7 @@ export default async function PaginaRecurso({ params }: Props) {
               {recurso.herramientas.length > 0 && (
                 <div className="flex gap-2">
                   <dt className="text-suave">Herramientas</dt>
-                  <dd className="text-tinta">{recurso.herramientas.map((h) => ETIQUETAS_HERRAMIENTA[h]).join(' · ')}</dd>
+                  <dd className="text-tinta">{recurso.nombresHerramientas.join(' · ')}</dd>
                 </div>
               )}
             </dl>

@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { ETIQUETAS_HERRAMIENTA } from '@/config/taxonomia';
 import { esquemaFrontmatter, PATRON_ARCHIVO_DESCARGA } from './esquema';
-import type { Recurso } from './tipos';
+import type { Recurso, RecursoMdx } from './tipos';
 
 export class ErrorContenido extends Error {}
 
@@ -44,7 +45,7 @@ function contar(texto: string, patron: RegExp): number {
   return [...texto.matchAll(patron)].length;
 }
 
-export function analizarRecurso(archivo: string, fuente: string): Recurso {
+export function analizarRecurso(archivo: string, fuente: string): RecursoMdx {
   const slug = path.basename(archivo, '.mdx');
   if (!PATRON_SLUG.test(slug)) {
     throw new ErrorContenido(`${archivo}: el nombre debe ir en minúsculas y con guiones (ej. checklist-erp.mdx)`);
@@ -68,9 +69,11 @@ export function analizarRecurso(archivo: string, fuente: string): Recurso {
   const front = resultado.data;
   return {
     ...front,
+    origen: 'mdx',
     slug,
     archivo,
     cuerpo: content,
+    nombresHerramientas: front.herramientas.map((h) => ETIQUETAS_HERRAMIENTA[h]),
     premium: /<Premium>/.test(content),
     pasos: (content.match(/<Paso[\s>]/g) ?? []).length,
     archivosDescarga: [...new Set([...front.descargas.map((d) => d.archivo), ...archivosEn(content)])],
@@ -78,7 +81,7 @@ export function analizarRecurso(archivo: string, fuente: string): Recurso {
   };
 }
 
-export function leerRecursos({ dir, incluirBorradores }: { dir: string; incluirBorradores: boolean }): Recurso[] {
+export function leerRecursos({ dir, incluirBorradores }: { dir: string; incluirBorradores: boolean }): RecursoMdx[] {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
@@ -104,17 +107,19 @@ export function validarColeccion(recursos: Recurso[], existeDescarga: (archivo: 
       if (otro) errores.push(`${r.archivo}: la palabra clave ${clave} ya la usa ${otro}`);
       else claves.set(clave, r.archivo);
     }
-    if (/<Premium\b(?!>)/.test(r.cuerpo) || contar(r.cuerpo, /<Premium>/g) !== contar(r.cuerpo, /<\/Premium>/g)) {
-      errores.push(`${r.archivo}: escribe el bloque premium exactamente como <Premium> … </Premium>`);
-    }
-    errores.push(...erroresDeMayusculas(r.archivo, r.cuerpo));
-    const enCuerpo = archivosEn(r.cuerpo);
-    if (contar(r.cuerpo, /<Descarga\b/g) !== enCuerpo.length) {
-      errores.push(`${r.archivo}: cada <Descarga> necesita archivo="nombre.ext" entre comillas dobles`);
-    }
-    for (const archivo of enCuerpo) {
-      if (!PATRON_ARCHIVO_DESCARGA.test(archivo)) {
-        errores.push(`${r.archivo}: el archivo "${archivo}" de <Descarga> debe ir en minúsculas, números, punto, guion o guion bajo`);
+    if (r.origen === 'mdx') {
+      if (/<Premium\b(?!>)/.test(r.cuerpo) || contar(r.cuerpo, /<Premium>/g) !== contar(r.cuerpo, /<\/Premium>/g)) {
+        errores.push(`${r.archivo}: escribe el bloque premium exactamente como <Premium> … </Premium>`);
+      }
+      errores.push(...erroresDeMayusculas(r.archivo, r.cuerpo));
+      const enCuerpo = archivosEn(r.cuerpo);
+      if (contar(r.cuerpo, /<Descarga\b/g) !== enCuerpo.length) {
+        errores.push(`${r.archivo}: cada <Descarga> necesita archivo="nombre.ext" entre comillas dobles`);
+      }
+      for (const archivo of enCuerpo) {
+        if (!PATRON_ARCHIVO_DESCARGA.test(archivo)) {
+          errores.push(`${r.archivo}: el archivo "${archivo}" de <Descarga> debe ir en minúsculas, números, punto, guion o guion bajo`);
+        }
       }
     }
     for (const rel of r.relacionados) {

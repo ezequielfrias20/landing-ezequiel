@@ -1,6 +1,7 @@
 import { createElement, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { compilarMdxSinCache } from './mdx';
+import type { Recurso } from './tipos';
 
 const pasaHijos = ({ children }: { children?: ReactNode }) => createElement('div', null, children);
 const nulo = () => null;
@@ -11,9 +12,11 @@ const COMPONENTES_PRUEBA = { Premium: pasaHijos, Paso: pasaHijos, Nota: pasaHijo
  * Compila y renderiza cada cuerpo MDX con componentes de prueba, con el mismo
  * pipeline que usa el sitio. Devuelve un error `archivo: mensaje` por cada fallo.
  */
-export async function verificarRender(recursos: { archivo: string; cuerpo: string }[]): Promise<string[]> {
+export async function verificarRender(recursos: Recurso[]): Promise<string[]> {
   const errores: string[] = [];
-  for (const { archivo, cuerpo } of recursos) {
+  for (const recurso of recursos) {
+    if (recurso.origen !== 'mdx') continue;
+    const { archivo, cuerpo } = recurso;
     try {
       const Contenido = await compilarMdxSinCache(cuerpo);
       renderToStaticMarkup(createElement(Contenido, { components: COMPONENTES_PRUEBA }));

@@ -21,7 +21,7 @@ describe('crearIndice', () => {
     expect(JSON.stringify(indice)).not.toContain('SECRETO');
     expect(indice[0]).toEqual({
       slug: 'a', titulo: 'Título a', resumen: 'Resumen.', palabraClave: undefined, tipo: 'guia', temas: ['retail'],
-      herramientas: [], fecha: '2026-10-10', premium: false, nuevo: true,
+      herramientas: [], nombresHerramientas: [], fecha: '2026-10-10', premium: false, nuevo: true,
     });
     expect(indice[1].nuevo).toBe(false);
   });

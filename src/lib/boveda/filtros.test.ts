@@ -4,13 +4,13 @@ import { contarPor, escribirFiltros, FILTROS_VACIOS, filtrarRecursos, hayFiltros
 
 const e = (slug: string, extra: Partial<EntradaIndice> = {}): EntradaIndice => ({
   slug, titulo: slug, resumen: '', tipo: 'guia', temas: ['retail'], herramientas: [],
-  fecha: '2026-10-01', premium: false, nuevo: false, ...extra,
+  nombresHerramientas: [], fecha: '2026-10-01', premium: false, nuevo: false, ...extra,
 });
 
 const INDICE = [
-  e('whatsapp', { titulo: 'Asistente de WhatsApp para tu clínica', temas: ['clinicas'], herramientas: ['claude'], tipo: 'prompt' }),
+  e('whatsapp', { titulo: 'Asistente de WhatsApp para tu clínica', temas: ['clinicas'], herramientas: ['claude'], nombresHerramientas: ['Claude'], tipo: 'prompt' }),
   e('erp', { titulo: 'Checklist ERP', resumen: 'Diagnóstico de tu tienda', tipo: 'plantilla' }),
-  e('cashea', { titulo: 'Plantilla Cashea', temas: ['retail', 'finanzas'], tipo: 'plantilla', herramientas: ['google-sheets'] }),
+  e('cashea', { titulo: 'Plantilla Cashea', temas: ['retail', 'finanzas'], tipo: 'plantilla', herramientas: ['google-sheets'], nombresHerramientas: ['Google Sheets'] }),
 ];
 const slugs = (lista: EntradaIndice[]) => lista.map((x) => x.slug);
 

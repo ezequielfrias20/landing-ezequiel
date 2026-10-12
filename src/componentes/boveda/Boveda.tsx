@@ -117,7 +117,7 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
       <div className="mt-8 space-y-5">
         <GrupoFiltros titulo="Tipo" opciones={TIPOS} etiquetas={ETIQUETAS_TIPO} conteo={conteos.tipo} total={indice.length} valor={filtros.tipo} alCambiar={(tipo) => aplicar({ tipo })} />
         <GrupoFiltros titulo="Tema" opciones={TEMAS} etiquetas={ETIQUETAS_TEMA} conteo={conteos.temas} total={indice.length} valor={filtros.tema} alCambiar={(tema) => aplicar({ tema })} />
-        <GrupoFiltros titulo="Herramienta" opciones={HERRAMIENTAS} etiquetas={ETIQUETAS_HERRAMIENTA} conteo={conteos.herramientas} total={indice.length} valor={filtros.herramienta} alCambiar={(herramienta) => aplicar({ herramienta })} />
+        <GrupoFiltros<string> titulo="Herramienta" opciones={HERRAMIENTAS} etiquetas={ETIQUETAS_HERRAMIENTA as Record<string, string>} conteo={conteos.herramientas} total={indice.length} valor={filtros.herramienta} alCambiar={(herramienta) => aplicar({ herramienta })} />
       </div>
 
       <div className="mt-10 flex items-center justify-between gap-4 border-t border-linea-fuerte pt-5">

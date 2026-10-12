@@ -16,6 +16,7 @@ export function crearIndice(recursos: Recurso[], ahora: Date): EntradaIndice[] {
     tipo: r.tipo,
     temas: r.temas,
     herramientas: r.herramientas,
+    nombresHerramientas: r.nombresHerramientas,
     fecha: r.fecha.toISOString().slice(0, 10),
     premium: r.premium && emailActivo(),
     nuevo: esNuevo(r.fecha, ahora),
