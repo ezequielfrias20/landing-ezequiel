@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { partirPlaceholders } from '@/lib/contenido/texto';
 
-export function CajaPrompt({ titulo, texto }: { titulo: string; texto: string }) {
+export function CajaPrompt({ titulo, texto, marcador = 'corchetes' }: { titulo: string; texto: string; marcador?: 'corchetes' | 'llaves' }) {
   const [estado, setEstado] = useState<'inicial' | 'copiado' | 'error'>('inicial');
 
   async function copiar() {
@@ -47,7 +47,7 @@ export function CajaPrompt({ titulo, texto }: { titulo: string; texto: string })
         </button>
       </figcaption>
       <pre className="overflow-x-auto whitespace-pre-wrap break-words px-5 py-5 font-mono text-[0.875rem] leading-[1.75] sm:text-[0.9375rem] text-tinta sm:px-6">
-        {partirPlaceholders(texto).map((parte, i) =>
+        {partirPlaceholders(texto, marcador).map((parte, i) =>
           parte.placeholder ? (
             <mark key={i} className="rounded-[4px] bg-acento-relleno px-1 text-tinta">
               {parte.texto}

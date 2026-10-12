@@ -26,4 +26,10 @@ describe('partirPlaceholders', () => {
       { texto: '.', placeholder: false },
     ]);
   });
+
+  it('partirPlaceholders con llaves marca {{…}} y deja los corchetes', () => {
+    expect(partirPlaceholders('Hola {{nombre}} [x]', 'llaves')).toEqual([
+      { texto: 'Hola ', placeholder: false }, { texto: '{{nombre}}', placeholder: true }, { texto: ' [x]', placeholder: false },
+    ]);
+  });
 });
