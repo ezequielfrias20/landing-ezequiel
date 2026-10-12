@@ -13,6 +13,7 @@ describe('BloqueMaterial', () => {
   it('pasos numera y muestra el código', () => {
     const h = html({ tipo: 'pasos', items: [{ texto: 'Mira Node', codigo: 'node -v' }, { texto: 'Listo' }] });
     expect(h).toMatch(/>1<[\s\S]*Mira Node[\s\S]*node -v[\s\S]*>2</);
+    expect(h).toContain('aria-label="Copiar: node -v"');
   });
   it('prompt usa la ventana con su título y marca las llaves', () => {
     const h = html({ tipo: 'prompt', titulo: 'El pedido', texto: 'Para {{tu producto}}' });
@@ -24,14 +25,22 @@ describe('BloqueMaterial', () => {
     expect(h).toContain('src="/materiales/brag-video/logos/claude.svg"');
     expect(h).toContain('href="https://claude.ai"');
     expect(h).toContain('href="#fuente-f2"');
+    const toolLinkStart = h.indexOf('<a href="https://claude.ai"');
+    const toolLinkContentStart = h.indexOf('>', toolLinkStart) + 1;
+    const toolLinkEnd = h.indexOf('</a>', toolLinkContentStart);
+    expect(h.slice(toolLinkContentStart, toolLinkEnd)).not.toContain('<a');
   });
   it('captura usa la ruta del material', () => {
-    expect(html({ tipo: 'captura', archivo: 'sitio.png', pie: 'El sitio', fuente: 'f1' })).toContain('src="/materiales/brag-video/capturas/sitio.png"');
+    const h = html({ tipo: 'captura', archivo: 'sitio.png', pie: 'El sitio', fuente: 'f1' });
+    expect(h).toContain('src="/materiales/brag-video/capturas/sitio.png"');
+    expect(h).toMatch(/<img[^>]*alt=""/);
   });
   it('ojo antepone «Ojo con esto:»', () => expect(html({ tipo: 'ojo', texto: 'cuidado' })).toContain('Ojo con esto:'));
   it('micro lleva «Micro-paso · hoy, en 10 minutos»', () => expect(html({ tipo: 'micro', texto: 'x' })).toContain('Micro-paso · hoy, en 10 minutos'));
   it('ejemplo usa sus etiquetas o Antes/Después', () => {
-    expect(html({ tipo: 'ejemplo', titulo: 'T', antes: 'a', despues: 'd' })).toMatch(/Antes[\s\S]*Después/);
+    const h = html({ tipo: 'ejemplo', titulo: 'T', antes: 'a', despues: 'd' });
+    expect(h).toContain('Ejemplo · T');
+    expect(h).toMatch(/Antes[\s\S]*Después/);
     expect(html({ tipo: 'ejemplo', titulo: 'T', antes: 'a', despues: 'd', etiquetas: ['Tú escribes', 'Te devuelve'] })).toContain('Tú escribes');
   });
   it('comparativa es una tabla dentro de un contenedor con scroll propio', () => {

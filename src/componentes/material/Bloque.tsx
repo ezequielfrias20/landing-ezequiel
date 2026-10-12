@@ -9,11 +9,11 @@ type Props = { bloque: Bloque; materialSlug: string; herramientas: PaqueteMateri
 
 const etiqueta = 'etiqueta flex items-center gap-2 font-bold';
 
-function Ref({ id, refs }: { id?: string; refs: Map<string, number> }) {
+function Ref({ id, refs, className = '' }: { id?: string; refs: Map<string, number>; className?: string }) {
   const n = id ? refs.get(id) : undefined;
   if (!n) return null;
   return (
-    <sup className="ml-0.5 font-mono text-[0.65em] font-bold text-acento-texto">
+    <sup className={`ml-0.5 font-mono text-[0.65em] font-bold text-acento-texto ${className}`}>
       <a href={`#fuente-${id}`} aria-label={`Fuente ${n}`}>{n}</a>
     </sup>
   );
@@ -79,24 +79,24 @@ export function BloqueMaterial({ bloque: b, materialSlug, herramientas, refs }: 
     case 'herramienta': {
       const h = herramientas[b.slug] ?? { nombre: b.nombre, logo: `logos/${b.slug}.svg`, fondo: '#FFFFFF' };
       return (
-        <a href={b.url} target="_blank" rel="noopener noreferrer" className="panel grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 rounded-xl p-5 transition-colors hover:border-linea-fuerte">
+        <div className="panel relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 rounded-xl p-5 transition-colors hover:border-linea-fuerte">
           <Logo herramienta={h} materialSlug={materialSlug} tam="lg" />
           <div>
-            <b className="text-xl font-black tracking-titulo">{b.nombre}</b>
+            <a href={b.url} target="_blank" rel="noopener noreferrer" className="text-xl font-black tracking-titulo after:absolute after:inset-0">{b.nombre}</a>
             <p className="mt-1 text-suave"><TextoMarcado texto={b.que_hace} /></p>
             <span className="mt-2 inline-block rounded-full bg-ok/15 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wide text-ok">
               {b.precio}
             </span>
-            <Ref id={b.fuente} refs={refs} />
+            <Ref id={b.fuente} refs={refs} className="relative z-10" />
           </div>
-        </a>
+        </div>
       );
     }
     case 'captura':
       return (
         <figure className="grid gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element -- captura servida por la ruta del material */}
-          <img src={`/materiales/${materialSlug}/capturas/${b.archivo}`} alt={b.pie} loading="lazy" className="block w-full rounded-lg border border-linea" />
+          <img src={`/materiales/${materialSlug}/capturas/${b.archivo}`} alt="" loading="lazy" className="block w-full rounded-lg border border-linea" />
           <figcaption className="text-sm text-suave"><TextoMarcado texto={b.pie} /><Ref id={b.fuente} refs={refs} /></figcaption>
         </figure>
       );
@@ -104,7 +104,7 @@ export function BloqueMaterial({ bloque: b, materialSlug, herramientas, refs }: 
       const [a, d] = b.etiquetas ?? ['Antes', 'Después'];
       return (
         <div className="grid gap-3">
-          <p className={`${etiqueta} text-acento-texto`}><Icono nombre="lightbulb" />Ejemplo · {b.titulo}</p>
+          <p className={`${etiqueta} text-acento-texto`}><Icono nombre="lightbulb" />{`Ejemplo · ${b.titulo}`}</p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="panel rounded-lg p-5">
               <span className="etiqueta block text-suave">{a}</span>

@@ -20,6 +20,7 @@ export function CodigoCopiable({ codigo }: { codigo: string }) {
       </pre>
       <button
         type="button"
+        aria-label={`Copiar: ${codigo.slice(0, 40)}`}
         onClick={copiar}
         className={`chip min-h-8 shrink-0 transition-colors ${estado === 'copiado' ? 'border-tinta bg-tinta text-fondo' : 'bg-superficie text-tinta hover:border-linea-fuerte'}`}
       >
