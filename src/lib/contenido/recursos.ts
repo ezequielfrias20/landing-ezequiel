@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { leerRecursos, validarColeccion } from './analizar';
+import { leerMateriales } from './material/analizar';
 import type { Recurso } from './tipos';
 
 export function dirRecursos(): string {
@@ -11,14 +12,23 @@ export function dirDescargas(): string {
   return path.join(/*turbopackIgnore: true*/ process.cwd(), process.env.DIR_DESCARGAS ?? 'contenido/descargas');
 }
 
+export function dirMateriales(): string {
+  return path.join(/*turbopackIgnore: true*/ process.cwd(), process.env.DIR_MATERIALES ?? 'contenido/materiales');
+}
+
 let cache: Recurso[] | null = null;
 
 /** En producción lee y valida una sola vez; en desarrollo relee para ver cambios al instante. */
 export function obtenerRecursos(): Recurso[] {
   const produccion = process.env.NODE_ENV === 'production';
   if (cache && produccion) return cache;
-  const recursos = leerRecursos({ dir: dirRecursos(), incluirBorradores: !produccion });
-  validarColeccion(recursos, (archivo) => fs.existsSync(path.join(dirDescargas(), archivo)));
+  const recursos: Recurso[] = [...leerRecursos({ dir: dirRecursos(), incluirBorradores: !produccion }), ...leerMateriales(dirMateriales())]
+    .sort((a, b) => b.fecha.getTime() - a.fecha.getTime() || a.slug.localeCompare(b.slug));
+  validarColeccion(
+    recursos,
+    (archivo) => fs.existsSync(path.join(dirDescargas(), archivo)),
+    (slug, rel) => fs.existsSync(path.join(dirMateriales(), slug, rel)),
+  );
   cache = recursos;
   return recursos;
 }

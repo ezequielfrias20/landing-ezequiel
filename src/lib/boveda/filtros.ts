@@ -21,12 +21,12 @@ function enLista<T extends string>(lista: readonly T[], valor: string | null): T
   return valor !== null && (lista as readonly string[]).includes(valor) ? (valor as T) : null;
 }
 
-export function leerFiltros(params: URLSearchParams): Filtros {
+export function leerFiltros(params: URLSearchParams, herramientas: readonly string[] = HERRAMIENTAS): Filtros {
   return {
     q: (params.get('q') ?? '').slice(0, 100),
     tipo: enLista(TIPOS, params.get('tipo')),
     tema: enLista(TEMAS, params.get('tema')),
-    herramienta: enLista(HERRAMIENTAS, params.get('herramienta')),
+    herramienta: enLista(herramientas, params.get('herramienta')),
   };
 }
 
@@ -75,4 +75,10 @@ export function contarPor(indice: EntradaIndice[], campo: 'tipo' | 'temas' | 'he
     for (const v of valores) conteo[v] = (conteo[v] ?? 0) + 1;
   }
   return conteo;
+}
+
+export function opcionesHerramienta(indice: EntradaIndice[]): { opciones: string[]; etiquetas: Record<string, string> } {
+  const etiquetas: Record<string, string> = {};
+  for (const e of indice) e.herramientas.forEach((h, i) => { etiquetas[h] ??= e.nombresHerramientas[i] ?? h; });
+  return { opciones: Object.keys(etiquetas).sort((a, b) => etiquetas[a].localeCompare(etiquetas[b], 'es')), etiquetas };
 }

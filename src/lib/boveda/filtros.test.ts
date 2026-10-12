@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { EntradaIndice } from '@/lib/contenido/tipos';
-import { contarPor, escribirFiltros, FILTROS_VACIOS, filtrarRecursos, hayFiltros, leerFiltros } from './filtros';
+import { contarPor, escribirFiltros, FILTROS_VACIOS, filtrarRecursos, hayFiltros, leerFiltros, opcionesHerramienta } from './filtros';
 
 const e = (slug: string, extra: Partial<EntradaIndice> = {}): EntradaIndice => ({
   slug, titulo: slug, resumen: '', tipo: 'guia', temas: ['retail'], herramientas: [],
@@ -63,6 +63,24 @@ describe('leerFiltros / escribirFiltros', () => {
     expect(hayFiltros({ ...FILTROS_VACIOS, q: '  ' })).toBe(false);
     expect(hayFiltros({ ...FILTROS_VACIOS, tema: 'retail' })).toBe(true);
   });
+
+  it('acepta herramientas de materiales si están en la lista dada', () => {
+    expect(leerFiltros(new URLSearchParams('herramienta=higgsfield'), ['claude', 'higgsfield']).herramienta).toBe('higgsfield');
+    expect(leerFiltros(new URLSearchParams('herramienta=higgsfield')).herramienta).toBeNull();
+  });
+});
+
+it('opcionesHerramienta junta slugs y nombres del índice', () => {
+  const indice = [
+    e('a', { herramientas: ['claude', 'higgsfield'], nombresHerramientas: ['Claude', 'Higgsfield'] }),
+    e('b', { herramientas: ['claude'], nombresHerramientas: ['Claude'] }),
+  ];
+  expect(opcionesHerramienta(indice)).toEqual({ opciones: ['claude', 'higgsfield'], etiquetas: { claude: 'Claude', higgsfield: 'Higgsfield' } });
+});
+
+it('busca también por el nombre de una herramienta de material', () => {
+  const indice = [e('a', { herramientas: ['higgsfield'], nombresHerramientas: ['Higgsfield'] })];
+  expect(filtrarRecursos(indice, { ...FILTROS_VACIOS, q: 'higgs' }).map((x) => x.slug)).toEqual(['a']);
 });
 
 describe('contarPor', () => {

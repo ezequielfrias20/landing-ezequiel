@@ -3,6 +3,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { ETIQUETAS_HERRAMIENTA } from '@/config/taxonomia';
 import { esquemaFrontmatter, PATRON_ARCHIVO_DESCARGA } from './esquema';
+import { imagenesDe } from './material/analizar';
 import type { Recurso, RecursoMdx } from './tipos';
 
 export class ErrorContenido extends Error {}
@@ -95,10 +96,20 @@ export function normalizarClave(s: string): string {
   return s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toUpperCase();
 }
 
-export function validarColeccion(recursos: Recurso[], existeDescarga: (archivo: string) => boolean): void {
+export function validarColeccion(
+  recursos: Recurso[],
+  existeDescarga: (archivo: string) => boolean,
+  existeImagen: (slug: string, rel: string) => boolean,
+): void {
   const errores: string[] = [];
   const slugs = new Set(recursos.map((r) => r.slug));
   const claves = new Map<string, string>();
+  const vistos = new Map<string, string>();
+  for (const r of recursos) {
+    const otro = vistos.get(r.slug);
+    if (otro) errores.push(`${r.archivo}: el slug ${r.slug} ya lo usa ${otro}`);
+    else vistos.set(r.slug, r.archivo);
+  }
 
   for (const r of recursos) {
     if (r.palabraClave) {
@@ -120,6 +131,11 @@ export function validarColeccion(recursos: Recurso[], existeDescarga: (archivo: 
         if (!PATRON_ARCHIVO_DESCARGA.test(archivo)) {
           errores.push(`${r.archivo}: el archivo "${archivo}" de <Descarga> debe ir en minúsculas, números, punto, guion o guion bajo`);
         }
+      }
+    }
+    if (r.origen === 'material') {
+      for (const rel of imagenesDe(r.material)) {
+        if (!existeImagen(r.slug, rel)) errores.push(`${r.archivo}: falta ${rel} en materiales/${r.slug}/`);
       }
     }
     for (const rel of r.relacionados) {

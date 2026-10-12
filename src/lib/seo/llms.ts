@@ -16,7 +16,7 @@ export function generarLlmsTxt(recursos: Recurso[], base: string): string {
     '',
     '## Recursos',
     '',
-    ...recursos.filter((r) => r.origen === 'mdx').map((r) => `- [${r.titulo}](${base}/r/${r.slug}): ${r.resumen} (${ETIQUETAS_TIPO[r.tipo]})`),
+    ...recursos.map((r) => `- [${r.titulo}](${base}/r/${r.slug}): ${r.resumen} (${ETIQUETAS_TIPO[r.tipo]})`),
     '',
     '## Servicios',
     '',

@@ -4,9 +4,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { TarjetaRecurso } from '@/componentes/TarjetaRecurso';
 import {
-  ETIQUETAS_HERRAMIENTA, ETIQUETAS_TEMA, ETIQUETAS_TIPO, HERRAMIENTAS, TEMAS, TIPOS,
+  ETIQUETAS_TEMA, ETIQUETAS_TIPO, TEMAS, TIPOS,
 } from '@/config/taxonomia';
-import { contarPor, escribirFiltros, filtrarRecursos, hayFiltros, leerFiltros, type Filtros } from '@/lib/boveda/filtros';
+import { contarPor, escribirFiltros, filtrarRecursos, hayFiltros, leerFiltros, opcionesHerramienta, type Filtros } from '@/lib/boveda/filtros';
 import type { EntradaIndice } from '@/lib/contenido/tipos';
 import { GrupoFiltros } from './GrupoFiltros';
 
@@ -14,7 +14,8 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const filtros = useMemo(() => leerFiltros(new URLSearchParams(params.toString())), [params]);
+  const herramientas = useMemo(() => opcionesHerramienta(indice), [indice]);
+  const filtros = useMemo(() => leerFiltros(new URLSearchParams(params.toString()), herramientas.opciones), [params, herramientas]);
   const [q, setQ] = useState(filtros.q);
   // La búsqueda llega a la URL con debounce: escribir en la URL en cada tecla hacía que URLs
   // intermedias (y recortadas) volvieran tarde y pisaran el espacio o letras ya escritas.
@@ -117,7 +118,7 @@ export function Boveda({ indice }: { indice: EntradaIndice[] }) {
       <div className="mt-8 space-y-5">
         <GrupoFiltros titulo="Tipo" opciones={TIPOS} etiquetas={ETIQUETAS_TIPO} conteo={conteos.tipo} total={indice.length} valor={filtros.tipo} alCambiar={(tipo) => aplicar({ tipo })} />
         <GrupoFiltros titulo="Tema" opciones={TEMAS} etiquetas={ETIQUETAS_TEMA} conteo={conteos.temas} total={indice.length} valor={filtros.tema} alCambiar={(tema) => aplicar({ tema })} />
-        <GrupoFiltros<string> titulo="Herramienta" opciones={HERRAMIENTAS} etiquetas={ETIQUETAS_HERRAMIENTA as Record<string, string>} conteo={conteos.herramientas} total={indice.length} valor={filtros.herramienta} alCambiar={(herramienta) => aplicar({ herramienta })} />
+        <GrupoFiltros<string> titulo="Herramienta" opciones={herramientas.opciones} etiquetas={herramientas.etiquetas} conteo={conteos.herramientas} total={indice.length} valor={filtros.herramienta} alCambiar={(herramienta) => aplicar({ herramienta })} />
       </div>
 
       <div className="mt-10 flex items-center justify-between gap-4 border-t border-linea-fuerte pt-5">

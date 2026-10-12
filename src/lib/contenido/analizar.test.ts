@@ -3,6 +3,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { analizarRecurso, ErrorContenido, leerRecursos, normalizarClave, validarColeccion } from './analizar';
+import { analizarMaterial } from './material/analizar';
+import { paqueteBueno } from './material/fixture';
 
 const BASE = `titulo: Checklist ERP
 resumen: Las 15 funciones del reel.
@@ -80,27 +82,27 @@ describe('validarColeccion', () => {
   const siempre = () => true;
 
   it('acepta una colección válida', () => {
-    expect(() => validarColeccion([r('a.mdx', '\npalabraClave: ERP'), r('b.mdx', '\nrelacionados: [a]')], siempre)).not.toThrow();
+    expect(() => validarColeccion([r('a.mdx', '\npalabraClave: ERP'), r('b.mdx', '\nrelacionados: [a]')], siempre, () => true)).not.toThrow();
   });
 
   it('rechaza palabras clave repetidas aunque difieran en tildes', () => {
     const lista = [r('a.mdx', '\npalabraClave: CLÍNICA'), r('b.mdx', '\npalabraClave: CLINICA')];
-    expect(() => validarColeccion(lista, siempre)).toThrow(/CLINICA[\s\S]*a\.mdx/);
+    expect(() => validarColeccion(lista, siempre, () => true)).toThrow(/CLINICA[\s\S]*a\.mdx/);
   });
 
   it('rechaza relacionados inexistentes', () => {
-    expect(() => validarColeccion([r('a.mdx', '\nrelacionados: [fantasma]')], siempre)).toThrow(/fantasma/);
+    expect(() => validarColeccion([r('a.mdx', '\nrelacionados: [fantasma]')], siempre, () => true)).toThrow(/fantasma/);
   });
 
   it('rechaza descargas cuyo archivo no existe', () => {
     const lista = [r('a.mdx', '', '<Descarga archivo="falta.pdf" nombre="x" />')];
-    expect(() => validarColeccion(lista, () => false)).toThrow(/falta\.pdf/);
+    expect(() => validarColeccion(lista, () => false, () => true)).toThrow(/falta\.pdf/);
   });
 
   it('rechaza una descarga libre del frontmatter que también está dentro de <Premium>', () => {
     const front = '\ndescargas:\n  - nombre: X\n    archivo: x.pdf';
     const cuerpo = '<Premium>\n<Descarga archivo="x.pdf" nombre="X" />\n</Premium>';
-    expect(() => validarColeccion([r('a.mdx', front, cuerpo)], siempre)).toThrow(/x\.pdf/);
+    expect(() => validarColeccion([r('a.mdx', front, cuerpo)], siempre, () => true)).toThrow(/x\.pdf/);
   });
 });
 
@@ -109,21 +111,21 @@ describe('validarColeccion: sintaxis del cuerpo', () => {
   const siempre = () => true;
 
   it('rechaza <Premium> con espacios o atributos', () => {
-    expect(() => validarColeccion([r('<Premium >\nx\n</Premium>')], siempre)).toThrow(/a\.mdx.*<Premium>/);
-    expect(() => validarColeccion([r('<Premium plan="x">\nx\n</Premium>')], siempre)).toThrow(/a\.mdx.*<Premium>/);
+    expect(() => validarColeccion([r('<Premium >\nx\n</Premium>')], siempre, () => true)).toThrow(/a\.mdx.*<Premium>/);
+    expect(() => validarColeccion([r('<Premium plan="x">\nx\n</Premium>')], siempre, () => true)).toThrow(/a\.mdx.*<Premium>/);
   });
 
   it('rechaza <Premium> sin cierre', () => {
-    expect(() => validarColeccion([r('<Premium>\n<Descarga archivo="p.pdf" nombre="P" />')], siempre)).toThrow(/a\.mdx.*<Premium>/);
+    expect(() => validarColeccion([r('<Premium>\n<Descarga archivo="p.pdf" nombre="P" />')], siempre, () => true)).toThrow(/a\.mdx.*<Premium>/);
   });
 
   it('rechaza <Descarga> sin archivo entre comillas dobles', () => {
-    expect(() => validarColeccion([r("<Descarga archivo='x.pdf' nombre=\"X\" />")], siempre)).toThrow(/a\.mdx.*comillas dobles/);
-    expect(() => validarColeccion([r('<Descarga nombre="X" />')], siempre)).toThrow(/comillas dobles/);
+    expect(() => validarColeccion([r("<Descarga archivo='x.pdf' nombre=\"X\" />")], siempre, () => true)).toThrow(/a\.mdx.*comillas dobles/);
+    expect(() => validarColeccion([r('<Descarga nombre="X" />')], siempre, () => true)).toThrow(/comillas dobles/);
   });
 
   it('rechaza nombres de archivo inválidos en el cuerpo', () => {
-    expect(() => validarColeccion([r('<Descarga archivo="../../.env" nombre="X" />')], siempre)).toThrow(/a\.mdx[\s\S]*\.\.\/\.\.\/\.env/);
+    expect(() => validarColeccion([r('<Descarga archivo="../../.env" nombre="X" />')], siempre, () => true)).toThrow(/a\.mdx[\s\S]*\.\.\/\.\.\/\.env/);
   });
 });
 
@@ -146,13 +148,13 @@ describe('validarColeccion: mayúsculas de los componentes', () => {
   const siempre = () => true;
 
   it('rechaza <premium> en minúsculas (se publicaría abierto)', () => {
-    expect(() => validarColeccion([r('<premium>SECRETO</premium>')], siempre)).toThrow(/a\.mdx[\s\S]*<premium>[\s\S]*<Premium>/);
+    expect(() => validarColeccion([r('<premium>SECRETO</premium>')], siempre, () => true)).toThrow(/a\.mdx[\s\S]*<premium>[\s\S]*<Premium>/);
   });
 
   it.each(['<PREMIUM>x</PREMIUM>', '<Premium>x</premium>'])(
     'rechaza variantes mal escritas de Premium: %s',
     (cuerpo) => {
-      expect(() => validarColeccion([r(cuerpo)], siempre)).toThrow(/a\.mdx/);
+      expect(() => validarColeccion([r(cuerpo)], siempre, () => true)).toThrow(/a\.mdx/);
     },
   );
 
@@ -162,15 +164,37 @@ describe('validarColeccion: mayúsculas de los componentes', () => {
     ['<nota tipo="truco">x</nota>', 'Nota'],
     ['<descarga archivo="a.pdf" />', 'Descarga'],
   ])('rechaza %s y pide %s', (cuerpo, esperado) => {
-    expect(() => validarColeccion([r(cuerpo)], siempre)).toThrow(new RegExp(`a\\.mdx[\\s\\S]*<${esperado}>`));
+    expect(() => validarColeccion([r(cuerpo)], siempre, () => true)).toThrow(new RegExp(`a\\.mdx[\\s\\S]*<${esperado}>`));
   });
 
   it('rechaza <video> en minúsculas y apunta a <Video url="…" />', () => {
-    expect(() => validarColeccion([r('<video src="x.mp4"></video>')], siempre)).toThrow(/a\.mdx[\s\S]*<Video url="…" \/>/);
+    expect(() => validarColeccion([r('<video src="x.mp4"></video>')], siempre, () => true)).toThrow(/a\.mdx[\s\S]*<Video url="…" \/>/);
   });
 
   it('acepta los componentes bien escritos', () => {
     const cuerpo = '<Paso n="1">x</Paso>\n\n<Nota tipo="truco">y</Nota>\n\n<Video url="https://youtu.be/abcdefghijk" />\n\n<Prompt>z</Prompt>\n\n<Premium>w</Premium>';
-    expect(() => validarColeccion([r(cuerpo)], siempre)).not.toThrow();
+    expect(() => validarColeccion([r(cuerpo)], siempre, () => true)).not.toThrow();
+  });
+});
+
+describe('validarColeccion con materiales', () => {
+  const mdx = (slug: string, palabra: string) =>
+    analizarRecurso(`${slug}.mdx`, `---\ntitulo: T\nresumen: R\ntipo: guia\ntemas: [retail]\nfecha: 2026-10-01\npalabraClave: ${palabra}\n---\nx\n`);
+  const material = () => analizarMaterial('brag-video', paqueteBueno());
+
+  it('rechaza un slug repetido entre MDX y material', () => {
+    expect(() => validarColeccion([mdx('brag-video', 'OTRA'), material()], () => true, () => true)).toThrow(/brag-video/);
+  });
+
+  it('rechaza una palabra clave repetida entre MDX y material', () => {
+    expect(() => validarColeccion([mdx('otro', 'ESTRENO'), material()], () => true, () => true)).toThrow(/ESTRENO/);
+  });
+
+  it('rechaza una imagen del material que no está en su carpeta', () => {
+    expect(() => validarColeccion([material()], () => true, (_s, rel) => rel !== 'capturas/sitio.png')).toThrow(/capturas\/sitio\.png/);
+  });
+
+  it('rechaza el PDF del material si falta en descargas', () => {
+    expect(() => validarColeccion([material()], () => false, () => true)).toThrow(/brag-video\.pdf/);
   });
 });
