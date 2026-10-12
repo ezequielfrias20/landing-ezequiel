@@ -12,6 +12,7 @@ vi.mock('next/headers', () => ({
 import { Premium } from './Premium';
 
 beforeEach(() => {
+  vi.stubEnv('EMAIL_ACTIVO', '1');
   vi.stubEnv('ACCESO_SECRET', SECRETO);
   valorCookie = undefined;
 });
@@ -24,6 +25,13 @@ async function renderizar() {
 }
 
 describe('<Premium>', () => {
+  it('con el email apagado muestra el contenido sin formulario', async () => {
+    vi.stubEnv('EMAIL_ACTIVO', '');
+    const { elemento, json } = await renderizar();
+    expect(elemento.props['data-premium']).toBe('libre');
+    expect(json).toContain('CONTENIDO-SECRETO');
+  });
+
   it('sin cookie muestra el formulario y no incluye el contenido', async () => {
     const { elemento, json } = await renderizar();
     expect(elemento.props['data-premium']).toBe('bloqueado');

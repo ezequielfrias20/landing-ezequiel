@@ -1,9 +1,11 @@
 import { cookies } from 'next/headers';
 import type { ReactElement, ReactNode } from 'react';
 import { FormularioEmail } from '@/componentes/FormularioEmail';
+import { emailActivo } from '@/config/email';
 import { NOMBRE_COOKIE, secretoAcceso, verificarToken } from '@/lib/acceso/token';
 
 export async function Premium({ slug, children }: { slug: string; children: ReactNode }): Promise<ReactElement> {
+  if (!emailActivo()) return <div data-premium="libre">{children}</div>;
   const almacen = await cookies();
   const acceso = verificarToken(almacen.get(NOMBRE_COOKIE)?.value, secretoAcceso());
   if (acceso) return <div data-premium="desbloqueado">{children}</div>;

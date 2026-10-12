@@ -7,6 +7,7 @@ import { componentesMdx } from '@/componentes/mdx';
 import { Video } from '@/componentes/mdx/Video';
 import { SiguientePaso } from '@/componentes/SiguientePaso';
 import { TarjetaRecurso } from '@/componentes/TarjetaRecurso';
+import { emailActivo } from '@/config/email';
 import { ETIQUETAS_HERRAMIENTA, ETIQUETAS_TIPO } from '@/config/taxonomia';
 import { crearIndice, metaRecurso, recursosRelacionados } from '@/lib/contenido/consultas';
 import { compilarMdx } from '@/lib/contenido/mdx';
@@ -46,7 +47,7 @@ export default async function PaginaRecurso({ params }: Props) {
         <header className="mt-8 border-b border-linea-fuerte pb-10">
           <div className="aparecer flex flex-wrap items-center gap-2">
             <span className="chip bg-superficie-2 text-tinta">{ETIQUETAS_TIPO[recurso.tipo]}</span>
-            {recurso.premium && <span className="chip border-transparent bg-acento-suave text-acento-texto">Premium</span>}
+            {recurso.premium && emailActivo() && <span className="chip border-transparent bg-acento-suave text-acento-texto">Premium</span>}
           </div>
           <h1
             className="aparecer mt-6 text-[clamp(2.25rem,1.3rem+3.8vw,3.875rem)] font-black leading-[1.02] tracking-titular"

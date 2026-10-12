@@ -24,6 +24,7 @@ export default defineConfig({
       DIR_RECURSOS: 'e2e/fixtures/recursos',
       DIR_DESCARGAS: 'e2e/fixtures/descargas',
       ALMACEN_LEADS: 'memoria',
+      EMAIL_ACTIVO: '1',
       ACCESO_SECRET: 'e2e-secreto-de-prueba-con-mas-de-32-caracteres',
       SITIO_URL: `http://localhost:${PUERTO}`,
     },

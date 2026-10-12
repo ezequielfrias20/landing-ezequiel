@@ -1,4 +1,5 @@
 import type { EntradaIndice, Recurso } from './tipos';
+import { emailActivo } from '@/config/email';
 
 const DIA_MS = 24 * 60 * 60 * 1000;
 
@@ -16,7 +17,7 @@ export function crearIndice(recursos: Recurso[], ahora: Date): EntradaIndice[] {
     temas: r.temas,
     herramientas: r.herramientas,
     fecha: r.fecha.toISOString().slice(0, 10),
-    premium: r.premium,
+    premium: r.premium && emailActivo(),
     nuevo: esNuevo(r.fecha, ahora),
   }));
 }

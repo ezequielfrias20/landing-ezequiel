@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { emailActivo } from '@/config/email';
 import { NOMBRE_COOKIE, secretoAcceso, verificarToken } from '@/lib/acceso/token';
 import { buscarDuenoDescarga } from '@/lib/contenido/consultas';
 import { dirDescargas, obtenerRecursos } from '@/lib/contenido/recursos';
@@ -27,7 +28,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ arch
   const dueno = buscarDuenoDescarga(archivo, obtenerRecursos());
   if (!dueno) return new Response('No encontrado', { status: 404 });
 
-  if (dueno.premium) {
+  if (dueno.premium && emailActivo()) {
     const almacen = await cookies();
     if (!verificarToken(almacen.get(NOMBRE_COOKIE)?.value, secretoAcceso())) {
       return NextResponse.redirect(new URL(`/r/${dueno.recurso.slug}`, request.url), 303);
@@ -39,7 +40,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ arch
     headers: {
       'content-type': TIPOS_MIME[path.extname(archivo)] ?? 'application/octet-stream',
       'content-disposition': `attachment; filename="${archivo}"`,
-      'cache-control': dueno.premium ? 'private, no-store' : 'public, max-age=3600',
+      'cache-control': dueno.premium && emailActivo() ? 'private, no-store' : 'public, max-age=3600',
     },
   });
 }

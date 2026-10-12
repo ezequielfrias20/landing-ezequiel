@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { analizarRecurso } from './analizar';
 import { buscarDuenoDescarga, crearIndice, esNuevo, metaRecurso, recursosRelacionados } from './consultas';
 
@@ -24,6 +24,17 @@ describe('crearIndice', () => {
       herramientas: [], fecha: '2026-10-10', premium: false, nuevo: true,
     });
     expect(indice[1].nuevo).toBe(false);
+  });
+});
+
+describe('crearIndice con el email apagado', () => {
+  it('no marca premium aunque el recurso tenga <Premium>', () => {
+    const pro = recurso('pro', { cuerpo: '<Premium>\nx\n</Premium>' });
+    vi.stubEnv('EMAIL_ACTIVO', '');
+    expect(crearIndice([pro], new Date())[0].premium).toBe(false);
+    vi.stubEnv('EMAIL_ACTIVO', '1');
+    expect(crearIndice([pro], new Date())[0].premium).toBe(true);
+    vi.unstubAllEnvs();
   });
 });
 

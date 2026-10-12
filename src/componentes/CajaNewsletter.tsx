@@ -1,6 +1,8 @@
 import { FormularioEmail } from './FormularioEmail';
+import { emailActivo } from '@/config/email';
 
 export function CajaNewsletter() {
+  if (!emailActivo()) return null;
   return (
     <section className="revelar my-14 sm:my-20" aria-labelledby="newsletter">
       <div className="panel grid gap-8 rounded-xl p-7 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:p-12">
