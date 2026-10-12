@@ -1,0 +1,148 @@
+---
+titulo: "El stack de frontend para Claude Code: cinco recursos y en qué orden se montan"
+resumen: "Los cinco recursos para que lo que construyes con Claude Code deje de tener cara de hecho por IA: referencias, criterios, sistema, imagen a código y feedback visual. Con su instalación, el orden y el que hay que vigilar antes de instalarlo."
+palabraClave: FRONTEND
+tipo: plantilla
+temas: [ia-practica]
+herramientas: [claude-code]
+fecha: 2026-09-21
+duracion: 5 min de lectura · una tarde para montarlo
+descargas:
+  - nombre: El stack de frontend en PDF
+    archivo: cinco-plugins.pdf
+relacionados: [cinco-webs, the-agency]
+---
+
+Cinco recursos, con su instalación y en qué orden se montan: referencias, criterios, sistema, imagen a código y feedback visual.
+
+Es para quien construye con Claude Code y ve que todo le sale con el mismo gradiente, las mismas cards y la misma cara de «hecho por IA».
+
+El orden importa más que la lista. Primero lo que le da criterio al agente, después la materia prima, y al final el que cierra el bucle. En desorden tienes cinco plugins, no un stack.
+
+Dos de los cinco circulan con nombres que no existen como proyecto. Aquí van los repositorios reales, para que no busques algo que no está.
+
+<Paso n="1" titulo="Dale referencias">
+
+Instala Taste Skill y vuelve a pedir la pantalla que no te gustó.
+
+Si todo te sale igual, el problema no suele ser el modelo: es que no le diste referencias. Sin ellas promedia lo que vio, y el promedio de internet es exactamente esa web genérica que reconoces al instante.
+
+**Taste Skill** · [github.com/Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)
+
+Está pensado precisamente para evitar interfaces genéricas. Gratis. Funciona con **Claude Code, Cursor y Codex**.
+
+<Prompt titulo="Instalación">{`npx skills add Leonxlnx/taste-skill`}</Prompt>
+
+Una referencia útil es un producto concreto que puedas nombrar, no un adjetivo. «Moderno», «limpio» y «premium» no dicen nada: los tres describen la misma web genérica de la que estás intentando salir.
+
+<Nota tipo="ojo">
+Instalarlo no basta. Sigue haciendo falta que le digas a qué se parece lo que quieres. La skill le da buen gusto; la dirección se la sigues dando tú.
+</Nota>
+
+<Nota tipo="truco">
+Coge la última pantalla que te salió genérica y pídela otra vez, igual, con la skill instalada. La comparación es el argumento.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Dale criterios">
+
+Lee el aviso de abajo y decide después si lo instalas.
+
+Las reglas de diseño de Vercel auditan lo que construyes contra sus normas y te marcan los puntos débiles antes de publicar. Se activa con **/guidelines** o por detección automática.
+
+**Vercel Web Design Guidelines** · [github.com/vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
+
+Skill oficial de Vercel, se instala como plugin de Claude Code.
+
+<Nota tipo="ojo">
+Un análisis de privacidad de abril de 2026 documentó que el plugin envía a Vercel los prompts, los comandos bash y las rutas de archivo completas de cada proyecto que abres. No es un fallo escondido: está en el issue 224 del propio repositorio. La herramienta funciona; la decisión de si eso te vale es tuya, y sin saberlo no es una decisión.
+</Nota>
+
+Si decides que no, la etapa no se pierde: lo que aporta es tener criterios escritos antes de construir. Eso mismo lo consigues fijando tus propias reglas, que es exactamente lo que vas a hacer en el paso 5.
+
+<Nota tipo="truco">
+Si trabajas con código de clientes, mira el issue 224 antes de instalarlo. Si es tu propio proyecto, el costo de privacidad es tuyo y ya sabes cuál es.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Dale un sistema">
+
+Copia una colección de sistemas de diseño a tu carpeta de skills.
+
+Esto es lo que evita que colores, tipografía y espaciado se decidan al azar en cada sección. **No existe un proyecto oficial llamado «Awesome Design»**: lo que hay son colecciones, y estas dos son las reales.
+
+- **awesome-claude-design** · [github.com/VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design). 68 sistemas de diseño listos para entregarle al agente.
+- **awesome-design-skills** · [github.com/bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills). 67 skills de diseño. Sirve la misma función, con otro reparto.
+
+<Prompt titulo="Copiar la colección">{`cp -r [la-coleccion] ~/.claude/skills/`}</Prompt>
+
+<Nota tipo="ojo">
+Elige uno y quédate con él una temporada. Cargar los sesenta y ocho es volver al promedio por otro camino.
+</Nota>
+
+<Nota tipo="truco">
+Abre la colección, elige el sistema que más se parezca a donde quieres ir, y úsalo en el próximo proyecto entero. Uno, no tres.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Dale una imagen">
+
+Dale una referencia visual y oblígalo a analizarla antes de escribir.
+
+El orden es lo que importa: **primero analiza el diseño, después implementa**. Si le pides las dos cosas a la vez, se salta el análisis y vuelve a improvisar.
+
+**screenshot-to-code** · [github.com/abi/screenshot-to-code](https://github.com/abi/screenshot-to-code)
+
+Convierte una referencia visual en código sin perder el detalle. Tampoco existe un «Image to Code» oficial único: **este es el que tiene nombre y repositorio propios**.
+
+<Prompt titulo="El orden, en una frase">{`Analiza primero esta referencia: retícula, escala
+tipográfica, espaciado y jerarquía.
+Enséñame ese análisis.
+No escribas código hasta que yo lo apruebe.`}</Prompt>
+
+<Nota tipo="ojo">
+Una referencia por pantalla, no un tablero entero. Con cinco referencias mezcladas vuelve a promediar, que es justo de lo que estamos saliendo.
+</Nota>
+
+<Nota tipo="truco">
+Captura una pantalla que te guste de verdad y pásala con ese prompt. Lee el análisis antes de dejarle escribir nada.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Haz que se mire">
+
+Monta Playwright y escribe tus tres reglas visuales propias.
+
+No basta con generar código: el agente debería abrir lo que construyó, verlo y comprobar si rompió algo. Esta es la parte más infravalorada de todo el stack.
+
+**Playwright MCP** · [github.com/microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
+
+De Microsoft. Abre un navegador, captura lo construido y detecta errores visuales. Se instala como servidor MCP.
+
+Y aquí aparece el límite: el agente puede comprobar que **no rompió nada**, pero no puede decidir si **está bien**. Detecta el botón fuera del contenedor. No detecta que la pieza entera se parece a la de todos.
+
+El bucle atrapa lo que se rompió, no lo que nunca estuvo bien. Por eso el stack no termina en Playwright: termina en tener un criterio propio contra el que revisar.
+
+<Prompt titulo="Tus tres reglas, para escribir">{`1. [Tu regla de color]
+2. [Tu regla de tipografía o espaciado]
+3. [Lo que tu marca no hace nunca]`}</Prompt>
+
+<Nota tipo="truco">
+Escribe las tres hoy, aunque sean toscas, y pégalas en tu archivo de instrucciones. Tres reglas tuyas valen más que sesenta sistemas de otro.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: tu agente dejó de decidir a ojo
+
+Del paso 1 al 4 tu agente tiene referencias, criterios, sistema y materia prima. Con el 5, además se revisa solo.
+
+La pregunta que queda no es qué otro plugin instalas. Es contra qué criterio se está revisando, y si ese criterio es tuyo o prestado.
+
+Un agente con buen gusto prestado produce interfaces correctas de una marca que no es la tuya.
+
+Repositorios, comandos y el aviso de Vercel verificados el 14 de septiembre de 2026.

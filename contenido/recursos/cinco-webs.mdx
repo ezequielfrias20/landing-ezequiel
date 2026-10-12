@@ -1,0 +1,170 @@
+---
+titulo: "El kit de interfaces para Claude: nueve herramientas y el prompt que se las pasa"
+resumen: "Nueve herramientas con el nombre bien escrito, su enlace, para qué sirve cada una y cuándo no usarla. Más el prompt que se las pasa a Claude de una vez para que tu pantalla deje de parecer hecha por IA."
+palabraClave: WEBS
+tipo: plantilla
+temas: [ia-practica]
+herramientas: [claude]
+fecha: 2026-09-21
+duracion: 6 min
+descargas:
+  - nombre: El kit de interfaces en PDF
+    archivo: cinco-webs.pdf
+relacionados: [cinco-plugins]
+---
+
+El truco no es conocer más herramientas. Es darle mejores ingredientes a la IA. Aquí están los nueve, con el nombre bien escrito, el enlace, para qué sirve cada uno y cuándo no usarlo. Y el prompt que se los pasa a Claude de una vez.
+
+Es para quien ya le pide pantallas a Claude y el resultado le sale genérico.
+
+Dos de los nombres que circulan están mal escritos, y por eso no los encuentras. Aquí van corregidos, con la grafía exacta al lado. Si solo tienes cinco minutos, empieza por el paso 5: es el que convierte la lista en un resultado.
+
+Cada herramienta lleva para qué sirve y, debajo, **cuándo no usarla**. Esa segunda línea es la que te ahorra la tarde.
+
+<Paso n="1" titulo="Que se mueva">
+
+Nombra el motor de animación en el prompt, antes de pedir la pantalla.
+
+Si no lo nombras, Claude anima con lo que tenga a mano: transiciones de CSS sueltas que no comparten ritmo. El resultado se mueve, pero se mueve desordenado, y eso es lo primero que se nota.
+
+**Anime.js** · [animejs.com](https://animejs.com)
+
+Un solo motor para casi cualquier cosa que se mueva: SVG, números que suben, recorridos, secuencias encadenadas. Pídeselo cuando la animación sea el protagonista de la pantalla.
+
+- **Cuándo no:** si tu proyecto ya es React y solo necesitas transiciones al entrar y salir. Ahí Anime.js es más motor del que hace falta.
+
+**Motion** · [motion.dev](https://motion.dev), antes Framer Motion
+
+Transiciones, animación al hacer scroll y los micromovimientos que hacen que una interfaz se sienta pulida. Es la única de las dos que yo dejo en producción para clientes: es la que no se cae en celular.
+
+- **Cuándo no:** si no usas React, Vue o JavaScript moderno. Y nunca las dos a la vez en la misma pantalla: dos motores peleando por el mismo elemento dan saltos que luego no sabes de dónde salen.
+
+<Nota tipo="truco">
+Abre tu último proyecto hecho con Claude y busca la palabra **transition** en el CSS. Cada una que encuentres suelta es una decisión que nadie tomó.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Que tenga componentes">
+
+Monta sobre shadcn/ui, y usa Kokonut UI solo para llegar rápido a algo mirable.
+
+Las dos se copian y se pegan, no se instalan. El código es tuyo, y también se queda congelado en la versión que copiaste.
+
+**shadcn/ui** · [ui.shadcn.com](https://ui.shadcn.com), en minúsculas y con barra
+
+La base sobre la que Claude ya sabe construir: botones, formularios, diálogos y tablas accesibles, sobre Radix y Tailwind. Es lo que se queda en el proyecto.
+
+- **Cuándo no:** si buscas que se vea distinto de entrada. Su gracia es ser neutral, así que el carácter lo pones tú en el paso 4.
+
+**Kokonut UI** · [kokonutui.com](https://kokonutui.com), con K, no «Coconut»
+
+Más de cien componentes animados, gratis y de código abierto. Sirve para prototipar y para robarle ideas de movimiento a alguien que ya lo resolvió.
+
+- **Cuándo no:** como base de todo el proyecto. Yo la uso para llegar a algo que se pueda mirar, y casi nunca llega al diseño final.
+
+<Nota tipo="ojo">
+Si buscaste «CoconutUI» y no apareció nada, no eras tú: ese proyecto no existe. Es **Kokonut UI**, con K.
+</Nota>
+
+<Nota tipo="truco">
+Anota en un archivo de tu proyecto la fecha en que copiaste cada componente. Es la única forma de saber, dentro de seis meses, qué está viejo.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Que muestre datos">
+
+Deja de pedirle gráficos a mano. Nómbrale la librería y pídele los datos de ejemplo.
+
+Un gráfico dibujado a mano por una IA sale sin ejes legibles y sin estado vacío. Las dos de abajo ya traen eso resuelto y conviven: las dos se apoyan en shadcn/ui.
+
+**Bklit UI** · [bklit.com](https://bklit.com), b-k-l-i-t, no «Backlit»
+
+Más de diecisiete tipos de gráfico (área, barras, velas, radar) con sus leyendas, rejillas y tooltips. Para un panel que tiene que verse trabajado.
+
+- **Cuándo no:** para un gráfico suelto. Es cargar de más.
+
+**Tremor** · [tremor.so](https://tremor.so)
+
+Más de treinta componentes para paneles: KPIs, tablas, filtros y gráficos. Lo más cercano a un panel terminado sin diseñarlo.
+
+- **Cuándo no:** si tu producto no es un panel. Su lenguaje visual es de herramienta interna, y en una web de venta se nota.
+
+Un dato que cambia la decisión: Vercel compró Tremor, y sus bloques y plantillas, antes de pago, pasaron a ser gratis y MIT. Si lo descartaste por precio, vuelve a mirarlo.
+
+<Nota tipo="truco">
+Elige una sola pantalla con números de tu proyecto y pídesela otra vez a Claude nombrando una de las dos. Compara las dos versiones lado a lado.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Los detalles que delatan a la IA">
+
+Cambia los iconos y la tipografía antes de tocar nada más.
+
+Una pantalla se lee como «hecha por IA» mucho antes por los iconos genéricos y la tipografía por defecto que por la animación. Son los dos cambios más baratos de todo el kit y los que más se notan.
+
+**Lucide** · [lucide.dev](https://lucide.dev)
+
+Más de mil ochocientos iconos con el mismo trazo y el mismo peso. Que todos vengan del mismo set es lo que hace que una interfaz parezca diseñada. Licencia ISC, gratis.
+
+- **Cuándo no:** nunca los mezcles con emojis. Un emoji entre iconos de trazo es la señal más clara de que nadie revisó la pantalla.
+
+**Fontshare** · [fontshare.com](https://fontshare.com)
+
+Tipografías de calidad, gratis y con uso comercial permitido bajo la licencia libre de Indian Type Foundry. Cambiar la fuente por defecto por una de aquí es el cambio de mayor efecto por minuto invertido.
+
+- **Cuándo no:** si tu marca ya tiene tipografía definida. Y no metas más de dos familias: una tercera convierte la pantalla en un collage.
+
+<Nota tipo="truco">
+Abre tu proyecto y cuenta cuántos sets de iconos distintos hay. Si son más de uno, ahí está la mitad del problema.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="El prompt que se las da a Claude">
+
+Pega esto antes de pedir la pantalla. Rellena solo las dos primeras partes.
+
+<Prompt titulo="El prompt del kit">{`CONTEXTO
+[qué es el producto, para quién y en qué tono]
+
+PANTALLA
+[qué pantalla y qué tiene que poder hacer el usuario en ella]
+
+STACK
+React + Tailwind + shadcn/ui.
+Animación: Motion (motion.dev).
+Iconos: Lucide. Cero emojis.
+Tipografía: la de Fontshare que elegí.
+
+REGLAS
+- Un solo color de acento en toda la pantalla.
+- Espaciado en múltiplos de 4.
+- Sin degradados de color ni sombras de colores.
+- Incluye los estados vacío, cargando y error.`}</Prompt>
+
+Las dos últimas partes no se tocan: son el criterio.
+
+**Manus** · [manus.im](https://manus.im), el dominio bueno es .im
+
+Si no quieres escribir el prompt, un agente que va de la idea al prototipo solo. Gratis corre en modo básico.
+
+- **Cuándo no:** cuando ya sabes qué quieres. Dirigir tú con el prompt de arriba es más rápido que corregir lo que decidió el agente.
+
+<Nota tipo="truco">
+Guarda este prompt como nota fija en tu teléfono. El día que lo tengas a mano cuando se te ocurra algo, el kit ya está haciendo su trabajo.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: tienes los ingredientes
+
+Si al aplicar esto tu pantalla dejó de parecer hecha por IA, el kit hizo su trabajo. Nueve enlaces y un prompt.
+
+Lo que viene después ya no es de diseño. Las librerías suben de versión y los componentes que copiaste se quedan en la que copiaste. Lo que se ve bien en tu navegador se rompe en un celular de gama media. Y nadie se entera hasta que lo dice un cliente.
+
+Eso no se arregla eligiendo mejor librería. Se arregla decidiendo quién lo mira, cada cuánto y con qué aviso.
+
+Nombres, enlaces y licencias verificados el 16 de septiembre de 2026.

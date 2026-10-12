@@ -1,0 +1,145 @@
+---
+titulo: "La capa de investigación: Agent-Reach, las tres fuentes que sí y las dos que no"
+resumen: "El repositorio con su nombre correcto, las tres fuentes que puedes conectarle a tu agente sin arriesgar tu cuenta y las dos que no, con el motivo escrito. Más el formato de salida y qué pasa con lo que recoge."
+palabraClave: REACH
+tipo: plantilla
+temas: [ia-practica, productividad]
+fecha: 2026-09-21
+duracion: 5 min de lectura · una tarde para configurarlo
+descargas:
+  - nombre: La capa de investigación en PDF
+    archivo: agentreach.pdf
+relacionados: [the-agency]
+---
+
+Las tres fuentes que puedes conectarle a tu agente sin arriesgar tu cuenta, y las dos que no. Con el motivo escrito y la fuente citada.
+
+Es para quien usa un agente para investigar (competencia, tendencias, contenido) y copia información a mano de cinco sitios distintos.
+
+El paso 3 no es letra pequeña. Este tipo de herramientas cambia rápido, así que aquí van también las limitaciones y los requisitos, no solo el enlace. Es de los recursos que caducan antes: lleva la fecha de verificación al final para que sepas contra qué día lo estás leyendo.
+
+<Paso n="1" titulo="Instálalo y conecta una">
+
+Monta Agent Reach y deja funcionando una sola fuente, la más fácil.
+
+Un agente solo puede razonar con la información a la que accede. Esto le da formas de buscar y leer en varias plataformas desde un mismo sitio, en vez de que tú abras cinco pestañas y copies de una a otra.
+
+**Agent-Reach** · [github.com/Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach)
+
+Open source, más de 80 mil estrellas.
+
+<Nota tipo="ojo">
+El nombre lleva guion: **«Agent-Reach»**, no «AgentReach». Circulan copias con el mismo nombre.
+</Nota>
+
+Lo que aporta no es leer una fuente que no podías leer. Es que tu agente deje de depender de que tú le pegues la información, y pueda ir a buscarla mientras razona sobre otra cosa.
+
+No lo vendo como magia, y el propio proyecto tampoco. Algunas plataformas piden configuración, claves o métodos que van cambiando.
+
+<Nota tipo="truco">
+Conecta RSS primero. No pide clave, no pide sesión y no tiene límite de cuota: si algo falla en esa, el problema es la instalación y no la fuente.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Las tres que sí">
+
+Conecta estas tres y cubre con ellas research, competencia y tendencias.
+
+Son las tres que **no dependen de saltarse los términos de nadie**, y cubren enteros esos tres usos.
+
+- **YouTube.** La transcripción de un video, que es la forma más rápida de leer una hora de contenido en dos minutos.
+- **GitHub.** Repositorios, actividad y qué se está moviendo de verdad en una herramienta, no lo que dice su web.
+- **RSS.** Publicaciones que te importan, sin intermediario y sin algoritmo decidiendo qué ves.
+
+RSS es la menos vistosa y suele ser la más útil: casi todo blog, newsletter y sección de novedades sigue publicando uno, aunque ya no lo anuncie.
+
+<Nota tipo="ojo">
+Cada fuente pide algo distinto: unas una clave de API, otras nada. Anota qué pidió cada una al conectarla. Es lo primero que se olvida y lo primero que hace falta cuando algo deja de responder.
+</Nota>
+
+<Nota tipo="truco">
+Pídele la transcripción del último video largo que guardaste sin ver. En dos minutos sabes si te hacía falta verlo.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Las dos que no, y por qué">
+
+Lee esto antes de conectar LinkedIn o X, no después.
+
+La herramienta las ofrece. Yo no te las recomiendo, y el motivo está verificado y no es una opinión sobre el proyecto.
+
+- **LinkedIn.** Su acuerdo de usuario prohíbe explícitamente el acceso automatizado y la extracción de perfiles. El caso _hiQ v. LinkedIn_ confirmó en tribunales que incumple contrato.
+- **X / Twitter.** Sus términos prohíben el rastreo o la extracción «en cualquier forma» sin permiso escrito. Solo admiten su API oficial.
+
+<Nota tipo="ojo">
+El aviso más fuerte lo da el propio repositorio: advierte del riesgo de que te cierren la cuenta y recomienda usar cuentas desechables. Cuando quien construye la herramienta te dice eso, ya te contestó la pregunta.
+</Nota>
+
+Y una que suele nombrarse pero aquí no entra: **Reddit**. No la descarto; es que no comprobé si la vía que usa respeta sus términos, y lo que no verifico no lo recomiendo. Si la quieres, compruébalo tú primero.
+
+<Nota tipo="truco">
+Si ya tenías alguna de estas conectada con tu cuenta principal, desconéctala hoy. La cuenta que arriesgas es la que usas para trabajar.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Que llegue ordenado">
+
+Fija el formato de salida antes de lanzar la primera investigación.
+
+Una capa de investigación sin formato devuelve un muro de texto que no lee nadie, ni siquiera tú. El formato no es estética: es lo que hace que sirva.
+
+<Prompt titulo="El formato, para rellenar">{`Para cada hallazgo devuélveme:
+– la fuente y el enlace
+– una línea de qué dice
+– una línea de por qué me importa a mí, que hago [tu trabajo]
+– la fecha
+
+Si una fuente no respondió, dilo. No la omitas.`}</Prompt>
+
+La última línea es la que más trabaja. Sin ella, una fuente caída se ve igual que una fuente sin novedades, y te fías de un informe incompleto sin saber que lo es.
+
+Si el agente se salta el formato, casi siempre es porque le pediste demasiadas fuentes de golpe. Baja a dos, comprueba que respeta la forma, y sube desde ahí.
+
+<Nota tipo="truco">
+Lanza una investigación con el formato puesto y otra sin él. La diferencia entre las dos salidas es el argumento de este paso.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Qué haces el lunes">
+
+Escribe qué pasa con lo que el agente recogió mientras no mirabas.
+
+Aquí es donde esto se cae en casi todos los casos. La capa funciona, recoge bien, y lo recogido se queda en una carpeta que nadie abre el lunes.
+
+<Prompt titulo="El recorrido, para rellenar">{`Se corre [cada cuánto].
+Aterriza en [dónde].
+Lo revisa [quién], el [qué día].
+Y lo que merece la pena se convierte en [qué].`}</Prompt>
+
+- **Cada cuánto.** Diario satura, semanal se lee. Empieza por semanal.
+- **Dónde.** Donde ya miras, no en una carpeta nueva que se olvida.
+- **Quién.** Si la respuesta es «yo, cuando pueda», es que nadie.
+
+<Nota tipo="ojo">
+Si alguna línea se quedó en blanco, no tienes un proceso: tienes una carpeta. Y una carpeta que crece sola termina pesando más que el problema que venía a resolver.
+</Nota>
+
+<Nota tipo="truco">
+Pon hoy un recordatorio semanal para revisarlo, con día y hora. Es lo único de esta página que se puede hacer en un minuto, y es lo que decide si lo demás sirvió.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: la tienes montada, y sin riesgo
+
+Si conectaste las tres fuentes y fijaste el formato del paso 4, tienes la capa funcionando sin poner ninguna cuenta en riesgo.
+
+La pregunta que queda no es qué otra fuente conectas. Es qué pasa con lo que ya estás recogiendo: cada cuánto se corre, dónde aterriza, quién lo mira y qué se hace con lo que aparece.
+
+Un agente que investiga bien no te da tiempo: te da más cosas que leer, hasta que alguien decide qué se hace con ellas.
+
+Repositorio, estrellas y términos de servicio verificados el 14 de septiembre de 2026.

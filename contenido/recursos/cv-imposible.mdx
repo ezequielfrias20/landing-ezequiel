@@ -1,0 +1,182 @@
+---
+titulo: "Cuatro prompts para tu CV: diagnóstico, palabras clave, reescritura y entrevista"
+resumen: "Diagnosticar tu CV contra una vacante, detectar lo que piden todas y no se lee, reescribir cada línea sobre resultados y practicar una entrevista que te repregunta. Los cuatro prompts, listos para copiar y pegar."
+palabraClave: CV
+tipo: plantilla
+temas: [ia-practica]
+fecha: 2026-09-21
+duracion: 5 min de lectura · 2 min el primer prompt
+descargas:
+  - nombre: Los cuatro prompts para tu CV en PDF
+    archivo: cv-imposible.pdf
+---
+
+El proceso completo, no un prompt suelto: diagnosticar, detectar lo que falta, reescribir sobre resultados y practicar la entrevista. Los cuatro, listos para copiar y pegar.
+
+Es para quien está postulando de verdad, a varias vacantes a la vez, y hasta ahora le pedía a una IA «mejora mi currículum».
+
+Córrelos en orden y sobre una vacante concreta. Cada prompt usa lo que devolvió el anterior, así que saltarse uno deja al siguiente sin material. Antes de empezar, ten a mano:
+
+- **Tu CV en texto.** No un PDF escaneado: tiene que poder leerse y copiarse.
+- **Una vacante.** La que más te interese, completa y sin recortar.
+- **Dos ofertas más.** Del mismo puesto, para el paso 2.
+
+<Paso n="1" titulo="Primero, el diagnóstico">
+
+Pega tu CV y una vacante concreta, y pide los desajustes.
+
+Contra una vacante concreta, no «contra el mercado». Un CV no es bueno o malo en abstracto: le falta o le sobra algo frente a un puesto.
+
+<Prompt titulo="Prompt 1 · Diagnóstico">{`Actúa como un revisor técnico de currículums.
+
+Te doy mi CV y la descripción de UNA vacante. Compáralos y
+devuélveme, sin suavizar:
+· Requisitos de la vacante que mi CV NO demuestra.
+· Los que sí, pero enterrados o mal redactados.
+· Lo que ocupa espacio y no aporta nada a ESTA vacante.
+
+Para cada punto cita la línea exacta de mi CV, o di
+"no aparece". No reescribas nada todavía.
+
+CV:
+[pega aquí tu CV completo]
+VACANTE:
+[pega aquí la descripción completa]`}</Prompt>
+
+<Nota tipo="ojo">
+Si te devuelve elogios, el prompt falló. Lo que buscas es la lista de lo que no se ve.
+</Nota>
+
+<Nota tipo="truco">
+Córrelo con la vacante que más te interesa hoy y quédate solo con el primer bloque: lo que no demuestras.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Lo que piden todas y tú no tienes">
+
+Junta tres ofertas del mismo puesto y busca lo que se repite.
+
+Una oferta sola te dice lo que quiere una empresa. Tres del mismo perfil te dicen lo que quiere el puesto, y con qué palabras exactas lo nombran, que casi nunca son las tuyas.
+
+<Prompt titulo="Prompt 2 · Palabras clave y competencias">{`Te pego tres ofertas del mismo tipo de puesto.
+
+Analízalas juntas y dime:
+· Qué competencias y herramientas aparecen en LAS TRES.
+· Cuáles en dos.
+· Cómo las nombran ellos, con sus palabras exactas.
+
+Luego compara esa lista con mi CV y sepárala en:
+· Lo que tengo y ya se lee.
+· Lo que tengo y NO se lee por cómo está escrito.
+· Lo que no tengo.
+
+En el último grupo no me sugieras inventar nada: dime si
+hay algo en mi experiencia que se acerque.
+
+OFERTA 1: [pega la primera]
+OFERTA 2: [pega la segunda]
+OFERTA 3: [pega la tercera]
+MI CV: [pega tu CV]`}</Prompt>
+
+El grupo del medio es el más rentable: ya lo tienes, solo está mal escrito. Eso se arregla en el paso siguiente.
+
+<Nota tipo="truco">
+Abre tres ofertas reales del portal que uses y pégalas. Tres bastan para que el patrón aparezca.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="De «era responsable de» a un resultado">
+
+Reescribe cada línea con la fórmula X-Y-Z y marca lo que te falte.
+
+La fórmula es de **Laszlo Bock**, ex-VP de People Operations de Google, en _Work Rules!_: logré [X] medido por [Y] haciendo [Z]. Obliga a poner el resultado delante y la tarea detrás.
+
+<Prompt titulo="Prompt 3 · Reescritura">{`Reescribe cada línea de experiencia de mi CV con la
+fórmula X-Y-Z: "Logré [X] medido por [Y] haciendo [Z]".
+
+Reglas:
+· Si no tengo el número de [Y], NO lo inventes: escribe
+(falta dato) y sigue.
+· Nada de "responsable de", "encargado de", "participé en".
+· Una línea por logro, máximo dos renglones.
+· Usa las palabras de la vacante cuando digan lo mismo
+que yo ya hacía.
+
+Al final lista todos los (falta dato) para que los busque.
+
+MIS LÍNEAS ACTUALES:
+[pega tus viñetas de experiencia tal como están hoy]`}</Prompt>
+
+<Nota tipo="ojo">
+La IA puede ayudarte a presentar mejor tu experiencia. No debería inventarte experiencia que no tienes: cada número tiene que poder rastrearse a algo que pasó, o se te cae en el paso 4.
+</Nota>
+
+<Nota tipo="truco">
+Toma los (falta dato) y busca dos de ellos hoy: una factura, un panel, un correo viejo. Dos cifras reales cambian el CV entero.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Que te entreviste y te repregunte">
+
+Dale la descripción del puesto y que te entreviste sin ayudarte.
+
+El truco no es que pregunte: es que repregunte. Una respuesta vaga que nadie persigue se siente bien y no prueba nada.
+
+<Prompt titulo="Prompt 4 · Entrevista">{`Vas a entrevistarme para esta vacante. Eres el hiring
+manager, no un asistente: no me ayudes, evalúame.
+
+Reglas:
+· Una pregunta por mensaje. Espera mi respuesta.
+· Si respondo en general o sin datos, REPREGUNTA sobre lo
+mismo hasta que dé algo concreto. No pases a la siguiente.
+· Empieza por lo que mi CV promete y peor puedo sostener.
+· Tras 8 preguntas para y dime: qué respuestas aguantaron,
+cuáles no, y qué habría respondido un candidato fuerte.
+
+VACANTE: [pega la descripción del puesto]
+MI CV: [pega el CV ya reescrito en el paso 3]`}</Prompt>
+
+Las respuestas que no aguantan tienen una de estas tres formas:
+
+- **Generalidad.** «Mejoramos bastante». Sin cifra y sin periodo.
+- **Autoría difusa.** «Se decidió», «se hizo». No se sabe qué hiciste tú.
+- **Proceso sin final.** Cuentas lo que hacías, no en qué terminó.
+
+Donde te trabes dos veces, hay una línea del CV que no sostienes. Vuelve al paso 3 y bájala de tono.
+
+<Nota tipo="truco">
+Corre las 8 escribiendo las respuestas, no pensándolas. Lo que no sabes escribir tampoco lo vas a decir.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Lo que ningún prompt arregla">
+
+Monta cinco columnas en una hoja antes de la próxima postulación.
+
+Casi nadie te rechaza: te entierran. El sistema puntúa y ordena, y el reclutador lee de arriba hacia abajo. Consultados 25 reclutadores, solo 2 dijeron rechazar de forma automática fuera de preguntas eliminatorias: nadie descarta el currículum número cuarenta, simplemente nadie llega.
+
+Por eso los cuatro prompts resuelven el documento y no la búsqueda. Cuatro corridas por vacante, doce vacantes, y a la semana ya no distingues qué versión mandaste ni a quién le toca respuesta.
+
+- **Vacante.** Empresa y puesto.
+- **Enviado.** La fecha.
+- **Versión.** Qué CV mandaste.
+- **Contacto.** Quién, si lo sabes.
+- **Próximo toque.** La fecha en que vuelves a escribir.
+
+Yo monto el lado contrario de esto: secuencias que retoman al contacto que no respondió o que dijo «después». El problema nunca fue el primer mensaje; fue que no hubo segundo.
+
+<Nota tipo="truco">
+Llena la fila de las tres últimas vacantes a las que te postulaste. Si no recuerdas una fecha, ese es el dato.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: el documento ya no es el problema
+
+Si corriste los cuatro sobre una vacante, tienes un CV que dice resultados, con las palabras del puesto y que aguanta que te repregunten. Eso estaba roto y ya no lo está.
+
+Lo que queda no se arregla con otro prompt: es en cuántas listas estás y quién retoma cuando nadie contesta.

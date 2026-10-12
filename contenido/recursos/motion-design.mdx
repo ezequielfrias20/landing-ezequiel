@@ -1,0 +1,142 @@
+---
+titulo: "Motion con criterio: HyperFrames y el prompt de cinco partes"
+resumen: "Dónde está HyperFrames, cómo se conecta a Claude Code y la estructura de prompt de cinco partes que hace que la animación salga a la primera. Con tres prompts armados y el filtro que decide qué plano no hacer."
+palabraClave: MOTION
+tipo: plantilla
+temas: [ia-practica, contenido]
+herramientas: [claude-code]
+fecha: 2026-09-21
+duracion: 5 min de lectura · una tarde para el primer motion
+descargas:
+  - nombre: Motion con criterio en PDF
+    archivo: motion-design.pdf
+relacionados: [money-printer]
+---
+
+Dónde está HyperFrames, cómo se conecta y las cinco partes que hacen que la animación salga a la primera. Más el filtro que decide cuál no hacer.
+
+Es para quien ya edita sus propios videos y descarta ideas de animación porque no sabe ejecutarlas o porque encargarlas no compensa.
+
+Haz el paso 1 con el computador delante: son unos minutos. Los pasos 2 y 3 se usan cada vez que montes algo, no se leen una sola vez. Lo que está [entre corchetes] dentro de un prompt lo escribes tú; el resto se copia tal cual, que es lo que evita que el modelo decida por su cuenta.
+
+<Paso n="1" titulo="Conéctalo y haz un plano">
+
+Instala HyperFrames en Claude Code y pídele un solo plano de prueba.
+
+HyperFrames es de **HeyGen**, es open source y es gratis. Trabaja con composiciones, animaciones, captions, audio y elementos para video.
+
+Repositorio: [github.com/heygen-com/hyperframes](https://github.com/heygen-com/hyperframes). El repositorio manda: la instalación se sigue desde su README, que es lo que se mantiene al día. También está como conector: **claude.com/connectors/hyperframes-heygen**.
+
+Lo que cambia no es que animes más rápido. Es que una idea de animación deja de morir en el momento en que la piensas, porque probarla ya no cuesta ni una tarde de trabajo ni un presupuesto.
+
+Corre en tu equipo, no en los servidores de HeyGen. Es la parte que quita el miedo a probar: no consume créditos de HeyGen, así que equivocarte cuesta tiempo, no dinero.
+
+<Nota tipo="truco">
+Pídele **un solo plano de tres segundos**: una palabra que entra y se queda quieta. Si sale, ya sabes que está conectado. No empieces por la pieza entera.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Las cinco partes del prompt">
+
+Rellena las cinco partes antes de escribir una sola frase suelta.
+
+Un prompt copiado sirve una vez. La estructura sirve siempre, porque cada parte cierra una decisión que, si no tomas tú, la toma el modelo.
+
+- **Qué entra.** El elemento exacto: un texto, una barra, un logo, una línea.
+- **Qué hace.** El movimiento, en verbo: entra, crece, rota, se desvanece.
+- **Cuánto dura.** En segundos, y desde qué segundo del plano arranca.
+- **Con qué ritmo.** De golpe, con rebote, frenando al final.
+- **Sobre qué.** El fondo y qué hay alrededor, para que no se pise nada.
+
+<Nota tipo="ojo">
+La que más se olvida es «cuánto dura». Sin segundos escritos, todo sale con la misma duración media y la pieza entera se siente plana.
+</Nota>
+
+<Nota tipo="truco">
+Coge el último plano que descartaste por difícil y escríbele las cinco partes. Si no puedes rellenar una, ahí está lo que todavía no tienes decidido.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Tres prompts armados">
+
+Copia el que necesites hoy y cambia solo lo que va entre corchetes.
+
+<Prompt titulo="Texto que entra">{`Un texto que dice [tu frase].
+Entra desde abajo y se frena al llegar.
+Dura 0,6 s y arranca en el segundo [0,2].
+Frena al final, sin rebote.
+Sobre fondo [oscuro], centrado, nada más en pantalla.`}</Prompt>
+
+<Prompt titulo="Gráfico animado">{`Barras que crecen hasta [tus valores].
+Crecen desde la base, una detrás de otra.
+Duran 1,2 s en total, arrancan en el [0].
+Cada barra entra 0,1 s después de la anterior.
+Sobre fondo [oscuro], con el eje quieto.`}</Prompt>
+
+<Prompt titulo="Reactivo al audio">{`Una línea que responde al audio de [tu pista].
+Se estira con el volumen y vuelve al reposo.
+Dura lo que dure el clip.
+Reacciona rápido y vuelve despacio.
+Sobre fondo [oscuro], a lo ancho del plano.`}</Prompt>
+
+Los tres llevan las mismas cinco líneas en el mismo orden. No es casualidad: el orden es la prioridad. Lo que escribes primero es lo que el modelo respeta cuando algo no le cabe.
+
+<Nota tipo="truco">
+Lanza el primero tal cual, sin tocar nada. Ver salir uno completo enseña más que leer los tres.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Qué se anima y qué no">
+
+Reparte los planos de tu próxima pieza en estos tres grupos.
+
+Animarlo todo cansa igual que no animar nada. El reparto no lo decide el gusto: lo decide qué está pasando en ese segundo.
+
+- **Se anima.** Donde entra un dato, un nombre o una comparación. El movimiento dirige el ojo al sitio exacto.
+- **Se mueve apenas.** Donde hablas tú. Un fondo vivo basta; cualquier cosa más compite con tu cara.
+- **Se queda quieto.** El cierre y el CTA. Si se mueve, la gente no lo lee.
+
+En una pieza de 45 a 60 segundos el reparto sano suele quedar en **tres o cuatro planos animados**, no diez. El resto sostiene, y sostener también es trabajo.
+
+<Nota tipo="ojo">
+El último plano no se anima nunca. Es el que la gente mira mientras decide si comenta, y un movimiento ahí se lleva la atención justo cuando la necesitas fija.
+</Nota>
+
+<Nota tipo="truco">
+Abre tu última pieza publicada y reparte sus planos en los tres grupos. Cuenta cuántos animaste que estaban en el grupo de «quieto».
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Las tres preguntas">
+
+Pasa cada plano animado por las tres, antes de producirlo.
+
+- **¿Qué tiene que entender el espectador en este segundo?** Si no lo sabes escribir en una frase, la animación no va a arreglarlo.
+- **¿Por qué se mueve esto y no otra cosa?** Si la respuesta es «para que no esté quieto», el movimiento sobra.
+- **¿Qué pasa si lo quito?** Casi siempre no pasa nada. Ese plano se cae.
+
+Lo que sobrevive a las tres preguntas es tu lista de producción, y llega ya ordenada: cada plano trae escrito qué tiene que entender el espectador. Eso es, exactamente, la primera línea de su prompt.
+
+Los que se caen casi siempre son los mismos tres: el fondo que se mueve porque sí, el rótulo que repite lo que ya estás diciendo en voz alta, y la transición entre dos planos que no necesitaban separarse.
+
+La tercera pregunta es la que duele y la que trabaja. Una animación espectacular encima de una idea aburrida sigue siendo una idea aburrida, solo que ahora te costó una tarde.
+
+<Nota tipo="truco">
+Aplica las tres a un plano que ya tengas montado. Si se cae, acabas de ganar el tiempo de producirlo, y esa es la señal de que el filtro funciona.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: tienes las dos mitades
+
+Si sacaste un plano con el paso 1 y pasaste otro por el filtro del 5, tienes la herramienta y el criterio.
+
+La pregunta que queda no es qué otra animación puedes hacer. Es cuáles de las que ya haces deberían desaparecer, y quién lo decide cada semana sin volver a pensarlo.
+
+La herramienta bajó el costo de animar a casi cero. El costo de animar lo que no hacía falta sigue siendo el mismo.
+
+HyperFrames, licencia y conector verificados el 14 de septiembre de 2026.

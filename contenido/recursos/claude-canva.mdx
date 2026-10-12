@@ -1,0 +1,147 @@
+---
+titulo: "Claude + Canva: la conexión, cinco prompts y la comprobación que nadie hace"
+resumen: "Los cuatro pasos para conectar Claude con Canva a través de Composio, el prompt de cuatro partes que trae contexto, cinco prompts listos para pegar y la prueba que te dice si la conexión se cayó."
+palabraClave: CANVA
+tipo: plantilla
+temas: [ia-practica, contenido]
+herramientas: [claude, canva]
+fecha: 2026-09-21
+duracion: 5 min de lectura · 2 min para conectarlo
+descargas:
+  - nombre: Claude + Canva, la configuración en PDF
+    archivo: claude-canva.pdf
+---
+
+La oportunidad no es automatizar Canva. Es usar Claude como una capa encima de tus herramientas. Aquí está cómo se conecta, qué prompts usar y qué vigilar después.
+
+Es para quien produce contenido o material de marca y pierde la tarde saltando entre el chat y Canva.
+
+Haz el paso 1 con el teléfono en la mano y el computador delante: son dos minutos reales. Todo lo demás se lee después, sin prisa. Lo que está [entre corchetes] dentro de un prompt lo escribes tú; el resto se copia tal cual, que es la parte que hace que Claude no improvise.
+
+<Paso n="1" titulo="Conéctalo en dos minutos">
+
+Crea la cuenta del puente y pega una sola dirección dentro de Claude.
+
+El puente se llama **Composio** y es lo que conecta Claude con aplicaciones de fuera. La dirección es siempre la misma: no hay que buscar Canva en ningún listado.
+
+1. **Crea tu cuenta en Composio.** [composio.dev](https://composio.dev). No pide tarjeta.
+2. **Abre los conectores en Claude.** Personalizar → Conectores → «+» → Agregar conector personalizado.
+3. **Nómbralo y pega la dirección.** Ponle «Composio» y pega la de abajo.
+4. **Autoriza en el navegador.** Se abre solo. Inicias sesión y vuelves a Claude.
+
+<Prompt titulo="La dirección del conector">{`https://connect.composio.dev/mcp`}</Prompt>
+
+<Nota tipo="ojo">
+Antes de pulsar autorizar, mira con qué cuenta entras. Si tienes un Canva personal y otro de trabajo, el punto 4 es donde se decide, y después no se ve: para Claude las dos cuentas se parecen.
+</Nota>
+
+<Nota tipo="truco">
+Comprueba que quedó: pídele a Claude **«lista mis diseños recientes de Canva»**. Si te devuelve nombres reales, está conectado. Si te contesta en general, no lo está.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="El prompt que sí trae contexto">
+
+Deja de pedir «hazme un post». Dale las cuatro partes de una vez.
+
+«Hazme un post» obliga a Claude a inventarse tu negocio, tu formato y tu estilo. Con las cuatro partes de abajo deja de adivinar.
+
+<Prompt titulo="Las cuatro partes">{`CONTEXTO
+[a qué se dedica tu negocio y en qué tono hablas]
+
+FORMATO
+[carrusel de 4, historia, portada… y la medida]
+
+IDEA
+[de qué va la pieza, en una frase]
+
+REFERENCIAS
+[qué diseño tuyo de Canva debe seguir]`}</Prompt>
+
+La cuarta es la que más cambia el resultado y la que casi nadie pone. Sin una referencia de tu propia cuenta, cada pieza sale de un mundo distinto.
+
+<Prompt titulo="Así se ve relleno">{`CONTEXTO: estudio de arquitectura, obra residencial, tono sobrio.
+FORMATO: carrusel de 4, 1080x1350.
+IDEA: tres errores al reformar una cocina.
+REFERENCIAS: sigue «Carrusel obra Marzo» de mi Canva.`}</Prompt>
+
+<Nota tipo="truco">
+Escribe tus partes **CONTEXTO** y **FORMATO** una sola vez y guárdalas. No cambian entre piezas: lo único que cambia son la idea y la referencia.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Cinco prompts para pegar">
+
+Pega tu bloque de contexto y detrás uno de estos cinco.
+
+<Prompt titulo="01 · Crear">{`Crea en Canva un carrusel de [4] slides sobre [la idea], siguiendo el estilo de [mi diseño X]. Una idea por slide.`}</Prompt>
+
+<Prompt titulo="02 · Buscar lo que ya tienes">{`Busca en mi Canva los diseños de [tema] de los últimos [3] meses y dime cuáles puedo reutilizar y para qué.`}</Prompt>
+
+<Prompt titulo="03 · Plantilla">{`Toma [mi diseño X] como plantilla y genera [5] versiones cambiando solo el titular. Los titulares: [lista].`}</Prompt>
+
+<Prompt titulo="04 · Serie coherente">{`Con el mismo tipo de letra y colores de [mi diseño X], arma [portada, cita y cierre] para [la campaña].`}</Prompt>
+
+<Prompt titulo="05 · Exportar">{`Exporta los diseños de [la carpeta X] en el formato para [Instagram] y dame la lista de lo que exportaste.`}</Prompt>
+
+Cuando no salga bien, no reescribas el prompt entero. Casi siempre falla una sola parte: si el estilo no pega, cambia la referencia; si el texto sobra, aprieta el formato. Reescribirlo todo borra lo que ya funcionaba.
+
+<Nota tipo="truco">
+Prueba hoy el **02**, no el 01. Buscar en lo que ya tienes no gasta nada y te enseña en un minuto si la conexión sirve para tu caso.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="La capa, no la app">
+
+Conecta una segunda herramienta esta semana, no cinco.
+
+El mismo puente que trajo Canva trae **más de mil** aplicaciones: Gmail, Slack, Notion, Drive, GitHub, Calendar y el resto. No hay que repetir la configuración: el conector ya está puesto y lo que cambia es a qué autorizas.
+
+Qué cubre el nivel gratis: Composio da **20.000 llamadas al mes sin tarjeta**. Para producir contenido con Claude eso sobra: una pieza consume unas pocas llamadas, no cientos.
+
+Ahí está el cambio de cabeza. No estás automatizando Canva: estás poniendo una capa encima de las herramientas que ya usas, y Canva es la primera.
+
+<Nota tipo="ojo">
+Conectar no es enseñar: Claude sabrá entrar a la herramienta, no cómo trabajas tú. El contexto del paso 2 sigue haciendo falta en cada aplicación que sumes.
+</Nota>
+
+<Nota tipo="truco">
+Escribe las **tres** aplicaciones donde más tiempo pierdes copiando y pegando. Esa lista es tu orden de conexión.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Cuando se cae y no te avisa">
+
+No aceptes un «ya lo hice». Pide un dato que solo se sabe estando conectado.
+
+Los puentes se caen: expira una autorización, cambia un permiso. Y cuando este se cae, Claude no te avisa. Te responde igual, con la misma seguridad, y te dice que ya lo hizo. En tu Canva no hay nada.
+
+- **Pide una prueba, no un resumen.** «Dime el nombre exacto y la fecha del último diseño que creaste». Un nombre real solo lo da una conexión viva.
+- **Ábrelo antes de darlo por hecho.** La primera vez del día, mira Canva. Las siguientes ya te fías.
+- **Ponle día fijo.** Una vez por semana, la prueba del paso 1. Treinta segundos.
+
+<Nota tipo="ojo">
+Cómo suena un puente caído: responde en general y no con nombres. Usa el futuro («voy a crear», «quedará») en vez del pasado. Y nunca te da una fecha, un nombre de archivo ni un enlace que puedas abrir.
+</Nota>
+
+Yo conecto herramientas por API para clientes, y por eso lo primero que reviso nunca es si funciona. Es **cómo me entero de que dejó de funcionar**.
+
+<Nota tipo="truco">
+Haz la prueba del paso 1 ahora mismo, con la conexión recién hecha. Así sabes qué aspecto tiene una respuesta buena y reconoces la mala cuando llegue.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: tienes la capa montada
+
+Si hiciste el paso 1 y te funcionó un prompt del 3, ya tienes Claude trabajando encima de una herramienta.
+
+La pregunta que queda no es qué otra aplicación conectas. Es quién se entera el día que una deje de responder, y qué pasa mientras tanto con lo que creías hecho.
+
+Eso ya no se resuelve con un conector. Se resuelve decidiendo qué se vigila, cada cuánto y con qué aviso.
+
+Pasos, dirección y nivel gratis verificados el 16 de septiembre de 2026.

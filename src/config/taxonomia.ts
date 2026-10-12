@@ -26,12 +26,13 @@ export const ETIQUETAS_TEMA: Record<Tema, string> = {
 };
 
 export const HERRAMIENTAS = [
-  'claude', 'chatgpt', 'gemini', 'n8n', 'make', 'manychat',
-  'whatsapp', 'google-sheets', 'excel', 'notion',
+  'claude', 'claude-code', 'chatgpt', 'gemini', 'n8n', 'make', 'manychat',
+  'whatsapp', 'google-sheets', 'excel', 'notion', 'canva',
 ] as const;
 export type Herramienta = (typeof HERRAMIENTAS)[number];
 export const ETIQUETAS_HERRAMIENTA: Record<Herramienta, string> = {
   claude: 'Claude',
+  'claude-code': 'Claude Code',
   chatgpt: 'ChatGPT',
   gemini: 'Gemini',
   n8n: 'n8n',
@@ -41,4 +42,5 @@ export const ETIQUETAS_HERRAMIENTA: Record<Herramienta, string> = {
   'google-sheets': 'Google Sheets',
   excel: 'Excel',
   notion: 'Notion',
+  canva: 'Canva',
 };
