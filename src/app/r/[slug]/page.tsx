@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { notFound } from 'next/navigation';
 import { CajaNewsletter } from '@/componentes/CajaNewsletter';
+import { PaginaMaterial } from '@/componentes/material/PaginaMaterial';
 import { componentesMdx } from '@/componentes/mdx';
 import { Video } from '@/componentes/mdx/Video';
 import { SiguientePaso } from '@/componentes/SiguientePaso';
@@ -28,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PaginaRecurso({ params }: Props) {
   const { slug } = await params;
   const recurso = obtenerRecurso(slug);
-  if (!recurso || recurso.origen !== 'mdx') notFound();
+  if (!recurso) notFound();
 
-  const Contenido = await compilarMdx(recurso.slug, recurso.cuerpo);
+  const Contenido = recurso.origen === 'mdx' ? await compilarMdx(recurso.slug, recurso.cuerpo) : null;
   const relacionados = crearIndice(recursosRelacionados(recurso, obtenerRecursos()), new Date());
   const meta = metaRecurso(recurso);
 
@@ -44,62 +45,68 @@ export default async function PaginaRecurso({ params }: Props) {
           <span aria-hidden="true">/</span>
           <span>{ETIQUETAS_TIPO[recurso.tipo]}</span>
         </nav>
-        <header className="mt-8 border-b border-linea-fuerte pb-10">
-          <div className="aparecer flex flex-wrap items-center gap-2">
-            <span className="chip bg-superficie-2 text-tinta">{ETIQUETAS_TIPO[recurso.tipo]}</span>
-            {recurso.premium && emailActivo() && <span className="chip border-transparent bg-acento-suave text-acento-texto">Premium</span>}
-          </div>
-          <h1
-            className="aparecer mt-6 text-[clamp(2.25rem,1.3rem+3.8vw,3.875rem)] font-black leading-[1.02] tracking-titular"
-            style={{ '--retraso': '0.06s' } as CSSProperties}
-          >
-            {recurso.titulo}
-          </h1>
-          <p className="aparecer mt-6 text-lg leading-relaxed text-suave sm:text-xl" style={{ '--retraso': '0.12s' } as CSSProperties}>
-            {recurso.resumen}
-          </p>
-          {(meta || recurso.herramientas.length > 0) && (
-            <dl className="aparecer etiqueta mt-8 flex flex-wrap gap-x-8 gap-y-3" style={{ '--retraso': '0.18s' } as CSSProperties}>
-              {meta && (
-                <div className="flex gap-2">
-                  <dt className="text-suave">Formato</dt>
-                  <dd className="text-tinta">{meta}</dd>
-                </div>
+        {recurso.origen === 'material' ? (
+          <PaginaMaterial recurso={recurso} />
+        ) : (
+          <>
+            <header className="mt-8 border-b border-linea-fuerte pb-10">
+              <div className="aparecer flex flex-wrap items-center gap-2">
+                <span className="chip bg-superficie-2 text-tinta">{ETIQUETAS_TIPO[recurso.tipo]}</span>
+                {recurso.premium && emailActivo() && <span className="chip border-transparent bg-acento-suave text-acento-texto">Premium</span>}
+              </div>
+              <h1
+                className="aparecer mt-6 text-[clamp(2.25rem,1.3rem+3.8vw,3.875rem)] font-black leading-[1.02] tracking-titular"
+                style={{ '--retraso': '0.06s' } as CSSProperties}
+              >
+                {recurso.titulo}
+              </h1>
+              <p className="aparecer mt-6 text-lg leading-relaxed text-suave sm:text-xl" style={{ '--retraso': '0.12s' } as CSSProperties}>
+                {recurso.resumen}
+              </p>
+              {(meta || recurso.herramientas.length > 0) && (
+                <dl className="aparecer etiqueta mt-8 flex flex-wrap gap-x-8 gap-y-3" style={{ '--retraso': '0.18s' } as CSSProperties}>
+                  {meta && (
+                    <div className="flex gap-2">
+                      <dt className="text-suave">Formato</dt>
+                      <dd className="text-tinta">{meta}</dd>
+                    </div>
+                  )}
+                  {recurso.herramientas.length > 0 && (
+                    <div className="flex gap-2">
+                      <dt className="text-suave">Herramientas</dt>
+                      <dd className="text-tinta">{recurso.nombresHerramientas.join(' · ')}</dd>
+                    </div>
+                  )}
+                </dl>
               )}
-              {recurso.herramientas.length > 0 && (
-                <div className="flex gap-2">
-                  <dt className="text-suave">Herramientas</dt>
-                  <dd className="text-tinta">{recurso.nombresHerramientas.join(' · ')}</dd>
-                </div>
-              )}
-            </dl>
-          )}
-        </header>
+            </header>
 
-        {recurso.video && <Video url={recurso.video} titulo={recurso.titulo} />}
+            {recurso.video && <Video url={recurso.video} titulo={recurso.titulo} />}
 
-        <article className="prose prose-marca mt-10 max-w-none sm:prose-lg">
-          <Contenido components={componentesMdx(recurso.slug)} />
-        </article>
+            <article className="prose prose-marca mt-10 max-w-none sm:prose-lg">
+              {Contenido && <Contenido components={componentesMdx(recurso.slug)} />}
+            </article>
 
-        {recurso.descargas.length > 0 && (
-          <section className="mt-12" aria-labelledby="descargas">
-            <h2 id="descargas" className="etiqueta text-suave">
-              Descargas
-            </h2>
-            <ul className="mt-4 border-t border-linea">
-              {recurso.descargas.map((d) => (
-                <li key={d.archivo} className="border-b border-linea">
-                  <a href={`/descargas/${d.archivo}`} className="group flex items-center justify-between gap-4 py-4 font-bold">
-                    {d.nombre}
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-suave transition-transform group-hover:translate-y-0.5 group-hover:text-tinta" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
-                    </svg>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+            {recurso.descargas.length > 0 && (
+              <section className="mt-12" aria-labelledby="descargas">
+                <h2 id="descargas" className="etiqueta text-suave">
+                  Descargas
+                </h2>
+                <ul className="mt-4 border-t border-linea">
+                  {recurso.descargas.map((d) => (
+                    <li key={d.archivo} className="border-b border-linea">
+                      <a href={`/descargas/${d.archivo}`} className="group flex items-center justify-between gap-4 py-4 font-bold">
+                        {d.nombre}
+                        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-suave transition-transform group-hover:translate-y-0.5 group-hover:text-tinta" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+                        </svg>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </>
         )}
 
         <SiguientePaso />

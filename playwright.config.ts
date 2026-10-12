@@ -23,6 +23,7 @@ export default defineConfig({
       NEXT_DIST_DIR: '.next-e2e',
       DIR_RECURSOS: 'e2e/fixtures/recursos',
       DIR_DESCARGAS: 'e2e/fixtures/descargas',
+      DIR_MATERIALES: 'e2e/fixtures/materiales',
       ALMACEN_LEADS: 'memoria',
       EMAIL_ACTIVO: '1',
       ACCESO_SECRET: 'e2e-secreto-de-prueba-con-mas-de-32-caracteres',
