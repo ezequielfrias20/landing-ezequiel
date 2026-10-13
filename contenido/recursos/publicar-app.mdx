@@ -1,0 +1,144 @@
+---
+titulo: "De idea a publicada: la checklist para sacar tu app con Claude Code"
+resumen: "Las seis etapas para llevar una app de la idea a la App Store, con el criterio de salida de cada una, lo que cuesta y lo que tarda de verdad. Incluida la última, donde casi todo el mundo se queda a medias."
+palabraClave: APP
+tipo: plantilla
+temas: [ia-practica]
+herramientas: [claude-code]
+fecha: 2026-09-21
+duracion: 5 min de lectura
+descargas:
+  - nombre: La checklist de idea a publicada en PDF
+    archivo: publicar-app.pdf
+---
+
+La secuencia completa para llevar una app de la idea a publicada, con el criterio de salida de cada etapa. Incluida la última, que es donde casi todo el mundo se queda a medias.
+
+Es para quien tiene una idea de app y sabe dirigir a Claude Code, pero nunca llegó al final del camino de publicación.
+
+Cada etapa tiene un criterio de salida. Si no se cumple, no se pasa a la siguiente: eso es lo que separa una checklist de una lista de buenos deseos. Las seis etapas caben en cinco pasos porque «idea» y «función principal» son la misma decisión, y se resuelven juntas en el paso 1.
+
+<Paso n="1" titulo="Una función, no veinte">
+
+Escribe en una frase la única función que demuestra que tu app sirve.
+
+El error no es empezar. Es usar la IA para construir veinticinco funcionalidades antes de comprobar si la primera funciona. Como ahora construir es barato, ese error salió más barato de cometer, y por eso se comete más.
+
+<Prompt titulo="La frase, para rellenar">{`Mi app le permite a [quién]
+hacer [qué cosa concreta]
+sin tener que [qué hace hoy en su lugar].`}</Prompt>
+
+- **Es una función:** registrar algo, calcular algo, avisar de algo, encontrar algo. Un verbo, un objeto.
+- **No es una función:** «gestionar», «organizar», «administrar». Son categorías enteras disfrazadas de una sola cosa.
+
+<Nota tipo="ojo">
+Criterio de salida: si la frase necesita una «y» para tener sentido, todavía son dos funciones. Quita una y vuelve a leerla.
+</Nota>
+
+Esta etapa se salta porque no se parece a trabajar: no hay nada que enseñar al terminarla. Pero es la única que decide si las semanas siguientes valen la pena, y es gratis equivocarse aquí.
+
+<Nota tipo="truco">
+Escribe la frase y mándasela a alguien que no sepa de tu proyecto. Si te pregunta para qué sirve, la frase todavía no está.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="El MVP en tu teléfono">
+
+Construye solo esa función y ábrela en tu propio teléfono.
+
+La combinación estándar es **React Native** con **Expo**: un solo código que corre en iOS y en Android. Claude Code escribe; tú diriges, revisas y decides.
+
+1. **Monta el proyecto.** React Native con Expo. Pídeselo a Claude Code y quédate mirando lo que instala.
+2. **Construye la función del paso 1.** Solo esa. Sin registro, sin ajustes, sin pantalla de bienvenida.
+3. **Pruébala en el navegador.** Es lo más rápido para ver si la lógica responde.
+4. **Escanea el QR de Expo.** Ábrela en tu teléfono. Aquí es donde se cae la mitad de las ideas, y es mejor que se caiga hoy.
+
+<Nota tipo="ojo">
+Criterio de salida: la usaste tú, en tu teléfono, para algo real. No una demo: un uso de verdad.
+</Nota>
+
+<Nota tipo="truco">
+Úsala una vez hoy para lo que dice tu frase. Si no encuentras la ocasión de usarla, eso ya te está diciendo algo.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="La razón para volver">
+
+Añade solo lo que hace que alguien la abra una segunda vez.
+
+Aquí es donde vuelve la tentación de las veinte funciones. El filtro es uno solo: ¿esto da una razón para volver, o solo hace la app más grande?
+
+- **Da razón para volver:** algo que se acumula, cambia solo, o avisa cuando pasa algo que le importa al usuario.
+- **No la da:** ajustes, temas, una segunda forma de hacer lo mismo, pantallas que explican la app.
+
+Hay tres cosas que casi siempre se construyen antes de tiempo y que aquí se aplazan sin discutir: el registro con contraseña, los ajustes y la pantalla que explica cómo usar la app. Si hace falta explicarla, el problema está en el paso 1.
+
+<Nota tipo="ojo">
+Criterio de salida: alguien que no eres tú la abrió dos días distintos sin que se lo recordaras. Uno basta. Cero no.
+</Nota>
+
+Cuidado con pedirle ideas de funciones a la IA. Te va a dar quince, todas razonables, y ninguna sabe si tu gente vuelve. Esa respuesta solo está en el uso real de la etapa anterior.
+
+<Nota tipo="truco">
+Haz la lista de lo que querías añadir y marca cada línea con «vuelve» o «no vuelve». Construye solo las primeras, en orden.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Lo que cuesta y lo que tarda">
+
+Pon fecha y presupuesto antes de empezar el trámite, no durante.
+
+Los contenidos sobre esto suelen saltarse los dos números. Son estos, y son pequeños, pero existen, y saberlos cambia cuándo empiezas.
+
+- **$99 USD al año:** la cuenta del Apple Developer Program. Cubre apps ilimitadas, no se paga por app.
+- **Entre 2 y 5 días:** la revisión de una app nueva. Apple reporta que el 90 % se revisa en menos de 48 horas, con un promedio de día y medio; una cuenta sin historial tarda más.
+
+Lo que sí se puede preparar con IA es todo lo que rodea al envío: título, descripción, palabras clave y las capturas de la ficha. Hay skills de terceros que generan las capturas; no son oficiales de Anthropic, y conviene saberlo.
+
+<Nota tipo="ojo">
+Criterio de salida: tienes una fecha de envío en el calendario y los $99 apartados. Sin eso, la etapa 5 no empieza nunca: se queda en «cuando tenga tiempo».
+</Nota>
+
+<Nota tipo="truco">
+Abre el calendario y pon la fecha de envío contando cinco días de revisión hacia atrás desde el día en que quieres estar publicado.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="El día después">
+
+Escribe qué pasa, paso a paso, cuando alguien se registra.
+
+Publicar es el final del proyecto y el principio del producto. Una app publicada es una cosa viva: se actualiza cuando cambia el sistema operativo, se responde a las reseñas, y cada versión vuelve a pasar por revisión.
+
+<Prompt titulo="El recorrido, para rellenar">{`Alguien se registra en mi app.
+Entonces se entera [quién], por [qué vía].
+Ese contacto queda guardado en [dónde].
+Y a las 24 horas recibe [qué].`}</Prompt>
+
+- **Cada versión vuelve a revisión.** El plazo del paso 4 se repite en cada actualización, no solo en la primera.
+- **Las reseñas se responden.** Y son públicas, así que se responden antes de que se acumulen.
+- **Se cierra sola en algún modelo.** Siempre en uno que no tienes a mano.
+
+<Nota tipo="ojo">
+Si alguna línea del recorrido se quedó en blanco, ahí está el hueco. Nada de eso vive dentro de la app: vive en la conexión entre la app y el negocio que ya tienes.
+</Nota>
+
+<Nota tipo="truco">
+Regístrate tú mismo en tu app, como si fueras un desconocido, y cronometra cuánto tarda alguien de tu lado en enterarse. Casi siempre la respuesta es «nadie».
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: sabes si se sostiene
+
+Si tachaste los pasos 1 y 2, sabes algo que la mayoría no llega a saber nunca: si la idea aguanta. Casi todos construyen veinte funciones antes de comprobarlo.
+
+Si llegaste al 4, tienes una fecha y un presupuesto en vez de una intuición. La barrera técnica cayó muchísimo. Publicar una buena app sigue sin ser automático.
+
+Y queda lo del 5: que la app se entere de quién llega, que el contacto aterrice donde está el resto de tus clientes, y que alguien responda. Eso no se construye dentro de la app.
+
+Costo y tiempos de Apple verificados el 14 de septiembre de 2026. La checklist no cubre Google Play.

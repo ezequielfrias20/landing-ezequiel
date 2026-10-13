@@ -1,0 +1,140 @@
+---
+titulo: "El equipo de tres: Agency Agents en Claude Code sin instalar los doscientos"
+resumen: "El repositorio con su nombre real, los tres papeles con los que se empieza y el formato de relevo entre ellos, escrito. Más cómo correr un flujo real y encontrar el punto donde se pierde la información."
+palabraClave: AGENCY
+tipo: plantilla
+temas: [ia-practica, productividad]
+herramientas: [claude-code]
+fecha: 2026-09-21
+duracion: 5 min de lectura · una tarde para montarlo
+descargas:
+  - nombre: El equipo de tres en PDF
+    archivo: the-agency.pdf
+relacionados: [cinco-plugins, agentreach]
+---
+
+Una agencia entera dentro de Claude Code suena bien hasta que instalas doscientos agentes. Esto es con cuáles se empieza, y qué se pasan entre ellos.
+
+Es para quien ya usa Claude Code a diario y sospecha que un solo asistente generalista se le queda corto en trabajos largos.
+
+No instales doscientos agentes porque existen. Empieza con tres que resuelvan un flujo real: todo este recurso va de eso. Los pasos 1 y 2 se hacen con el computador delante. El 3 se escribe una vez y se usa siempre.
+
+<Paso n="1" titulo="Instálalo sin instalarlo todo">
+
+Abre el repositorio y resiste el botón de instalar el equipo completo.
+
+El proyecto convierte Claude Code en una agencia de especialistas: frontend, marketing, contenido, comunidad, ingeniería. Cada agente trae sus propias instrucciones, su forma de trabajar y sus entregables.
+
+**Agency Agents** · [github.com/msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents)
+
+Open source, más de 150 mil estrellas. **Su nombre no es «The Agency»**: con ese nombre no lo encuentras. Tiene app de escritorio en **agencyagents.app**, para macOS, Linux y Windows. Funciona con Claude Code, Cursor, Codex, Gemini, Copilot y OpenCode.
+
+<Nota tipo="ojo">
+La app instala el roster completo de un clic, y ese clic es la trampa. Doscientos agentes disponibles no son un equipo: son doscientas formas de no decidir quién hace qué.
+</Nota>
+
+<Nota tipo="truco">
+Abre la lista de agentes y léela entera una vez, sin instalar nada. Vas a reconocer enseguida los tres que tocan tu trabajo de verdad.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Los tres del equipo mínimo">
+
+Elige uno de cada papel, para el flujo que más repites.
+
+No son tres agentes cualesquiera: son tres **papeles**. El roster cambia, los papeles no. Elige el agente del repositorio que mejor cubra cada uno.
+
+- **El que plantea.** Recibe el encargo en crudo y devuelve el enfoque: qué se hace, qué no, y por qué. Nada de ejecutar todavía.
+- **El que construye.** Recibe ese enfoque y produce el entregable. No decide el rumbo: lo ejecuta.
+- **El que revisa.** Recibe el entregable y busca lo que está mal antes de que salga. No reescribe: señala.
+
+<Prompt titulo="Tu selección, para escribir">{`Plantea:   [agente del roster]
+Construye: [agente del roster]
+Revisa:    [agente del roster]`}</Prompt>
+
+<Nota tipo="ojo">
+El que revisa nunca es el mismo que construyó. Un agente revisando su propio trabajo aprueba casi siempre, igual que una persona.
+</Nota>
+
+<Nota tipo="truco">
+Instala solo esos tres. Si más adelante te falta uno, lo añades sabiendo qué hueco viene a llenar.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="El relevo, por escrito">
+
+Escribe qué recibe y qué entrega cada uno, antes de correr nada.
+
+Esto es lo que convierte tres agentes en un equipo y no en tres chats abiertos. Sin formato de relevo, cada uno interpreta a su manera lo que le llegó.
+
+<Prompt titulo="El formato, para rellenar">{`El que plantea entrega: [qué, en cuántas líneas]
+El que construye entrega: [qué formato exacto]
+El que revisa entrega: [lista de problemas, no versión nueva]
+
+Nadie empieza hasta tener lo anterior completo.`}</Prompt>
+
+- **Escribe el formato, no el contenido.** «Cinco viñetas y un descarte», no lo que tienen que decir esas viñetas.
+- **Di también qué no entrega.** El que revisa señala, no reescribe. Si no lo dices, reescribe.
+- **Deja una línea para lo descartado.** El motivo por el que algo se cayó es lo primero que se pierde, y lo que más cuesta después.
+
+La última línea del bloque es la que hace el trabajo. Sin ella, el que construye arranca con medio enfoque y rellena el resto por su cuenta, que es exactamente el fallo que vas a buscar en el paso 5.
+
+<Nota tipo="truco">
+Escríbelo en un archivo, no en tu cabeza. Si no está escrito, en el tercer encargo ya cambió y no vas a saber cuándo.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="Corre un flujo real">
+
+Pasa un trabajo tuyo de verdad por los tres, una sola vez, entero.
+
+Un trabajo real, no una prueba inventada. Las pruebas inventadas salen bien siempre, porque no tienen las ambigüedades que tiene un encargo de verdad.
+
+- **Guarda cada relevo.** Lo que entregó cada agente, tal cual, sin limpiarlo.
+- **No corrijas a mitad.** Si ves algo raro, anótalo y deja que siga. Corregir sobre la marcha te esconde el fallo.
+- **Cronométralo.** Vas a querer comparar contra hacerlo tú, y la memoria miente.
+
+Al terminar, mira dos cosas antes de opinar: si el resultado se parece a lo que habrías hecho tú, y en qué punto dejó de parecerse. La segunda es la que sirve.
+
+<Nota tipo="ojo">
+No lo veas como «acabo de conseguir empleados gratis». Es una forma de dividir un problema complejo entre especialistas, y dividir bien también es trabajo.
+</Nota>
+
+<Nota tipo="truco">
+Elige el encargo que más repites en la semana. Ese, y no el más difícil: lo que buscas es el fallo del flujo, no el techo del modelo.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Dónde se perdió">
+
+Compara lo que entregó cada agente con lo que recibió el siguiente.
+
+El resultado final suele ser correcto en cada paso y raro en conjunto. Eso no es un agente que trabaja mal: es información que se cayó en el relevo, que es donde nadie mira porque no es de nadie.
+
+- **Lo que se decidió y no se transmitió.** El que plantea lo descartó por un motivo, y el que construye no lo supo.
+- **Lo que se rellenó solo.** Llegó a medias y el siguiente completó a su gusto, sin avisar de que estaba completando.
+- **Lo que se revisó contra nada.** El que revisa aprobó contra un criterio que nunca estuvo escrito.
+
+Casi siempre el punto está en el primer relevo, no en el último. El que plantea escribe para sí mismo, no para quien viene detrás, y arreglar eso suele costar dos líneas del formato del paso 3.
+
+Siempre se perdió en algún sitio. Si no encuentras el punto, el flujo era demasiado simple para necesitar tres agentes, y eso también es un hallazgo: no todo trabajo se divide.
+
+<Nota tipo="truco">
+Marca el punto exacto y arregla solo el formato del relevo, no el agente. Vuelve a correr el mismo encargo y compara.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: sabes dónde falla tu flujo
+
+Si corriste el paso 4 y encontraste el punto del 5, sabes algo que casi nadie que monta agentes sabe.
+
+La pregunta que queda no es qué agente añades. Es quién decide el formato del relevo, cada cuánto se revisa y qué pasa a mano, y si eso está escrito o vive en tu cabeza.
+
+Un equipo de agentes no falla por el agente que trabaja mal. Falla por el relevo que nadie escribió.
+
+Repositorio y cifra de estrellas verificados el 14 de septiembre de 2026. El roster cambia.

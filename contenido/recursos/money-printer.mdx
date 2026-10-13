@@ -1,0 +1,149 @@
+---
+titulo: "Un video antes de cien: MoneyPrinterTurbo y mi flujo de prueba"
+resumen: "Dónde está MoneyPrinterTurbo, las tres formas de abrirlo sin pagar nada y el flujo de una tarde para sacar el primer video y decidir si vale la pena el segundo."
+palabraClave: TURBO
+tipo: plantilla
+temas: [ia-practica, contenido]
+herramientas: [claude-code]
+fecha: 2026-09-23
+duracion: 5 min de lectura · una tarde para el primer video
+descargas:
+  - nombre: MoneyPrinterTurbo y el flujo de prueba en PDF
+    archivo: money-printer.pdf
+relacionados: [motion-design]
+---
+
+MoneyPrinterTurbo encadena guion, material, voz, subtítulos, música y render a partir de un tema. Aquí tienes dónde está, las tres formas de abrirlo sin pagar nada y el flujo de una tarde para sacar el primer video y decidir si vale la pena el segundo.
+
+Es para quien quiere producir video corto en volumen y todavía no probó un pipeline automático, o lo probó y le salieron diez videos que no publicó.
+
+Haz los pasos 1 y 2 con el computador delante: son unos minutos. Los pasos 3 y 4 se usan cada vez que produzcas algo, no se leen una sola vez. Lo que está [entre corchetes] dentro de un prompt lo escribes tú; el resto se copia tal cual, que es lo que evita que el modelo decida por su cuenta.
+
+<Paso n="1" titulo="Ábrelo por la ruta que te toca">
+
+Elige una de las tres rutas y ábrelo hoy, sin instalar nada todavía.
+
+MoneyPrinterTurbo es de **harry0703**, open source con licencia MIT y gratis. Le das un tema y encadena guion, material, voz, subtítulos, música y render. Tiene más de 120 mil estrellas y llegó al puesto 1 de GitHub Trending.
+
+Repositorio: [github.com/harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo). El README manda: es lo que se mantiene al día.
+
+- **Con un agente.** Si usas Claude Code o equivalente, le pasas la Skill del repositorio y el tema: instala, configura y devuelve el archivo.
+- **En Google Colab.** Sin instalar nada. Para mirar, no para producir.
+- **En tu equipo.** Python 3.11+, Docker o el paquete de un clic en Windows.
+
+<Nota tipo="ojo">
+Colab no es tu computadora. El propio README la ofrece para evitar la configuración local: corre en un servidor de Google, con horario y con límites. Sirve para ver si te gusta, no para tu producción.
+</Nota>
+
+<Nota tipo="truco">
+Abre el repositorio y mira la fecha del último cambio. Si es de hace días, el README que vas a seguir es el bueno.
+</Nota>
+
+</Paso>
+
+<Paso n="2" titulo="Pon las tres casillas gratis">
+
+Antes de generar nada, deja modelo, voz y material en opciones que no cobran.
+
+El software no cuesta nada. Lo que cuesta es lo que le conectas, y son tres casillas. Puestas así, la prueba entera sale en cero.
+
+- **El modelo**, el que redacta el guion. Gratis: Ollama en tu equipo. Si ya pagas Claude Code, también sirve tu suscripción.
+- **La voz**, la narración. Gratis: Edge TTS, que no pide clave de API.
+- **El material**, los clips de fondo. Gratis: Pexels o Pixabay.
+
+Si cambias cualquiera de las tres por un proveedor de pago, el video mejora y empieza a costar por unidad. Esa decisión se toma después de haber visto uno, no antes.
+
+Tampoco pone marca de agua. Así que el primer video es publicable de verdad, no una versión de prueba recortada.
+
+<Nota tipo="truco">
+Deja las tres en gratis y no las toques hasta el tercer video. Si cambias piezas y tema a la vez, no vas a saber qué mejoró.
+</Nota>
+
+</Paso>
+
+<Paso n="3" titulo="Elige el tema antes del botón">
+
+Escribe tu tema en una línea y pásalo por las tres preguntas. Si falla una, cámbialo.
+
+Esta es la parte que la herramienta no hace y la que casi nadie enseña. Generar es la mitad barata; elegir sigue costando lo mismo que siempre.
+
+- **¿Quién lo está sufriendo hoy?** Si no puedes nombrar a la persona concreta que tiene ese problema esta semana, es un tema, no un dolor.
+- **¿Qué se lleva si lo ve entero?** Tiene que poder decirlo en una frase. Si la respuesta es «se entera de algo», no alcanza.
+- **¿Qué pasa si no lo publico?** Si la respuesta honesta es «nada», el video no hace falta. Ese es el que se cae.
+
+La tercera pregunta es la que duele y es la que sirve. Con producción automática la tentación es publicar todo lo que sale, porque ya está hecho. Que esté hecho no es una razón para publicarlo.
+
+<Nota tipo="truco">
+Escribe tres temas y pásalos por el filtro ahora. Produce solo el que pase las tres. Los otros dos quedan anotados, no borrados.
+</Nota>
+
+</Paso>
+
+<Paso n="4" titulo="El prompt del guion">
+
+Rellena las cinco líneas y pégalas en la casilla del guion, en vez de escribir solo el tema.
+
+La casilla del guion acepta un tema suelto, y por eso casi todos escriben uno. Ahí se decide la mitad del resultado: el mismo pipeline con el mismo modelo da otro video según lo que le pongas en esa línea.
+
+<Prompt titulo="La plantilla del guion">{`PARA QUIÉN
+[quién tiene este problema y qué ya intentó]
+
+QUÉ SE LLEVA
+[lo que sabrá hacer al terminar, en una frase]
+
+POR DÓNDE EMPIEZA
+[la primera frase, que no puede ser una definición]
+
+QUÉ NO DIGAS
+[lo obvio del tema, lo que ya dicen todos]
+
+CÓMO CIERRA
+[qué hace el espectador después de verlo]`}</Prompt>
+
+<Prompt titulo="La misma plantilla, rellena">{`Para quien acaba de montar su primer pipeline y le salieron diez videos sin publicar.
+Se lleva un filtro de tres preguntas para decidir cuál produce.
+Empieza por el momento en que mira la carpeta de diez y no abre ninguno.
+No digas que la IA ahorra tiempo ni que hay que ser constante.
+Cierra pidiendo que pase su próximo tema por las tres preguntas.`}</Prompt>
+
+«Qué no digas» es la línea que más cambia el resultado. Sin ella el modelo va al centro del tema, que es donde ya está todo el mundo.
+
+<Nota tipo="truco">
+Genera el mismo tema dos veces: una con el tema suelto y otra con las cinco líneas. Mira los dos guiones antes de renderizar ninguno.
+</Nota>
+
+</Paso>
+
+<Paso n="5" titulo="Revisa el primero antes del segundo">
+
+Mira el video entero una vez, con estos puntos delante, y cronométrate.
+
+La herramienta también genera varias versiones en lote. Producir diez sale casi igual de barato que producir uno; mirarlos no.
+
+- **Los tres primeros segundos.** ¿Aguantarías tú sin deslizar?
+- **El material.** ¿Los clips tienen que ver con lo que se dice, o solo rellenan?
+- **La voz.** ¿Respira donde tiene sentido o corre de largo?
+- **El cierre.** ¿Queda claro qué hace quien lo vio?
+- **Los subtítulos.** ¿Dicen lo mismo que la voz, palabra por palabra?
+
+El que falla un punto no se borra: se anota qué falló. Dos videos seguidos fallando el mismo punto no son mala suerte, son una casilla mal puesta en el paso 2.
+
+Apunta cuánto tardaste en esa pasada. Multiplícalo por los videos que querías publicar esta semana. Ese número es el que decide si tu cuello de botella era producir o era otra cosa.
+
+<Nota tipo="ojo">
+Cuando los videos salen en lote, nadie los mira uno por uno. Y publicar sin mirar es la forma más rápida de gastar alcance en piezas que no querías.
+</Nota>
+
+<Nota tipo="truco">
+Haz la pasada sobre el video de hoy y anota el tiempo al lado del archivo. Es el único dato que vas a necesitar para decidir el siguiente.
+</Nota>
+
+</Paso>
+
+## Ya lo aplicaste: produces más de lo que puedes revisar
+
+Si sacaste un video con los pasos 1 a 4 y lo pasaste por la revisión del 5, tienes las dos mitades: el pipeline funcionando y el tiempo real que te cuesta mirarlo. La pregunta ya no es cuántos videos puedes generar por día.
+
+Es cuántos puedes revisar sin dejar de mirarlos. La herramienta bajó el costo de producir a casi cero; el costo de revisar lo que no hacía falta producir sigue siendo el mismo.
+
+MoneyPrinterTurbo es un proyecto vivo: los comandos, las rutas de instalación y la lista de proveedores pueden cambiar entre versiones. Si algo no coincide, manda el README del repositorio.
