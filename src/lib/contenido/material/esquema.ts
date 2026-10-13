@@ -5,6 +5,7 @@ import { PATRON_ARCHIVO_DESCARGA } from '../esquema';
  *  Los bloques son los de Reels/material-apoyo/scripts/validar_material.py (CAMPOS). Un tipo desconocido es error;
  *  un campo extra se tolera (z.object, no strict): material-apoyo puede sumar datos sin romper la web. */
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const urlHttp = z.url({ protocol: /^https?$/ });
 const texto = z.string().min(1);
 const ref = z.string().regex(/^f\d+$/, 'una fuente va como f1, f2…');
 const conFuente = { fuente: ref.optional() };
@@ -18,7 +19,7 @@ export const esquemaBloque = z.discriminatedUnion('tipo', [
   z.object({ tipo: z.literal('prompt'), titulo: texto, texto, ...conFuente }),
   z.object({ tipo: z.literal('checklist'), items: z.array(texto).min(2), ...conFuente }),
   z.object({ tipo: z.literal('comparativa'), columnas: z.array(z.string()).min(2), filas: z.array(z.array(z.string())).min(1), ...conFuente }),
-  z.object({ tipo: z.literal('herramienta'), slug: z.string().regex(SLUG), nombre: texto, que_hace: texto, precio: texto, url: z.url(), fuente: ref }),
+  z.object({ tipo: z.literal('herramienta'), slug: z.string().regex(SLUG), nombre: texto, que_hace: texto, precio: texto, url: urlHttp, fuente: ref }),
   z.object({ tipo: z.literal('captura'), archivo: z.string().regex(/^[a-z0-9][a-z0-9-]*\.(png|jpg)$/), pie: texto, fuente: ref }),
   z.object({ tipo: z.literal('ejemplo'), titulo: texto, antes: texto, despues: texto, etiquetas: z.tuple([texto, texto]).optional(), ...conFuente }),
   z.object({ tipo: z.literal('dato'), valor: texto, texto, fuente: ref }),
@@ -38,7 +39,7 @@ export const esquemaPaquete = z.strictObject({
     despues: z.object({ titulo: texto, texto }),
     cierre: z.object({ titulo: z.string(), texto: z.string() }).optional(),
   }),
-  fuentes: z.array(z.object({ id: ref, titulo: texto, url: z.url(), dato: z.string().optional() })),
+  fuentes: z.array(z.object({ id: ref, titulo: texto, url: urlHttp, dato: z.string().optional() })),
   herramientas: z.record(
     z.string().regex(SLUG),
     z.strictObject({
@@ -49,7 +50,7 @@ export const esquemaPaquete = z.strictObject({
   ),
   pdf: z.string().regex(PATRON_ARCHIVO_DESCARGA).refine((s) => s.endsWith('.pdf'), 'el pdf termina en .pdf'),
   fecha: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  video: z.url().optional(),
+  video: urlHttp.optional(),
   origen: z.object({ material: texto, version: z.number().int().positive() }),
 });
 

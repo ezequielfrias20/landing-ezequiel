@@ -67,6 +67,22 @@ describe('analizarMaterial', () => {
     expect(() => analizarMaterial('brag-video', extra)).not.toThrow();
   });
 
+  it.each([
+    ['la URL de una herramienta', () => {
+      const p = paqueteBueno();
+      p.contenido.secciones[0]!.bloques[1]!.url = 'javascript:alert(1)';
+      return p;
+    }],
+    ['la URL de una fuente', () => {
+      const p = paqueteBueno();
+      p.fuentes[0]!.url = 'javascript:alert(1)';
+      return p;
+    }],
+    ['la URL del video', () => paqueteBueno({ video: 'javascript:alert(1)' })],
+  ])('rechaza protocolos no HTTP(S) en %s', (_caso, paquete) => {
+    expect(() => analizarMaterial('brag-video', paquete())).toThrow(/URL|protocol/i);
+  });
+
   it('acepta una comparativa con el encabezado de la primera columna vacío', () => {
     const p = paqueteBueno();
     const comparativa = {

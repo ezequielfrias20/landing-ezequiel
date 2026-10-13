@@ -186,8 +186,12 @@ describe('validarColeccion con materiales', () => {
     expect(() => validarColeccion([mdx('brag-video', 'OTRA'), material()], () => true, () => true)).toThrow(/brag-video/);
   });
 
-  it('rechaza una palabra clave repetida entre MDX y material', () => {
-    expect(() => validarColeccion([mdx('otro', 'ESTRENO'), material()], () => true, () => true)).toThrow(/ESTRENO/);
+  it('permite que un MDX y un material compartan palabra clave', () => {
+    expect(() => validarColeccion([mdx('otro', 'ESTRENO'), material()], () => true, () => true)).not.toThrow();
+  });
+
+  it('sigue rechazando una palabra clave repetida entre dos MDX', () => {
+    expect(() => validarColeccion([mdx('uno', 'REPETIDA'), mdx('dos', 'REPETIDA')], () => true, () => true)).toThrow(/REPETIDA/);
   });
 
   it('rechaza una imagen del material que no está en su carpeta', () => {

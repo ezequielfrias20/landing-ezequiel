@@ -112,7 +112,7 @@ export function validarColeccion(
   }
 
   for (const r of recursos) {
-    if (r.palabraClave) {
+    if (r.origen === 'mdx' && r.palabraClave) {
       const clave = normalizarClave(r.palabraClave);
       const otro = claves.get(clave);
       if (otro) errores.push(`${r.archivo}: la palabra clave ${clave} ya la usa ${otro}`);
