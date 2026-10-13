@@ -1,0 +1,282 @@
+{
+  "contenido": {
+    "id": "2026-09-25-1",
+    "version": 1,
+    "guion_hash": "sha256:c9e639e4006aacb0da442452ce189518b69360b607c23d20b6c744410168b275",
+    "generado": "2026-09-28T15:45:00Z",
+    "verificado": "2026-09-28",
+    "formato": "plantilla",
+    "promesa": "el prompt exacto que uso para dividir el trabajo en agentes paralelos",
+    "palabra": "PARALELO",
+    "nombre_pdf": "claude-code-agentes-en-paralelo",
+    "portada": {
+      "titulo": "Que Claude trabaje en paralelo",
+      "acento": "el prompt exacto",
+      "subtitulo": "Cómo pedirle a Claude Code que parta una tarea grande en varios agentes que trabajan al mismo tiempo, con el prompt listo para copiar.",
+      "herramientas": [
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El prompt exacto para que Claude divida el trabajo y lance **varios agentes a la vez**.",
+        "Cómo saber qué tareas se pueden dividir y cuáles no.",
+        "Cómo dejar tu propio agente guardado en un archivo, para no repetir instrucciones nunca más."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El prompt de la sección 03"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Qué es un subagente",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Piensa en un **subagente** como un ayudante con su propio escritorio: hace una tarea aparte, con sus propios papeles, y te devuelve solo el resultado."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claude",
+            "nombre": "Claude Code",
+            "que_hace": "El Claude que trabaja en tu terminal o en tu editor. Es el único que puede abrir varios agentes a la vez.",
+            "precio": "Incluido en todos los planes de pago",
+            "url": "https://claude.com/pricing",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "dato",
+            "valor": "1",
+            "texto": "ventana de contexto **por cada subagente**, con su propio prompt, sus herramientas y sus permisos. Por eso lo que lee uno no le ensucia el trabajo al otro.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre Claude Code y pídele que revise un archivo largo **con un subagente**. Fíjate en que vuelve solo el resumen, no las 400 líneas."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Decide qué se puede dividir",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Antes de pedir nada, parte tu tarea en pedazos que **no se necesiten entre sí**."
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "Cada pedazo se hace sin esperar el resultado de otro.",
+              "Cada pedazo mira archivos, cuentas o páginas distintas.",
+              "Puedes decir en una frase qué devuelve cada uno."
+            ]
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "La misma tarea, pedida de dos formas",
+            "etiquetas": [
+              "Sin dividir",
+              "Dividida"
+            ],
+            "antes": "Analiza estas 60 cuentas y dime qué tema se repite en sus mejores videos.",
+            "despues": "Divide las 60 cuentas en 6 grupos de 10. Un agente por grupo, todos a la vez. Cada uno devuelve su tema y los enlaces que usó."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Escribe tu tarea más pesada de la semana partida en 3 pedazos independientes."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "El prompt para dividir el trabajo",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Copia este prompt, cambia lo que está entre llaves por tu tarea y pégalo tal cual en Claude Code."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Dividir en paralelo",
+            "texto": "Tengo esta tarea: {{tu tarea}}.\nDivídela en partes que se puedan hacer sin esperar el resultado de otra.\nLanza un subagente por parte, todos al mismo tiempo, no uno tras otro.\nA cada subagente dile qué buscar y qué devolver: el resultado en menos de 10 líneas y la fuente o el archivo de donde lo sacó.\nNo juntes nada hasta que vuelvan todos.\nAl final dame un solo resumen, una fila por parte, y marca aparte lo que ningún subagente pudo responder.\nAntes de arrancar, dime en cuántas partes la vas a dividir y por qué. Espera mi visto bueno."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si no le dices que divida, Claude abre un solo agente y trabaja en fila. La instrucción de dividir la tienes que dar tú: es la línea que cambia todo."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "",
+              "En fila",
+              "En paralelo"
+            ],
+            "filas": [
+              [
+                "Cómo trabaja",
+                "Una parte, y cuando termina la siguiente",
+                "Todas las partes al mismo tiempo"
+              ],
+              [
+                "Contexto",
+                "Uno solo, que se va llenando",
+                "Uno limpio por cada agente"
+              ],
+              [
+                "Lo que ves",
+                "Todo el proceso en pantalla",
+                "Un resumen por agente"
+              ]
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre el prompt hoy con algo chico: dos archivos, dos agentes. Cronométralo."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Guarda tu propio agente",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Si vas a pedir lo mismo cada semana, guárdalo en un archivo de texto. Claude lo lee solo."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Crea la carpeta de agentes dentro de tu proyecto.",
+                "codigo": "mkdir -p .claude/agents"
+              },
+              {
+                "texto": "Crea ahí el archivo `investigador.md`. Lo de arriba, entre rayas, dice cómo se llama y cuándo usarlo.",
+                "codigo": "---\nname: investigador\ndescription: Busca datos en la web y devuelve la URL de cada uno\ntools: WebSearch, WebFetch\nmodel: haiku\n---\nEres un investigador. Cada dato va con su URL y la frase de donde salió."
+              },
+              {
+                "texto": "Pídeselo por su nombre: «usa el subagente investigador para cada grupo»."
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "docs-subagentes.png",
+            "pie": "La documentación oficial de Claude Code, donde están los campos que acepta ese archivo.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Crea un agente para la tarea que más repites. Empieza por el `investigador` de arriba: sirve tal cual."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Que no se pisen entre ellos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Si los agentes van a **escribir** archivos, dale a cada uno su propia copia del proyecto."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Súmalo al mismo pedido.",
+                "codigo": "usa worktrees para tus agentes"
+              },
+              {
+                "texto": "Para que un agente tuyo lo haga siempre, pon esta línea junto a su nombre.",
+                "codigo": "isolation: worktree"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "esto no sale gratis: cada agente gasta de tu plan por su cuenta. Si la tarea es corta, uno solo te rinde más."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Decide si tus agentes van a leer o a escribir. Si escriben, pide worktrees."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando la tarea vuelve cada semana",
+      "texto": "Lanzarlo a mano una vez es fácil. Lo acabas de hacer.\n\nLo difícil viene después: que corra solo cada lunes sin que tú abras nada, que el resultado caiga donde tu equipo lo mira, que no se repita el trabajo del mes pasado y que alguien se entere si un agente volvió vacío.\n\nEso ya no es un prompt. Es un sistema: hay que decidir qué se divide, dónde se guarda cada resultado y qué pasa cuando algo falla."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos tu caso: qué tarea tuya se puede dividir, qué agentes hacen falta y cómo dejarla corriendo sola.\n\nSales con un plan de una página, lo armemos juntos o no."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Subagents",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "dato": "Cada subagente corre en su propia ventana de contexto, con su prompt, sus herramientas y sus permisos. Los archivos de subagente del proyecto van en .claude/agents/ y los personales en ~/.claude/agents/, con los campos name, description, tools y model",
+      "cita": "Each subagent runs in its own context window with a custom system prompt, specific tool access, and independent permissions.",
+      "verificado": "2026-09-28",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Run agents in parallel",
+      "url": "https://code.claude.com/docs/en/agents",
+      "dato": "Los subagentes son trabajadores delegados dentro de una misma sesión que hacen una tarea aparte en su propio contexto y devuelven un resumen. El comando /batch parte un cambio grande en 5 a 30 subagentes aislados en worktrees",
+      "cita": "/batch is a skill that has Claude split one large change into 5 to 30 worktree-isolated subagents.",
+      "verificado": "2026-09-28",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Run parallel sessions with worktrees",
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "dato": "Los subagentes pueden correr cada uno en su propio worktree para que las ediciones en paralelo no choquen: se pide en el momento o se fija con isolation: worktree en el frontmatter del subagente. Necesita un repositorio git",
+      "cita": "Subagents can run in their own worktrees so parallel edits don't conflict. Ask Claude to \"use worktrees for your agents\", or make the isolation permanent for a custom subagent by adding `isolation: worktree` to its frontmatter.",
+      "verificado": "2026-09-28",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Manage costs effectively",
+      "url": "https://code.claude.com/docs/en/costs",
+      "dato": "Cada subagente manda sus propias peticiones además de las de la conversación principal, y esas peticiones consumen del mismo plan",
+      "cita": "Subagents and workflows: every subagent, and every agent a dynamic workflow spawns, sends its own requests on top of the main conversation's.",
+      "verificado": "2026-09-28",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Claude pricing",
+      "url": "https://claude.com/pricing",
+      "dato": "Claude Code viene incluido en todos los planes de pago de Claude. El plan Pro cuesta 20 dólares al mes si se paga mes a mes",
+      "cita": "Claude Code is included in all paid plans.",
+      "verificado": "2026-09-28",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-agentes-en-paralelo.pdf",
+  "fecha": "2026-09-28",
+  "origen": {
+    "material": "2026-09-25-1",
+    "version": 1
+  }
+}
