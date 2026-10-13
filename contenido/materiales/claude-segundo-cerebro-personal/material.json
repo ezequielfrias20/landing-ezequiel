@@ -1,0 +1,242 @@
+{
+  "contenido": {
+    "id": "2026-09-25-2",
+    "version": 1,
+    "guion_hash": "sha256:870ae31f2b5ab4233db4a99111a11cd60dff4481972e409d7389b59c553e9a52",
+    "generado": "2026-09-29T18:41:25Z",
+    "verificado": "2026-09-29",
+    "formato": "plantilla",
+    "promesa": "la guía con los 8 pasos y el texto exacto de cada uno",
+    "palabra": "CEREBRO",
+    "nombre_pdf": "claude-segundo-cerebro-personal",
+    "portada": {
+      "titulo": "Tu segundo cerebro",
+      "acento": "listo antes del domingo",
+      "subtitulo": "Los 8 pasos y los textos exactos para que Claude indexe tus documentos, detecte vencimientos y te entregue un resumen cada lunes.",
+      "herramientas": [
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los **8 pasos completos**, en el mismo orden del reel.",
+        "Los prompts exactos para crear el índice y encontrar **vencimientos**.",
+        "La skill reutilizable y el texto para programar el resumen de los lunes."
+      ],
+      "tiempo": "30–45 minutos",
+      "empieza_por": "Los pasos 1 y 2: una carpeta y copias de tus documentos"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Pasos 1 y 2 · reúne tus documentos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "**Paso 1.** Crea una sola carpeta llamada `segundo-cerebro`. **Paso 2.** Mete copias de contratos, recibos, pólizas, facturas y notas, sin ordenar."
+          },
+          {
+            "tipo": "dato",
+            "valor": "4",
+            "texto": "tipos de información que debes revisar antes: datos financieros, salud, credenciales y documentos confidenciales.",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "tapa contraseñas, números de cuenta, identificaciones y datos médicos que Claude no necesite."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Crea `segundo-cerebro` y mete tres documentos de prueba ya revisados."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Pasos 3 y 4 · crea el índice",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre Claude Code dentro de `segundo-cerebro` y pídele que convierta el desorden en un índice verificable."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "**Paso 3.** Abre la terminal dentro de la carpeta y ejecuta Claude.",
+                "codigo": "cd ~/Documentos/segundo-cerebro\nclaude"
+              },
+              {
+                "texto": "Si guardaste la carpeta en otro lugar, arrástrala a la terminal después de escribir `cd `."
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "1 carpeta",
+            "texto": "Claude Code puede leer sus archivos y subcarpetas según los necesita, sin agregarlos uno por uno.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Paso 4 · crear el índice",
+            "texto": "Lee todos los documentos de esta carpeta y sus subcarpetas.\nCrea `indice-documentos.md` con una fila por archivo.\nIncluye: nombre del archivo, tipo de documento, fecha principal, personas o empresas involucradas y una descripción de una línea.\nSi una fecha o un dato no aparece, escribe `No visible`. No lo deduzcas.\nEn cada fila cita el archivo exacto y, si existe, la página.\nNo cambies, muevas ni borres los documentos originales.\nAntes de terminar, revisa que ningún archivo haya quedado fuera."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Una fila del índice",
+            "antes": "Póliza auto.pdf dentro de una carpeta con otros 20 archivos.",
+            "despues": "Póliza de seguro · 14/03/2026 · Aseguradora Norte · cobertura del vehículo · fuente: Póliza auto.pdf, pág. 1."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pega el prompt con tus tres documentos de prueba y abre `indice-documentos.md`."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Pasos 5 y 6 · encuentra los próximos vencimientos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Extrae todas las fechas primero. Después filtra solo lo que vence en los próximos 90 días."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Pasos 5 y 6 · vencimientos",
+            "texto": "Revisa todos los documentos y crea `vencimientos.md`.\nExtrae vencimientos, renovaciones, pagos y garantías.\nIncluye: evento, fecha, días restantes, archivo y página.\nOrdena por fecha y abre con `Próximos 90 días`.\nNo inventes fechas ambiguas: muévelas a `Revisar a mano`.\nNo cambies ni borres los documentos originales."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Comprueba el primer vencimiento contra el archivo y la página que Claude citó."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Paso 7 · guarda el pedido como skill",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Convierte el proceso en una skill del proyecto. La próxima vez invocas un nombre corto en lugar de pegar dos prompts."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Pídele a Claude que cree la skill",
+            "texto": "Crea una skill de proyecto llamada `revisar-vencimientos`.\nGuárdala en `.claude/skills/revisar-vencimientos/SKILL.md`.\nDescribe cuándo usarla en el frontmatter del archivo.\nDebe actualizar `indice-documentos.md` y `vencimientos.md` sin modificar originales.\nDebe separar los próximos 90 días, mandar fechas ambiguas a `Revisar a mano` y citar archivo y página.\nAl terminar, enséñame el contenido completo y ejecuta `/revisar-vencimientos`."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "docs-skills.png",
+            "pie": "La documentación oficial confirma que una skill se define en `SKILL.md` y se puede invocar por nombre.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Cierra Claude, vuelve a abrirlo en la carpeta y prueba otra vez la skill."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Paso 8 · programa los lunes",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "En **Scheduled**: **Weekly**, lunes 9:00 a. m., carpeta `segundo-cerebro` y aprobación manual."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Texto de la tarea",
+            "texto": "Ejecuta `/revisar-vencimientos`. Devuelve próximos 90 días, fechas nuevas y elementos para revisar a mano. No modifiques originales."
+          },
+          {
+            "tipo": "dato",
+            "valor": "Local",
+            "texto": "si usa archivos de tu computadora, la tarea corre localmente.",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pulsa **Run now** y revisa el primer resultado."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "El problema ya no es encontrar el dato",
+      "texto": "Con estos ocho pasos ya tienes un índice, una lista de vencimientos y una revisión semanal.\n\nLo siguiente es mantener la carpeta limpia, enviar alertas al calendario correcto y decidir qué puede actualizarse solo sin poner documentos sensibles en riesgo. Ahí deja de ser una carpeta útil y se convierte en un sistema."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos qué documentos, alertas y tareas repetidas vale la pena convertir en un sistema seguro."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Quickstart — Claude Code",
+      "url": "https://code.claude.com/docs/en/quickstart",
+      "dato": "Claude Code se inicia dentro de la carpeta del proyecto y lee sus archivos según los necesita.",
+      "cita": "Claude Code reads your project files as needed. You don’t have to manually add context.",
+      "verificado": "2026-09-29",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "How Claude Code works",
+      "url": "https://code.claude.com/docs/en/how-claude-code-works",
+      "dato": "Al ejecutar Claude en una carpeta, puede acceder a los archivos de esa carpeta y sus subcarpetas.",
+      "cita": "Files in your directory and subdirectories, plus files elsewhere with your permission.",
+      "verificado": "2026-09-29",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Extend Claude with skills",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Una skill se define con instrucciones en SKILL.md y puede invocarse por su nombre.",
+      "cita": "Create a SKILL.md file with instructions, and Claude adds it to its toolkit.",
+      "verificado": "2026-09-29",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Schedule recurring tasks in Claude",
+      "url": "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork",
+      "dato": "Las tareas programadas aceptan frecuencia semanal y una carpeta; si necesitan archivos locales, corren localmente.",
+      "cita": "If a scheduled task requires local files or apps, it will only run locally.",
+      "verificado": "2026-09-29",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Sensitive data in Claude consumer products",
+      "url": "https://support.claude.com/en/articles/8325621-i-would-like-to-input-sensitive-data-into-my-chats-with-claude-who-can-view-my-conversations",
+      "dato": "Anthropic recomienda cautela con información financiera, médica, credenciales y documentos confidenciales o personales.",
+      "cita": "We also recommend being thoughtful about sharing highly sensitive personal details.",
+      "verificado": "2026-09-29",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-segundo-cerebro-personal.pdf",
+  "fecha": "2026-09-29",
+  "origen": {
+    "material": "2026-09-25-2",
+    "version": 1
+  }
+}
