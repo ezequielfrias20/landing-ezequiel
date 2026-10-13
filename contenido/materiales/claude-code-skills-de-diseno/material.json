@@ -1,0 +1,315 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1003",
+    "version": 1,
+    "guion_hash": "sha256:38bb1783992b63da94ff9e33164c0d353eb0b371737f292d2fb46c0c67ff97f4",
+    "generado": "2026-10-13T17:05:00Z",
+    "verificado": "2026-10-13",
+    "formato": "plantilla",
+    "promesa": "el paso a paso para dejarlo configurado",
+    "palabra": "DISEÑO",
+    "nombre_pdf": "claude-code-skills-de-diseno",
+    "portada": {
+      "titulo": "Claude con ojo de diseñador",
+      "acento": "el paso a paso",
+      "subtitulo": "Instala en un comando el paquete de skills de diseño y animación de Emil Kowalski, y pídele a Claude que revise tu página con las reglas de Apple.",
+      "herramientas": [
+        "claude",
+        "apple",
+        "github"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El comando que instala las **15 skills** de diseño y animación de Emil Kowalski.",
+        "Los **dos prompts** que van después: la revisión con las reglas de Apple y el pedido con referencias.",
+        "Las reglas concretas para revisar lo que Claude te devuelve, aunque no escribas código."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El comando de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Instala el paquete en un comando",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre la terminal en la carpeta de tu página y pega un comando. No hay que crear cuenta ni pagar nada."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Entra en la carpeta de tu proyecto.",
+                "codigo": "cd tu-proyecto"
+              },
+              {
+                "texto": "Pega el comando. Te pregunta qué skills quieres y para qué agente las instalas.",
+                "codigo": "npx skills@latest add emilkowalski/skills"
+              },
+              {
+                "texto": "¿Las quieres en todos tus proyectos y no solo en este? El mismo comando con `-g` al final."
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "repo-skills.png",
+            "pie": "El repo de Emil Kowalski: 45,9 mil estrellas y licencia MIT. El comando está en el README, debajo de «Install».",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "vercel",
+            "nombre": "npx skills",
+            "que_hace": "El instalador de Vercel Labs: baja el repo y deja cada skill donde tu agente la busca.",
+            "precio": "Gratis, licencia MIT",
+            "url": "https://github.com/vercel-labs/skills",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálalas hoy en la carpeta de tu página, aunque todavía no le pidas nada a Claude."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Comprueba que Claude las tiene",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre Claude Code en esa misma carpeta y pídele la lista. Si no aparecen, las instalaste donde él no las busca."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claude",
+            "nombre": "Claude Code",
+            "que_hace": "El agente de Claude que lee tu proyecto, edita los archivos y corre comandos en tu terminal.",
+            "precio": "Con suscripción de Claude o cuenta de Console",
+            "url": "https://code.claude.com/docs/en/overview",
+            "fuente": "f7"
+          },
+          {
+            "tipo": "dato",
+            "valor": "2",
+            "texto": "carpetas donde pueden vivir: `~/.claude/skills` vale para todos tus proyectos y `.claude/skills` solo para ese. Escribe `/skills` para ver las que tienes.",
+            "fuente": "f6"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `/skills` y comprueba que `apple-design` y `animate` están en la lista."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Pídele la revisión con las reglas de Apple",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Le hablas normal. Le dices qué quieres que revise y con qué reglas, y él carga la skill solo."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "La revisión con las reglas de Apple",
+            "texto": "Usa la skill apple-design.\nRevisa {{la página o la sección}} de este proyecto.\nDime qué está mal en diseño y en animación, un punto por problema.\nDe cada uno: qué se ve hoy, qué debería verse y por qué.\nNo toques el código todavía. Primero quiero la lista.\nEmpieza por lo que más se nota en el celular."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "apple-design.png",
+            "pie": "La skill `apple-design`: los principios de Apple para interfaz y movimiento, traducidos a la web.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "dato",
+            "valor": "300 ms",
+            "texto": "es el techo de una animación de interfaz. Más que eso y tu página se siente pesada, no elegante.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pásale una sola pantalla: la que más visitas recibe."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Dale referencias o vuelve a improvisar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Sin referencias vuelve a improvisar. Dale dos páginas que te gusten y di **qué** te gusta."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El pedido con referencias",
+            "texto": "Quiero que {{la sección}} se vea como estas referencias:\n- {{url 1}}: me gusta {{qué cosa}}\n- {{url 2}}: me gusta {{qué cosa}}\nUsa las skills apple-design y animate.\nNo cambies mis colores ni mi tipografía."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo pedido",
+            "antes": "Mejora el diseño de mi página.",
+            "despues": "Revisa el inicio con apple-design, con el aire de la referencia 1."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Guarda dos páginas que te gusten en una nota. Esa es tu carpeta de referencias."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Las reglas que Claude deja de romper",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Estas son las reglas que trae el paquete. Te sirven para revisar lo que te devuelve."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "",
+              "Sin las skills",
+              "Con las skills"
+            ],
+            "filas": [
+              [
+                "Cuánto dura",
+                "Lo que salga",
+                "Menos de **300 ms**"
+              ],
+              [
+                "Algo que entra",
+                "`ease-in`: arranca lento",
+                "`ease-out`: responde ya"
+              ],
+              [
+                "Algo que aparece",
+                "Desde `scale(0)`",
+                "Desde `scale(0.95)` con opacidad"
+              ]
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el paquete da criterio, no contenido. Si tu texto es flojo, la página queda ordenada y vacía."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre tu página, toca un botón y mira si te responde al apretarlo."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando la página deja de ser una sola pantalla",
+      "texto": "Arreglar el inicio con un prompt es una tarde buena.\n\nLo difícil viene después: que las mismas reglas valgan en las otras veinte pantallas, que nadie las rompa en el próximo cambio y que la página siga rápida en el celular de tu cliente.\n\nEso ya no es pedirle algo a Claude. Es armarle el sistema para que lo haga siempre igual, sin que tú estés mirando."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y miramos tu página juntos: qué se arregla con estas skills y qué necesita un sistema detrás."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Skills For Designers and Engineers · repo de Emil Kowalski",
+      "url": "https://github.com/emilkowalski/skills",
+      "dato": "El comando de instalación, la lista de las 15 skills del paquete y quién las hizo.",
+      "cita": "## Install\n\n```bash\nnpx skills@latest add emilkowalski/skills\n```",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "apple-design · SKILL.md",
+      "url": "https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md",
+      "dato": "Qué hace la skill de las reglas de Apple y de dónde salen sus principios.",
+      "cita": "Apple's approach to interface design and fluid, physical motion, translated for the web.",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "emil-design-eng · SKILL.md",
+      "url": "https://github.com/emilkowalski/skills/blob/main/skills/emil-design-eng/SKILL.md",
+      "dato": "Las reglas concretas de duración, easing y qué propiedades se animan.",
+      "cita": "UI animations should stay under 300ms. / Never use ease-in for UI animations. / Only animate transform and opacity.",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "API de GitHub · emilkowalski/skills",
+      "url": "https://api.github.com/repos/emilkowalski/skills",
+      "dato": "Estrellas, licencia y fecha de creación del repo.",
+      "cita": "\"stargazers_count\": 45906, \"license\": {\"spdx_id\": \"MIT\"}, \"created_at\": \"2026-03-16T13:52:31Z\"",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "skills · el instalador de Vercel Labs",
+      "url": "https://github.com/vercel-labs/skills",
+      "dato": "Qué hace el comando, el flag global y dónde deja los archivos de cada agente.",
+      "cita": "-g, --global: Install to user directory instead of project. Claude Code: .claude/skills/ (project) or ~/.claude/skills/ (global). MIT License.",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Skills · documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Las dos carpetas donde viven las skills y el comando para listarlas.",
+      "cita": "Personal skills: ~/.claude/skills/<skill-name>/SKILL.md. Project skills: .claude/skills/<skill-name>/SKILL.md. Run /skills to see all installed skills in your session.",
+      "verificado": "2026-10-13",
+      "oficial": true
+    },
+    {
+      "id": "f7",
+      "titulo": "Overview · documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/overview",
+      "dato": "Qué es Claude Code y qué hace falta para usarlo.",
+      "cita": "Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. Most surfaces require a Claude subscription or Anthropic Console account.",
+      "verificado": "2026-10-13",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "apple": {
+      "nombre": "apple",
+      "logo": "logos/apple.svg",
+      "fondo": "#FFFFFF"
+    },
+    "github": {
+      "nombre": "GitHub",
+      "logo": "logos/github.svg",
+      "fondo": "#FFFFFF"
+    },
+    "vercel": {
+      "nombre": "vercel",
+      "logo": "logos/vercel.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-skills-de-diseno.pdf",
+  "fecha": "2026-10-13",
+  "video": "https://www.instagram.com/reel/DecgybyFBFE/",
+  "origen": {
+    "material": "2026-10-09-1003",
+    "version": 1
+  }
+}
