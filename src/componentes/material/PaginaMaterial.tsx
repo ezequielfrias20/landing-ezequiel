@@ -38,7 +38,15 @@ export function PaginaMaterial({ recurso }: { recurso: RecursoMaterial }) {
         </div>
         {c.portada.herramientas.length > 0 && (
           <div className="mt-8 flex flex-wrap gap-3">
-            {c.portada.herramientas.map((h) => p.herramientas[h] && <Logo key={h} herramienta={p.herramientas[h]} materialSlug={recurso.slug} tam="lg" />)}
+            {c.portada.herramientas.map((h) => {
+              const herramienta = p.herramientas[h];
+              return herramienta ? (
+                <figure key={h} className="grid w-20 max-w-20 justify-items-center gap-2 text-center">
+                  <Logo herramienta={herramienta} materialSlug={recurso.slug} tam="lg" decorativa />
+                  <figcaption className="etiqueta max-w-full break-words text-center font-mono text-xs text-suave">{herramienta.nombre}</figcaption>
+                </figure>
+              ) : null;
+            })}
           </div>
         )}
         <h1 className="mt-8 text-[clamp(2.5rem,1.4rem+4.4vw,4.25rem)] font-black leading-[0.98] tracking-titular">
@@ -145,10 +153,11 @@ export function PaginaMaterial({ recurso }: { recurso: RecursoMaterial }) {
           </p>
           <ol className="mt-5 grid list-decimal gap-3 pl-6 marker:font-mono marker:font-bold marker:text-acento-texto">
             {fuentes.map((f) => (
-              <li key={f.id} id={`fuente-${f.id}`} className="scroll-mt-24">
+              <li key={f.id} id={`fuente-${f.id}`} value={f.n} className="scroll-mt-24">
                 <a href={f.url} target="_blank" rel="noopener noreferrer" className="font-bold underline-offset-4 hover:underline">
                   {f.titulo}
                 </a>
+                {f.dato !== undefined && <span className="block text-sm text-suave">{f.dato}</span>}
                 <span className="block break-all font-mono text-xs text-suave">{f.dominio}</span>
               </li>
             ))}

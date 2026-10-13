@@ -12,8 +12,8 @@ describe('fuentes', () => {
 
   it('lista solo las citadas, con su dominio', () => {
     expect(fuentesCitadas(p)).toEqual([
-      { id: 'f1', n: 1, titulo: 'README', url: 'https://github.com/latent-spaces/brag', dominio: 'github.com' },
-      { id: 'f2', n: 2, titulo: 'Sitio', url: 'https://latent-spaces.github.io/brag', dominio: 'latent-spaces.github.io' },
+      { id: 'f1', n: 1, titulo: 'README', url: 'https://github.com/latent-spaces/brag', dato: 'd', dominio: 'github.com' },
+      { id: 'f2', n: 2, titulo: 'Sitio', url: 'https://latent-spaces.github.io/brag', dato: 'd', dominio: 'latent-spaces.github.io' },
     ]);
   });
 });

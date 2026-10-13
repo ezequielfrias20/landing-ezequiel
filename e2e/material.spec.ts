@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('la página del material muestra sus partes y no el cierre', async ({ page }) => {
   await page.goto('/r/material-e2e');
+  await expect(page.locator('.chip').filter({ hasText: /^Paso a paso$/ })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Tu proyecto, en video');
   await expect(page.getByText('Material de apoyo')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Lo que te llevas' })).toBeVisible();
@@ -9,8 +10,9 @@ test('la página del material muestra sus partes y no el cierre', async ({ page 
   await expect(page.getByText('Lo que viene después')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Fuentes' })).toBeVisible();
   await expect(page.getByText('Llamada.')).toHaveCount(0);
-  const logo = page.locator('img[alt="Claude"]').first();
+  const logo = page.locator('img[src$="/logos/claude.svg"]').first();
   await expect(logo).toBeVisible();
+  await expect(page.locator('[data-material] > header').getByText('Claude', { exact: true })).toBeVisible();
   expect(await logo.evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
 });
 

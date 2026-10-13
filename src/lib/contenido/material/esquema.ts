@@ -17,7 +17,7 @@ export const esquemaBloque = z.discriminatedUnion('tipo', [
   z.object({ tipo: z.literal('pasos'), items: z.array(z.object({ texto, codigo: z.string().optional() })).min(1), ...conFuente }),
   z.object({ tipo: z.literal('prompt'), titulo: texto, texto, ...conFuente }),
   z.object({ tipo: z.literal('checklist'), items: z.array(texto).min(2), ...conFuente }),
-  z.object({ tipo: z.literal('comparativa'), columnas: z.array(texto).min(2), filas: z.array(z.array(z.string())).min(1), ...conFuente }),
+  z.object({ tipo: z.literal('comparativa'), columnas: z.array(z.string()).min(2), filas: z.array(z.array(z.string())).min(1), ...conFuente }),
   z.object({ tipo: z.literal('herramienta'), slug: z.string().regex(SLUG), nombre: texto, que_hace: texto, precio: texto, url: z.url(), fuente: ref }),
   z.object({ tipo: z.literal('captura'), archivo: z.string().regex(/^[a-z0-9][a-z0-9-]*\.(png|jpg)$/), pie: texto, fuente: ref }),
   z.object({ tipo: z.literal('ejemplo'), titulo: texto, antes: texto, despues: texto, etiquetas: z.tuple([texto, texto]).optional(), ...conFuente }),
@@ -38,7 +38,7 @@ export const esquemaPaquete = z.strictObject({
     despues: z.object({ titulo: texto, texto }),
     cierre: z.object({ titulo: z.string(), texto: z.string() }).optional(),
   }),
-  fuentes: z.array(z.object({ id: ref, titulo: texto, url: z.url() })),
+  fuentes: z.array(z.object({ id: ref, titulo: texto, url: z.url(), dato: z.string().optional() })),
   herramientas: z.record(
     z.string().regex(SLUG),
     z.strictObject({

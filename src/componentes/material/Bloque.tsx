@@ -63,7 +63,7 @@ export function BloqueMaterial({ bloque: b, materialSlug, herramientas, refs }: 
           <table className="w-full min-w-[28rem] border-collapse text-[0.9375rem]">
             <thead>
               <tr className="bg-superficie-2">
-                {b.columnas.map((c) => <th key={c} className="etiqueta px-4 py-3 text-left text-suave">{c}</th>)}
+                {b.columnas.map((c, i) => <th key={i} className="etiqueta px-4 py-3 text-left text-suave">{c}</th>)}
               </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@ export function BloqueMaterial({ bloque: b, materialSlug, herramientas, refs }: 
       const h = herramientas[b.slug] ?? { nombre: b.nombre, logo: `logos/${b.slug}.svg`, fondo: '#FFFFFF' };
       return (
         <div className="panel relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 rounded-xl p-5 transition-colors hover:border-linea-fuerte">
-          <Logo herramienta={h} materialSlug={materialSlug} tam="lg" />
+          <Logo herramienta={h} materialSlug={materialSlug} tam="lg" decorativa />
           <div>
             <a href={b.url} target="_blank" rel="noopener noreferrer" className="text-xl font-black tracking-titulo after:absolute after:inset-0">{b.nombre}</a>
             <p className="mt-1 text-suave"><TextoMarcado texto={b.que_hace} /></p>
@@ -96,7 +96,7 @@ export function BloqueMaterial({ bloque: b, materialSlug, herramientas, refs }: 
       return (
         <figure className="grid gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element -- captura servida por la ruta del material */}
-          <img src={`/materiales/${materialSlug}/capturas/${b.archivo}`} alt="" loading="lazy" className="block w-full rounded-lg border border-linea" />
+          <img src={`/materiales/${materialSlug}/capturas/${b.archivo}`} alt="" loading="lazy" className="block max-h-[34rem] w-full rounded-lg border border-linea object-cover object-top" />
           <figcaption className="text-sm text-suave"><TextoMarcado texto={b.pie} /><Ref id={b.fuente} refs={refs} /></figcaption>
         </figure>
       );

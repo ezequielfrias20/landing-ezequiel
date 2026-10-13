@@ -46,7 +46,15 @@ export default async function PaginaRecurso({ params }: Props) {
           <span>{ETIQUETAS_TIPO[recurso.tipo]}</span>
         </nav>
         {recurso.origen === 'material' ? (
-          <PaginaMaterial recurso={recurso} />
+          <>
+            <div className="mt-8">
+              <div className="aparecer flex flex-wrap items-center gap-2">
+                <span className="chip bg-superficie-2 text-tinta">{ETIQUETAS_TIPO[recurso.tipo]}</span>
+                {recurso.premium && emailActivo() && <span className="chip border-transparent bg-acento-suave text-acento-texto">Premium</span>}
+              </div>
+            </div>
+            <PaginaMaterial recurso={recurso} />
+          </>
         ) : (
           <>
             <header className="mt-8 border-b border-linea-fuerte pb-10">

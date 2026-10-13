@@ -66,6 +66,18 @@ describe('analizarMaterial', () => {
     const extra = { ...p, contenido: { ...p.contenido, secciones: [{ id: 's1', titulo: 'x', bloques: [{ tipo: 'haz', texto: 't', nota: 'extra' }] }] } };
     expect(() => analizarMaterial('brag-video', extra)).not.toThrow();
   });
+
+  it('acepta una comparativa con el encabezado de la primera columna vacío', () => {
+    const p = paqueteBueno();
+    const comparativa = {
+      ...p,
+      contenido: {
+        ...p.contenido,
+        secciones: [{ id: 's1', titulo: 'x', bloques: [{ tipo: 'comparativa', columnas: ['', 'Para qué sirve'], filas: [['Claude', 'Escribir']] }] }],
+      },
+    };
+    expect(() => analizarMaterial('brag-video', comparativa)).not.toThrow();
+  });
 });
 
 describe('imagenesDe', () => {

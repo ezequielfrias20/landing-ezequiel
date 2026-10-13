@@ -16,6 +16,8 @@ export function fuentesCitadas(p: PaqueteMaterial) {
   const porId = new Map(p.fuentes.map((f) => [f.id, f]));
   return [...numerarFuentes(p.contenido)].flatMap(([id, n]) => {
     const f = porId.get(id);
-    return f ? [{ id, n, titulo: f.titulo, url: f.url, dominio: new URL(f.url).hostname.replace(/^www\./, '') }] : [];
+    return f
+      ? [{ id, n, titulo: f.titulo, url: f.url, ...(f.dato !== undefined ? { dato: f.dato } : {}), dominio: new URL(f.url).hostname.replace(/^www\./, '') }]
+      : [];
   });
 }
