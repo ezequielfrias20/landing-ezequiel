@@ -1,0 +1,358 @@
+{
+  "contenido": {
+    "id": "2026-09-29-5",
+    "version": 1,
+    "guion_hash": "sha256:adb739bc4b705f8625d2ea7f83297576608596e90f776a99bc61c2c0804d9a34",
+    "generado": "2026-10-07T17:40:00Z",
+    "verificado": "2026-10-07",
+    "formato": "plantilla",
+    "promesa": "la lista de los 5 plugins de Claude Code con el link de cada uno",
+    "palabra": "PLUGINS",
+    "nombre_pdf": "claude-code-5-plugins-gratis",
+    "portada": {
+      "titulo": "5 plugins para Claude Code",
+      "acento": "con el link de cada uno",
+      "subtitulo": "Qué hace cada uno, el comando exacto para instalarlo y dónde se rompe. Los cinco son gratis y de código abierto.",
+      "herramientas": [
+        "omniroute",
+        "claudemem",
+        "headroom",
+        "anthropic",
+        "github",
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los **5 plugins** con su link oficial y el comando exacto de instalación.",
+        "Qué resuelve cada uno: el límite de uso, la memoria, los tokens, la configuración y tus skills.",
+        "Dónde se rompe cada uno, para que no pierdas la tarde averiguándolo."
+      ],
+      "tiempo": "20 minutos",
+      "empieza_por": "El comando de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Quítate el límite de uso",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instala **OmniRoute** y apunta Claude Code a tu propia puerta de modelos. Cuando se te acabe el límite, salta solo al siguiente proveedor."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "omniroute",
+            "nombre": "OmniRoute",
+            "que_hace": "Una puerta de entrada que conecta Claude Code con **357 proveedores** de IA, 152 de ellos con nivel gratis.",
+            "precio": "Gratis · licencia MIT",
+            "url": "https://github.com/diegosouzapw/OmniRoute",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instálalo en tu computadora.",
+                "codigo": "npm install -g omniroute"
+              },
+              {
+                "texto": "Apunta Claude Code a OmniRoute con dos variables. La llave la sacas de su panel.",
+                "codigo": "export ANTHROPIC_BASE_URL=http://localhost:20128/v1\nexport ANTHROPIC_AUTH_TOKEN=tu-llave-de-omniroute"
+              },
+              {
+                "texto": "Abre Claude Code y usa el modelo `auto`: OmniRoute elige el proveedor por ti."
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "dato",
+            "valor": "1.620 millones",
+            "texto": "de tokens gratis al mes, sumando los proveedores con nivel gratis. El primer mes llega a 2.220 millones con los créditos de registro.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "se llama **OmniRoute**, no OmniRoot, y hoy son 357 proveedores, no 200. Y al cambiar la URL base tus mensajes dejan de ir a Anthropic: viajan al proveedor que OmniRoute elija. No lo uses con código de un cliente sin avisarle."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálalo y pídele una tarea chica con el modelo `auto`. Si responde, ya tienes la salida de emergencia para cuando se acabe tu límite."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Que no se olvide de tu proyecto",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instala **claude-mem** y deja de explicarle tu proyecto cada vez."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claudemem",
+            "nombre": "claude-mem",
+            "que_hace": "Resume cada sesión y le devuelve ese contexto a Claude cuando vuelves.",
+            "precio": "Gratis · licencia Apache 2.0",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instálalo. Necesitas **Node 20** o superior.",
+                "codigo": "npx claude-mem install"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "queda todo en tu computadora, en `~/.claude-mem`. Pero graba cada sesión: cuidado en un repo de un cliente."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálalo y pregúntale en una sesión nueva qué hacías ayer."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Gasta muchos menos tokens",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pon **Headroom** entre tú y el modelo: comprime lo que entra."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "headroom",
+            "nombre": "Headroom",
+            "que_hace": "Comprime lo que llega al modelo: **20 %** menos tokens en código y hasta **95 %** en JSON.",
+            "precio": "Gratis · licencia Apache 2.0",
+            "url": "https://github.com/headroomlabs-ai/headroom",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instálalo y arranca Claude Code envuelto en Headroom.",
+                "codigo": "pip install \"headroom-ai[all]\"\nheadroom wrap claude"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "no es un plugin del marketplace: levanta un proxy local y también instala Serena. La primera vez tarda."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Córrelo con una tarea que ya hiciste y compara lo que gastaste."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Que Anthropic te configure el proyecto",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instala **Claude Code Setup**, el plugin oficial de Anthropic, y pídele que mire tu proyecto."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "anthropic",
+            "nombre": "Claude Code Setup",
+            "que_hace": "Lee tu código y te recomienda qué hooks, skills, subagentes, comandos y servidores MCP te convienen.",
+            "precio": "Gratis · hecho por Anthropic",
+            "url": "https://claude.com/marketplace/plugins/claude-code-setup",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instálalo desde el marketplace oficial, dentro de una sesión de Claude Code.",
+                "codigo": "/plugin install claude-code-setup@claude-plugins-official"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Cómo se le pide",
+            "etiquetas": [
+              "Tú escribes",
+              "Él te devuelve"
+            ],
+            "antes": "recomienda automatizaciones para este proyecto",
+            "despues": "La lista de hooks, skills, subagentes y servidores MCP que le convienen a tu código, y por qué cada uno.",
+            "fuente": "f7"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "solo lee y recomienda: no te toca un archivo. Pero instalar todo lo que sugiere te llena el contexto. Elige dos o tres y mide."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Escríbele «recomienda automatizaciones para este proyecto» en tu repo principal."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Que tus skills mejoren solas",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instala **Task Observer** y déjalo mirarte trabajar."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "github",
+            "nombre": "Task Observer",
+            "que_hace": "Observa tus sesiones y propone mejoras a tus skills.",
+            "precio": "Gratis · licencia CC BY 4.0",
+            "url": "https://github.com/rebelytics/one-skill-to-rule-them-all",
+            "fuente": "f6"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instálalo desde la terminal.",
+                "codigo": "npx skills add rebelytics/one-skill-to-rule-them-all --skill task-observer"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "con instalarlo no alcanza: copia a tu `CLAUDE.md` la línea de activación del repo o casi nunca se dispara."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Actívalo y lee después su carpeta de observaciones."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cinco plugins instalados no son un sistema",
+      "texto": "Instalarlos es la parte fácil. Son cinco comandos y una tarde.\n\nLo que cuesta viene después: que todo tu equipo tenga los mismos, que no se pisen entre ellos, que el contexto no se te llene de plugins que ya nadie usa y que alguien revise lo que Task Observer propone antes de que entre.\n\nEso no se arregla instalando un sexto plugin. Se arregla decidiendo qué hace cada uno en tu flujo de trabajo y dejándolo escrito donde tu equipo lo lee."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y armamos tu Claude Code: qué plugins sí, cuáles no y cómo queda igual para todo tu equipo."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "OmniRoute — README del repositorio",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "dato": "357 proveedores (152 con nivel gratis), ~1.62B tokens gratis al mes (2.22B el primer mes con créditos de registro), licencia MIT, instalación con npm install -g omniroute y base URL http://localhost:20128/v1 para Claude Code con el modelo auto",
+      "cita": "~1.62B free tokens / month steady, up to ~2.22B in the first month with signup credits.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "claude-mem — Persistent Context Across Sessions for Every Agent",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "dato": "Instalación con npx claude-mem install (o plugin desde thedotmack/claude-mem), requiere Node 20+, guarda los datos localmente en ~/.claude-mem, sincronización en la nube opcional, licencia Apache 2.0",
+      "cita": "Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Headroom — README del repositorio",
+      "url": "https://github.com/headroomlabs-ai/headroom",
+      "dato": "Comprime salidas de herramientas, logs y archivos antes de que lleguen al modelo: 20% menos tokens en agentes de código y 60-95% menos en JSON. Instalación con pip y arranque con headroom wrap claude, que levanta un proxy local e instala Serena. Licencia Apache 2.0",
+      "cita": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Claude Code Setup — marketplace de Claude",
+      "url": "https://claude.com/marketplace/plugins/claude-code-setup",
+      "dato": "Plugin hecho por Anthropic y verificado; analiza el código y recomienda automatizaciones (servidores MCP, skills, hooks, subagentes y comandos); funciona en modo solo lectura; 195.067 instalaciones",
+      "cita": "Analyzes your codebase and recommends tailored Claude Code automations to supercharge your development workflow. Operates in read-only mode, providing expert recommendations without modifying your files.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Install and manage plugins — documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/discover-plugins",
+      "dato": "Un plugin del marketplace oficial se instala con /plugin install <nombre>@claude-plugins-official dentro de una sesión, o con claude plugin install <nombre>@claude-plugins-official desde la terminal; otros marketplaces se agregan antes con /plugin marketplace add",
+      "cita": "Run /plugin install with the plugin's name and marketplace. […] its Claude Code button copies the install command in its shell form, claude plugin install <name>@claude-plugins-official.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Task Observer — one-skill-to-rule-them-all",
+      "url": "https://github.com/rebelytics/one-skill-to-rule-them-all",
+      "dato": "Meta-skill que observa las sesiones y propone mejoras a tus skills; se instala con npx skills add rebelytics/one-skill-to-rule-them-all --skill task-observer; hay que agregar la línea de activación de references/environments.md al CLAUDE.md; las propuestas se revisan y se aprueban antes de instalarse; licencia CC BY 4.0",
+      "cita": "The meta-skill that builds and improves all your skills, including itself. […] Installing alone is not enough, because description matching under-triggers.",
+      "verificado": "2026-10-07",
+      "oficial": true
+    },
+    {
+      "id": "f7",
+      "titulo": "claude-code-setup — README en anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup",
+      "dato": "El plugin no trae comandos: se le pide en lenguaje normal, por ejemplo «recommend automations for this project» o «what hooks should I use?»",
+      "cita": "Recommend automations for this project. Help me set up Claude Code. What hooks should I use?",
+      "verificado": "2026-10-07",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "omniroute": {
+      "nombre": "OmniRoute",
+      "logo": "logos/omniroute.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claudemem": {
+      "nombre": "claude-mem",
+      "logo": "logos/claudemem.svg",
+      "fondo": "#FFFFFF"
+    },
+    "headroom": {
+      "nombre": "Headroom",
+      "logo": "logos/headroom.png",
+      "fondo": "#FFFFFF"
+    },
+    "anthropic": {
+      "nombre": "Anthropic",
+      "logo": "logos/anthropic.svg",
+      "fondo": "#FFFFFF"
+    },
+    "github": {
+      "nombre": "GitHub",
+      "logo": "logos/github.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-5-plugins-gratis.pdf",
+  "fecha": "2026-10-08",
+  "origen": {
+    "material": "2026-09-29-5",
+    "version": 1
+  }
+}

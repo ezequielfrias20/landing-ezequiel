@@ -1,0 +1,311 @@
+{
+  "contenido": {
+    "id": "2026-09-29-3",
+    "version": 1,
+    "guion_hash": "sha256:f9c506a3af0fc11e29ad2d3ae18199d1534716ec36db823296e8c0b11d65a61c",
+    "generado": "2026-10-05T19:05:00Z",
+    "verificado": "2026-10-05",
+    "formato": "plantilla",
+    "promesa": "una guía con el repositorio y todo lo que limpia",
+    "palabra": "MARCAS",
+    "nombre_pdf": "claude-marcas-de-agua-invisibles",
+    "portada": {
+      "titulo": "Las marcas invisibles de Claude",
+      "acento": "y cómo limpiarlas",
+      "subtitulo": "Qué le pone Claude a cada texto y a cada archivo que genera, el repositorio que lo limpia y lo único que no se puede borrar.",
+      "herramientas": [
+        "claude",
+        "github"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los dos comandos exactos para **ver** y **limpiar** las marcas de un archivo.",
+        "Todo lo que borra el repositorio: Unicode invisible, C2PA, EXIF, XMP y propiedades del documento.",
+        "Lo único que **no** borra, y por qué eso cambia todo."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "Los dos comandos de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Qué te marcó Claude, y dónde",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "No es una marca: son dos, y viven en lugares distintos."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "",
+              "Texto",
+              "Archivo"
+            ],
+            "filas": [
+              [
+                "Qué lleva",
+                "Un patrón en **la elección de palabras**",
+                "Una credencial **C2PA** firmada"
+              ],
+              [
+                "Dónde vive",
+                "Dentro de las frases",
+                "En los metadatos"
+              ],
+              [
+                "Dónde aplica",
+                "En todo lo que generes",
+                "En .png, .jpg y .svg"
+              ]
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "5",
+            "texto": "superficies marcadas: la API, las apps de Claude, **Claude Code**, Cowork y Tag.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre el último PNG que te generó Claude y mira sus propiedades."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Mira qué trae tu archivo antes de tocarlo",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Baja el repositorio y pásale un archivo. Te dice qué marcas tiene, sin cambiar nada."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Clona el repositorio.",
+                "codigo": "git clone https://github.com/guillaumemeyer/watermarks-remover"
+              },
+              {
+                "texto": "Pásale el archivo. Te lista lo que encuentra.",
+                "codigo": "python3 service/scripts/inspect_file.py draft.md"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "necesitas Python 3.10 o más nuevo, y nada más. El núcleo usa solo la librería estándar."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pasa `inspect_file.py` por un archivo tuyo y lee el reporte."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "El repositorio y todo lo que limpia",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Este es el repositorio del video, con su licencia y sus estrellas a la vista."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "github",
+            "nombre": "watermarks-remover",
+            "que_hace": "Inspecciona y limpia las marcas de Claude, Gemini y ChatGPT en 24 formatos. Corre entero en tu computadora.",
+            "precio": "Gratis, licencia MIT",
+            "url": "https://github.com/guillaumemeyer/watermarks-remover",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "repo-watermarks-remover.png",
+            "pie": "23,4 mil estrellas y 2,7 mil forks al 5 de octubre de 2026.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Qué borra",
+              "Dónde estaba"
+            ],
+            "filas": [
+              [
+                "Unicode invisible",
+                "Espacios de ancho cero, bidi y tag chars"
+              ],
+              [
+                "Credenciales C2PA",
+                "El manifiesto firmado de .png, .jpg y .svg"
+              ],
+              [
+                "EXIF y XMP",
+                "Los metadatos de fotos e imágenes"
+              ],
+              [
+                "Propiedades del documento",
+                "docProps de Word, Excel y PowerPoint"
+              ],
+              [
+                "Marcas del generador",
+                "JSON-LD, atributos data y comentarios de HTML"
+              ]
+            ]
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Limpia el archivo. El original no se toca.",
+                "codigo": "python3 service/scripts/clean_file.py draft.md -o draft.cleaned.md"
+              }
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Limpia un archivo y vuelve a inspeccionarlo para ver la diferencia."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Hazlo sin terminal, desde Claude Code",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Si ya usas Claude Code, instálalo como plugin y pídeselo con palabras."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Agrega el marketplace.",
+                "codigo": "/plugin marketplace add guillaumemeyer/watermarks-remover"
+              },
+              {
+                "texto": "Instala el plugin.",
+                "codigo": "/plugin install watermarks-remover@watermarks-remover"
+              }
+            ]
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Cómo se lo pides",
+            "etiquetas": [
+              "Tú escribes",
+              "Qué pasa"
+            ],
+            "antes": "Quítale las marcas de IA a propuesta.pdf.",
+            "despues": "Te dice qué encontró y deja una copia limpia al lado del original."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instala el plugin y pásale el próximo archivo que vayas a enviar."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Ojo: lo que el repositorio no borra",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Esto decide si tu archivo quedó limpio de verdad."
+          },
+          {
+            "tipo": "dato",
+            "valor": "1",
+            "texto": "sola cosa borra la marca del **texto**: reescribirlo entero, palabra por palabra.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "esa marca no son símbolos escondidos: va dentro de las palabras. Limpiar metadatos no la toca."
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "El reporte quedó vacío al inspeccionar de nuevo.",
+              "El archivo es tuyo: eso pide la licencia del repo."
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Vuelve a inspeccionar el archivo que ya limpiaste."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando no es un archivo, son todos los que salen de tu negocio",
+      "texto": "Limpiar un PDF a mano es fácil. Lo acabas de hacer en quince minutos.\n\nLo difícil es lo otro: que cada archivo que sale de tu empresa pase por el mismo chequeo sin que nadie tenga que acordarse, que quede registro de qué se limpió y cuándo, y que exista una regla escrita de cuándo sí dices que usaste IA.\n\nEso ya no es un comando. Es un proceso con dueño, y ahí se cae la mayoría."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos qué archivos salen de tu empresa, cuáles conviene limpiar y cómo dejarlo corriendo solo."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "How Claude's text watermark works",
+      "url": "https://www.anthropic.com/news/claude-text-watermark",
+      "dato": "Anthropic marca el texto de Claude con un patrón imperceptible en la elección de palabras y adjunta una credencial C2PA firmada a los archivos .png, .jpg y .svg; una edición ligera casi nunca la quita y solo una reescritura completa lo hace",
+      "cita": "When Claude produces a file of a supported type (such as a .png, .jpg, or .svg), it will attach a content credential in the form of a small, cryptographically signed note in the file's metadata.",
+      "verificado": "2026-10-05",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "guillaumemeyer/watermarks-remover",
+      "url": "https://github.com/guillaumemeyer/watermarks-remover",
+      "dato": "Qué limpia el repositorio (Unicode invisible, C2PA, EXIF, XMP, propiedades del documento y marcas del generador), los comandos exactos de inspect_file.py y clean_file.py, los 24 formatos que acepta, la licencia MIT y sus 23,4 mil estrellas y 2,7 mil forks",
+      "cita": "Agent skill + stdlib Python service to strip multi-vendor AI provenance marks from text and files — for privacy and hygiene on content you own.",
+      "verificado": "2026-10-05",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Anthropic To Mark Claude Text & Files Under EU AI Act Code",
+      "url": "https://www.searchenginejournal.com/anthropic-claude-watermarks-eu-ai-act-code/585355/",
+      "dato": "Las superficies donde aplica el marcado: la API, las apps de Claude, Claude Code, Cowork y Tag",
+      "cita": "outputs from supported models through the API, the Claude applications, Claude Code, Cowork, and Tag, as well as those accessed via AWS, Google Cloud, and Microsoft Foundry.",
+      "verificado": "2026-10-05",
+      "oficial": false
+    },
+    {
+      "id": "f4",
+      "titulo": "Why removing Claude's watermark is harder than you think",
+      "url": "https://news.fiu.edu/2026/analysis-why-removing-claudes-watermark-is-harder-than-you-think",
+      "dato": "La marca del texto de Claude no son caracteres invisibles: está en la elección de palabras, así que un limpiador de Unicode no la toca",
+      "cita": "The watermark is based on word choice.",
+      "verificado": "2026-10-05",
+      "oficial": false
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "github": {
+      "nombre": "GitHub",
+      "logo": "logos/github.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-marcas-de-agua-invisibles.pdf",
+  "fecha": "2026-10-06",
+  "origen": {
+    "material": "2026-09-29-3",
+    "version": 1
+  }
+}

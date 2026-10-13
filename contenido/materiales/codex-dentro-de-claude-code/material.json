@@ -1,0 +1,289 @@
+{
+  "contenido": {
+    "id": "2026-10-08-1001",
+    "version": 1,
+    "guion_hash": "sha256:c87afd59823f8f668911e940143618bc37721e51fa1af432a0f409d938dea32b",
+    "generado": "2026-10-09T18:20:00Z",
+    "verificado": "2026-10-09",
+    "formato": "plantilla",
+    "promesa": "el paso a paso con los comandos exactos y el reparto listo para pegar en tu CLAUDE.md",
+    "palabra": "PLUGIN",
+    "nombre_pdf": "codex-dentro-de-claude-code",
+    "portada": {
+      "titulo": "Codex dentro de Claude Code",
+      "acento": "los comandos y el reparto",
+      "subtitulo": "El plugin oficial de OpenAI para Claude Code: cómo instalarlo en 4 comandos, qué hace cada uno de los 8 comandos y el reparto de trabajo listo para pegar en tu CLAUDE.md.",
+      "herramientas": [
+        "claude",
+        "openai"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los **4 comandos** exactos para instalar el plugin oficial de OpenAI dentro de Claude Code.",
+        "Qué hace cada uno de los **8 comandos** que agrega y cuál usar en cada momento.",
+        "El **reparto Claude / Codex** listo para pegar en tu `CLAUDE.md`."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "Los 4 comandos de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Entiende qué hace el plugin",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Piensa en Codex como un segundo motor que vive dentro de Claude Code. Claude sigue llevando la conversación y decidiendo; a Codex le pasa el trabajo que no quiere hacer él."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "openai",
+            "nombre": "Codex Plugin for Claude Code",
+            "que_hace": "El plugin oficial de OpenAI: Claude Code llama a Codex para revisar tu código o delegarle tareas, con el Codex que ya tienes instalado.",
+            "precio": "Gratis, licencia Apache-2.0. El consumo se descuenta de tus límites de Codex.",
+            "url": "https://github.com/openai/codex-plugin-cc",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "dato",
+            "valor": "34 mil",
+            "texto": "estrellas tiene el repo `openai/codex-plugin-cc`. No es un proyecto de terceros: lo publica **OpenAI**.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre el repo y mira la pestaña **Releases** para saber en qué versión vas a instalar."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Instálalo en 4 comandos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre Claude Code en tu proyecto y escribe estos cuatro comandos, uno por uno. Espera a que cada uno termine antes del siguiente."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Agrega el catálogo oficial de OpenAI a tu Claude Code.",
+                "codigo": "/plugin marketplace add openai/codex-plugin-cc"
+              },
+              {
+                "texto": "Instala el plugin desde ese catálogo.",
+                "codigo": "/plugin install codex@openai-codex"
+              },
+              {
+                "texto": "Recarga Claude Code para que aparezcan los comandos nuevos.",
+                "codigo": "/reload-plugins"
+              },
+              {
+                "texto": "Revisa que Codex esté instalado y que tu cuenta esté conectada.",
+                "codigo": "/codex:setup"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el plugin no trae Codex adentro: usa el que ya tengas en tu computadora. Si `/codex:setup` te dice que falta, instálalo con `npm install -g @openai/codex` y conéctalo escribiendo `!codex login` dentro de Claude Code. Pide **Node.js 18.18** o más nuevo."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "`/codex:setup` también puede activar el **review gate** con `--enable-review-gate`: así Codex revisa solo cada vez que Claude termina. El propio repo avisa que eso puede crear un ciclo largo entre los dos y agotar tus límites rápido. Déjalo apagado hasta que sepas cuánto consumes."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `/codex:setup` y anota qué te respondió antes de seguir."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Reparte el trabajo con los 8 comandos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Elige el comando según el momento: revisar, delegar o consultar un trabajo que quedó corriendo."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Comando",
+              "Qué hace"
+            ],
+            "filas": [
+              [
+                "`/codex:review`",
+                "Revisa tu trabajo. No toca archivos."
+              ],
+              [
+                "`/codex:adversarial-review`",
+                "Cuestiona la solución que elegiste."
+              ],
+              [
+                "`/codex:rescue`",
+                "Le delegas la tarea: investiga y arregla."
+              ],
+              [
+                "`/codex:transfer`",
+                "Pasa tu sesión a un hilo de Codex."
+              ],
+              [
+                "`/codex:status`",
+                "Los trabajos en curso y los recientes."
+              ],
+              [
+                "`/codex:result`",
+                "El resultado de un trabajo terminado."
+              ],
+              [
+                "`/codex:cancel`",
+                "Cancela un trabajo en segundo plano."
+              ],
+              [
+                "`/codex:setup`",
+                "Revisa la instalación y tu cuenta."
+              ]
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "dato",
+            "valor": "0",
+            "texto": "archivos toca `/codex:review`: su instrucción dice «This command is review-only». Para que además lo **arregle**, usa `/codex:rescue`.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Un error atorado, delegado",
+            "etiquetas": [
+              "Tú escribes",
+              "Qué pasa"
+            ],
+            "antes": "/codex:rescue el login falla desde ayer. Investiga la causa, arréglalo y dime qué cambiaste.",
+            "despues": "Codex trabaja sobre tu repo y Claude te devuelve el resultado. Guardarlo sigue siendo tu decisión."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `/codex:review` sobre los cambios que tengas sin guardar."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Pega el reparto en tu CLAUDE.md",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pega este bloque al final de tu `CLAUDE.md`."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Reparto Claude / Codex",
+            "texto": "## Reparto con Codex\n\nClaude entiende el problema, planea, decide la arquitectura y revisa lo que vuelve.\n\nA Codex van la construcción repetitiva, los refactors grandes y los errores atorados. El pase lo hace Claude por su cuenta, sin esperar a que yo lo pida.\n\nPara mirar sin tocar nada, /codex:review. Para que además lo arregle, /codex:rescue.\n\nNada de lo que vuelve de Codex se da por bueno sin revisión. Claude me cuenta qué le pidió y qué volvió.\n\nSi Codex falla dos veces en la misma tarea, la tarea vuelve a Claude. No hay tercer intento."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pídele a Claude que te repita el reparto con sus palabras."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Revisa esto antes de confiar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Confirma qué incluye tu plan de ChatGPT antes de contar con esto."
+          },
+          {
+            "tipo": "dato",
+            "valor": "Plus",
+            "texto": "es el plan desde el que la tabla oficial de precios lista **Codex CLI**, aunque el repo del plugin diga que sirve «incl. Free».",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si tienes la cuenta gratis, `/codex:setup` puede no dejarte pasar. No es callejón sin salida: el plugin también acepta una **API key de OpenAI**, y ahí el consumo va por la API y no por tu plan de ChatGPT."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre la página de precios de Codex y mira qué incluye tu plan."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando el reparto tiene que sostenerse solo",
+      "texto": "Instalar el plugin es la parte fácil. Lo difícil empieza después: decidir qué tareas valen el pase a Codex, que el reparto esté escrito donde tu equipo lo lee y que nadie guarde un cambio sin haberlo revisado.\n\nY está lo que no se ve: dos modelos consumiendo al mismo tiempo. Sin un criterio claro de cuándo delegar, los límites se van en revisiones que nadie pidió.\n\nEso no lo arregla un comando. Lo arregla un sistema: reglas escritas, un flujo que las aplica y una forma de medir si de verdad te está rindiendo."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tu trabajo conviene delegar, a qué modelo y con qué reglas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Codex Plugin for Claude Code — README (OpenAI)",
+      "url": "https://github.com/openai/codex-plugin-cc",
+      "dato": "Los 4 comandos de instalación, los 8 comandos del plugin, los requisitos (cuenta de ChatGPT o API key de OpenAI, Node.js 18.18+), que usa el Codex CLI local, el aviso del review gate y que el consumo se descuenta de los límites de Codex",
+      "cita": "ChatGPT subscription (incl. Free) or OpenAI API key. Usage will contribute to your Codex usage limits.",
+      "verificado": "2026-10-09",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "openai/codex-plugin-cc — datos del repositorio (API de GitHub)",
+      "url": "https://api.github.com/repos/openai/codex-plugin-cc",
+      "dato": "El repo oficial tiene 34.015 estrellas y licencia Apache-2.0",
+      "cita": "\"stargazers_count\": 34015",
+      "verificado": "2026-10-09",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Comando /codex:review del plugin (commands/review.md)",
+      "url": "https://github.com/openai/codex-plugin-cc/blob/main/plugins/codex/commands/review.md",
+      "dato": "/codex:review es solo lectura: no arregla ni aplica parches",
+      "cita": "This command is review-only. Do not fix issues, apply patches, or suggest that you are about to make changes.",
+      "verificado": "2026-10-09",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Codex — Pricing (OpenAI)",
+      "url": "https://learn.chatgpt.com/docs/pricing",
+      "dato": "Qué incluye el plan gratis de ChatGPT en Codex y desde qué plan aparece Codex CLI en la tabla de disponibilidad",
+      "cita": "Free — Explore Codex capabilities on quick coding tasks. $0/month",
+      "verificado": "2026-10-09",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "openai": {
+      "nombre": "ChatGPT",
+      "logo": "logos/openai.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "codex-dentro-de-claude-code.pdf",
+  "fecha": "2026-10-10",
+  "origen": {
+    "material": "2026-10-08-1001",
+    "version": 1
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1008",
+    "version": 1,
+    "guion_hash": "sha256:fb3e302b990d9018620e92c7656de8aa58cbef98b64b261d33978a7f035fdec8",
+    "generado": "2026-10-11T22:45:00Z",
+    "verificado": "2026-10-11",
+    "formato": "plantilla",
+    "promesa": "la skill que convierte tu proyecto en video de lanzamiento y la guía para instalarla",
+    "palabra": "ESTRENO",
+    "nombre_pdf": "brag-video-de-lanzamiento-con-claude-code",
+    "portada": {
+      "titulo": "Tu proyecto, en video de lanzamiento",
+      "acento": "la skill /brag, instalada hoy",
+      "subtitulo": "Qué es /brag, cómo se instala en Claude Code y el comando exacto para que lea tu proyecto y arme el video con música y movimiento. Sin escribir un brief.",
+      "herramientas": [
+        "brag",
+        "claude",
+        "hyperframes"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los dos comandos para instalar **/brag** en Claude Code, tal como están en el repo oficial.",
+        "El prompt para pedirle el video en vertical, con la duración y el tono que quieras.",
+        "Qué necesita tu computadora antes de empezar y cómo comprobarlo en dos minutos."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "La comprobación de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "La skill se llama /brag",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Apunta a una sola skill: `/brag`, de Latent Spaces. No le escribes ningún brief: lee el código de tu proyecto, sin web ni capturas."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "brag",
+            "nombre": "/brag",
+            "que_hace": "Lee el proyecto que ya construiste y lo convierte en un video de lanzamiento de unos veinte segundos, con música, movimiento y el texto para publicarlo.",
+            "precio": "Gratis, licencia MIT",
+            "url": "https://github.com/latent-spaces/brag",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "dato",
+            "valor": "15.223",
+            "texto": "estrellas en GitHub el 11 de octubre de 2026, y 1.114 copias del repo.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Mira el video de `latent-spaces.github.io/brag`: lo armó la skill con su propio repo."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Deja lista tu computadora",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Comprueba que tienes Node.js 22 o más y FFmpeg: son los dos requisitos del repo."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Mira tu versión de Node. Tiene que decir v22 o más.",
+                "codigo": "node -v"
+              },
+              {
+                "texto": "Comprueba FFmpeg, el programa que arma el video.",
+                "codigo": "ffmpeg -version"
+              },
+              {
+                "texto": "Revisa HyperFrames, el motor que renderiza. No pide cuenta ni tarjeta.",
+                "codigo": "npx hyperframes doctor"
+              }
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre los tres comandos ahora. Lo que falte, bájalo de nodejs.org o ffmpeg.org."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Instálala en Claude Code",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pega estos dos comandos dentro de Claude Code, uno tras otro. Son los oficiales del repo."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Abre Claude Code en la carpeta de un proyecto tuyo y agrega el marketplace de la skill.",
+                "codigo": "/plugin marketplace add latent-spaces/brag"
+              },
+              {
+                "texto": "Instala el plugin. Trae también `/brag-slim`, la misma skill en versión liviana.",
+                "codigo": "/plugin install brag@brag"
+              },
+              {
+                "texto": "Si usas otro agente (Codex, Cursor, Gemini CLI, opencode), es un solo comando en la terminal.",
+                "codigo": "npx skills add https://github.com/latent-spaces/brag --skill brag"
+              },
+              {
+                "texto": "Para actualizarla más adelante, desde la terminal.",
+                "codigo": "claude plugin update brag"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "sitio-brag.png",
+            "pie": "Los mismos dos comandos, en el sitio oficial de la skill.",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálala en un proyecto que ya tenga código, no en una carpeta vacía: la skill necesita algo que leer."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Pídele el video",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Escríbelo en Claude Code, dentro del proyecto. Cambia lo de las llaves."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El pedido completo",
+            "texto": "let's /brag --format vertical --duration 20\n\nEs para anunciar {{tu producto}}.\nTono: {{cómo quieres que suene}}.\nMuéstrame primero el plan de brag-plan.md y espera mi OK."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "dato",
+            "valor": "15 a 25",
+            "texto": "segundos dura el video si no pides otra cosa. Estas cuatro palabras cambian el resto.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Lo que agregas",
+              "Para qué sirve"
+            ],
+            "filas": [
+              [
+                "--format",
+                "vertical, landscape o square"
+              ],
+              [
+                "--duration",
+                "Los segundos que quieres"
+              ],
+              [
+                "--tone",
+                "polished, cinematic, deadpan, app-store o el tuyo"
+              ],
+              [
+                "--voice",
+                "Suma una voz que narra. Viene apagada"
+              ]
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Lánzalo en tu proyecto más avanzado y pide primero el plan."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Qué te devuelve",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Al terminar te deja una carpeta nueva en el proyecto. Ábrela antes de publicar."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Un comando, cuatro entregas",
+            "antes": "let's /brag",
+            "despues": "La carpeta brag-output/ con el plan, el guion escena por escena, el texto para publicar y brag.mp4 de unos veinte segundos.",
+            "etiquetas": [
+              "Tú escribes",
+              "Te devuelve"
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el primer video casi nunca es el bueno. Antes de publicarlo mira dos cosas: que tu producto se vea en los primeros 2 segundos y que se entienda sin sonido. Si no, cambia el tono y vuelve a correrlo pidiendo una carpeta con fecha: si no, pisa el anterior."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Publícalo en una sola red y mira cuántos lo terminan."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Un video está bien. El problema es el siguiente lanzamiento",
+      "texto": "Sacar un video con un comando es fácil. Lo difícil empieza cuando lanzas algo nuevo cada semana.\n\nAhí hace falta que el video salga solo cuando marcas una versión como lista, que todos se parezcan entre sí, que alguien escriba el texto para cada red y que el reel, el correo y el post salgan el mismo día.\n\nEso ya no es una skill: es un sistema con varios agentes y una revisión tuya de dos minutos antes de que salga."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tus lanzamientos puede armarse sola, con tu marca y sin que tú abras un editor."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "/brag — README oficial del repo",
+      "url": "https://github.com/latent-spaces/brag",
+      "dato": "Qué es /brag, los dos comandos de instalación en Claude Code, cómo se invoca, qué entrega (brag-output/ con el plan, el texto para publicar y brag.mp4) y sus requisitos (Node.js 22+, FFmpeg y el CLI de Hyperframes)",
+      "cita": "`/brag` is an agent skill that turns the project you created into a short, shareable launch video — music, motion, and share copy included. One command, powered by Hyperframes.",
+      "verificado": "2026-10-11",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "SKILL.md de /brag",
+      "url": "https://github.com/latent-spaces/brag/blob/main/skills/brag/SKILL.md",
+      "dato": "Lee el código del proyecto sin que le expliques nada, la duración por defecto es de 15 a 25 segundos y las flags --tone, --format, --duration, --voice, --no-music y --no-sfx",
+      "cita": "Reads the project code directly — no live URL or screenshots needed.",
+      "verificado": "2026-10-11",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "latent-spaces/brag en la API de GitHub",
+      "url": "https://api.github.com/repos/latent-spaces/brag",
+      "dato": "15.223 estrellas, 1.114 forks y licencia MIT el 11 de octubre de 2026",
+      "cita": "\"stargazers_count\": 15223, \"forks_count\": 1114, \"license\": { \"spdx_id\": \"MIT\" }",
+      "verificado": "2026-10-11",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "HyperFrames — README oficial",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "dato": "Es el motor que renderiza el video: necesita Node.js 22+ y FFmpeg, no pide cuenta ni API key para correr local y es open source sin cobro por render",
+      "cita": "Open source: Apache 2.0 license, with no per-render fees or commercial-use thresholds.",
+      "verificado": "2026-10-11",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Sitio de lanzamiento de /brag",
+      "url": "https://latent-spaces.github.io/brag/",
+      "dato": "El video dura unos veinte segundos, los comandos de instalación a la vista y letsbrag.app como atajo sin instalar nada, marcado «pay once»",
+      "cita": "An agent skill that turns the project you created into a twenty-second launch video. One command. Music, motion, share copy included.",
+      "verificado": "2026-10-11",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "brag": {
+      "nombre": "/brag",
+      "logo": "logos/brag.png",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "hyperframes": {
+      "nombre": "HyperFrames",
+      "logo": "logos/hyperframes.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "brag-video-de-lanzamiento-con-claude-code.pdf",
+  "fecha": "2026-10-11",
+  "origen": {
+    "material": "2026-10-09-1008",
+    "version": 1
+  }
+}

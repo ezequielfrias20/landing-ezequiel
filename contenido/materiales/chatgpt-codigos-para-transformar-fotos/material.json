@@ -1,0 +1,210 @@
+{
+  "contenido": {
+    "id": "2026-09-29-6",
+    "version": 1,
+    "guion_hash": "sha256:fa5f0c2a008da18f2fac8b71e60a28f377078242cd4452f3ffc9f143f005e420",
+    "generado": "2026-10-08T16:20:00Z",
+    "verificado": "2026-10-08",
+    "formato": "plantilla",
+    "promesa": "todos los códigos ocultos en una sola lista",
+    "palabra": "CODIGOS",
+    "nombre_pdf": "chatgpt-codigos-para-transformar-fotos",
+    "portada": {
+      "titulo": "Una foto, cinco imágenes nuevas",
+      "acento": "los 5 códigos, listos para copiar",
+      "subtitulo": "Subes tu foto a ChatGPT, pegas uno de estos códigos y te la devuelve convertida. Están los cinco completos, escritos en el orden que pide la documentación oficial de OpenAI.",
+      "herramientas": [
+        "openai"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los **5 códigos** completos, listos para pegar junto a tu foto.",
+        "El orden que pide OpenAI para que un código funcione: **escena, sujeto, detalles y límites**.",
+        "Cómo pedir el segundo cambio sin que la imagen se te desarme."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El código 01 de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Sube la foto y pide el cambio",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre ChatGPT, sube tu foto y pega el código debajo. No hay nada que activar: el **código es texto**."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Elige una foto tuya, nítida y con el objeto completo dentro del cuadro."
+              },
+              {
+                "texto": "Súbela al chat y pega uno de los cinco códigos de la sección 02, en el mismo mensaje."
+              },
+              {
+                "texto": "Cambia lo que está entre llaves por lo que hay en tu foto. Envía y descarga el resultado."
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "4",
+            "texto": "partes tiene un código que funciona, en este orden: **escena, sujeto, detalles y límites**. Es el orden que recomienda OpenAI.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Elige ahora la foto con la que vas a probar los cinco códigos."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Los cinco códigos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Copia el código entero, cambia lo que está entre llaves y mándalo con tu foto en el mismo mensaje."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "01 · Plano técnico",
+            "texto": "Convierte la foto que subí en un plano técnico.\nFondo azul plano, estilo blueprint.\n{{el objeto de la foto}} en líneas blancas finas,\ncon cotas, flechas de medida y cuadrícula tenue.\nCambia solo el estilo: conserva la forma y el ángulo.\nFormato vertical, 1024x1536."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "02 · Despiece",
+            "texto": "Convierte la foto que subí en una vista de despiece.\nFondo gris claro liso, luz de estudio suave.\n{{el objeto de la foto}} separado en sus piezas,\nflotando sobre el mismo eje y unidas por líneas finas.\nCambia solo la disposición: conserva color y textura.\nFormato cuadrado, 1024x1024."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "03 · Boceto anotado",
+            "texto": "Convierte la foto que subí en un boceto a mano alzada.\nHoja de cuaderno con cuadrícula, trazo de lápiz suelto.\nAgrégale tres anotaciones manuscritas con flechas, que\ndigan \"{{nota 1}}\", \"{{nota 2}}\" y \"{{nota 3}}\".\nCambia solo el estilo: conserva la composición.\nFormato vertical, 1024x1536."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "04 · Notas adhesivas",
+            "texto": "Toma la foto que subí y pégale notas adhesivas encima.\nCuatro notas amarillas apenas inclinadas, con letra de\nmarcador, que digan \"{{nota 1}}\", \"{{nota 2}}\",\n\"{{nota 3}}\" y \"{{nota 4}}\", cada una con una flecha\nfina a la parte que nombra.\nCambia solo lo que agregas: conserva la foto y su luz.\nFormato cuadrado, 1024x1024."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "05 · Radiografía",
+            "texto": "Convierte la foto que subí en una radiografía.\nFondo negro. {{el objeto de la foto}} visto por dentro,\nen azul y blanco translúcidos, con la estructura interna\nvisible y los bordes como un contorno tenue.\nCambia solo el estilo: conserva la silueta y el ángulo.\nFormato vertical, 1024x1536."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pasa tu foto por el código 01 y guarda el resultado. Son dos minutos."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Arma tus propios códigos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Escribe siempre en el mismo orden: escena, sujeto, detalles y límites."
+          },
+          {
+            "tipo": "captura",
+            "archivo": "prompting-oficial.png",
+            "pie": "La guía de prompting de OpenAI: sujeto, composición, estilo y límites.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Escribe un sexto código con ese orden, para tu estilo de siempre."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Encadena cambios sin romper la foto",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pide **un solo cambio por mensaje** y vuelve a nombrar lo que no se toca."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El segundo pedido",
+            "antes": "Ponlo más azul, agrégale sombra y cámbiale el fondo.",
+            "despues": "Cambia solo el fondo a gris claro. Conserva el objeto, su color y el ángulo.",
+            "etiquetas": [
+              "Así se rompe",
+              "Así se mantiene"
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el texto dentro de la imagen es lo más frágil. OpenAI lo dice en su documentación: el modelo mejoró, pero todavía falla con la posición y la nitidez del texto. Si una nota te sale con letras raras, vuelve a pedirla sola.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Toma tu mejor resultado y pídele un cambio más, nombrando lo que se conserva."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando no es una foto, son doscientas",
+      "texto": "Pegar un código y bajar la imagen funciona perfecto una vez.\n\nEl lío empieza cuando son los 200 productos de tu catálogo, y cada uno necesita el mismo tratamiento, el mismo tamaño y el mismo nombre de archivo.\n\nAhí ya no se pega un código: se arma un flujo que toma las fotos de una carpeta, las convierte y las deja ordenadas donde tu equipo las busca."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tus imágenes puede salir sola."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Image prompting — GPT Image 2.5 prompting guide",
+      "url": "https://developers.openai.com/api/docs/guides/image-prompting",
+      "dato": "Qué tiene que decir un prompt de imagen y cómo pedir una edición diciendo qué cambia y qué se conserva",
+      "cita": "Start with the image you need, then describe the subject, composition, style, and constraints. For edits, identify what should change and what must stay the same. Refine one thing at a time and inspect the result.",
+      "verificado": "2026-10-08",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "GPT Image Generation Models Prompting Guide",
+      "url": "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide",
+      "dato": "El orden en que conviene escribir el prompt: escena, sujeto, detalles y límites; y la fórmula «cambia solo X, conserva el resto»",
+      "cita": "Write prompts in a consistent order (background/scene → subject → key details → constraints).",
+      "verificado": "2026-10-08",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Image generation — generar y editar imágenes con GPT Image",
+      "url": "https://developers.openai.com/api/docs/guides/image-generation",
+      "dato": "Se puede usar una o varias imágenes como referencia para generar otra; los tamaños 1024x1024, 1536x1024 y 1024x1536; y el límite del modelo con el texto dentro de la imagen",
+      "cita": "Although significantly improved, the model can still struggle with precise text placement and clarity.",
+      "verificado": "2026-10-08",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "openai": {
+      "nombre": "ChatGPT",
+      "logo": "logos/openai.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "chatgpt-codigos-para-transformar-fotos.pdf",
+  "fecha": "2026-10-08",
+  "origen": {
+    "material": "2026-09-29-6",
+    "version": 1
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1009",
+    "version": 1,
+    "guion_hash": "sha256:73cedc96ee6f0bc96c3aafdb21d398971987f9afee0d232af97728091e9cff19",
+    "generado": "2026-10-10T22:52:00Z",
+    "verificado": "2026-10-10",
+    "formato": "plantilla",
+    "promesa": "la guía para conectar el servidor MCP de DaVinci Resolve y los pedidos exactos que le hago a Claude",
+    "palabra": "MONTAJE",
+    "nombre_pdf": "davinci-resolve-mcp-editar-con-claude",
+    "portada": {
+      "titulo": "Claude te edita en DaVinci",
+      "acento": "conectarlo y los pedidos exactos",
+      "subtitulo": "Cómo enchufar el servidor MCP de DaVinci Resolve a Claude Code o a Codex, y los pedidos listos para copiar que mueven tu línea de tiempo.",
+      "herramientas": [
+        "davinciresolve",
+        "claude",
+        "openai",
+        "higgsfield"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los dos ajustes que conectan **Resolve con Claude Code o Codex**.",
+        "El primer pedido de prueba, el que no toca nada de tu proyecto.",
+        "Los pedidos exactos para color, multicámara, audio y la versión vertical."
+      ],
+      "tiempo": "20 minutos",
+      "empieza_por": "El pedido de prueba de la sección 03"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Comprueba que lo puedes usar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Mira qué versión de DaVinci Resolve tienes. El servidor MCP solo existe en **Studio**, desde la 21.1."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "davinciresolve",
+            "nombre": "DaVinci Resolve Studio",
+            "que_hace": "El editor de Blackmagic con servidor MCP nativo: deja que Claude mueva tu línea de tiempo.",
+            "precio": "US$295, pago único (la versión normal es gratis)",
+            "url": "https://www.blackmagicdesign.com/products/davinciresolve/studio",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "la versión gratis no sirve para esto. Blackmagic sacó el scripting de la gratis y lo dejó solo en Studio, y el MCP corre justo encima de esa capa."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre Resolve y revisa la versión en el menú **DaVinci Resolve > About**."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Conéctalo a Claude Code o Codex",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Son dos ajustes dentro de Resolve. No instalas nada ni editas archivos."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "En **Preferences > System > General**, cambia «External scripting using» de None a **Local**."
+              },
+              {
+                "texto": "Guarda y reinicia Resolve."
+              },
+              {
+                "texto": "Abre **File > Setup AI Assistants** y elige Claude, Claude Code o ChatGPT Codex. Resolve arma la conexión solo."
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si «External scripting» queda en None, el fallo es silencioso: el asistente dice que no encuentra Resolve y adentro del programa no aparece ningún aviso."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Haz el cambio de **Preferences** hoy, aunque no conectes nada todavía."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "El primer pedido: que no toque nada",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Antes de darle permiso de editar, comprueba que mira el proyecto correcto."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Revisión sin tocar nada",
+            "texto": "No modifiques nada.\nDime el proyecto abierto y la línea de tiempo activa.\nDime los cuadros por segundo, la duración y los clips de cada pista.\nSi algo no lo puedes leer, dímelo en vez de suponerlo."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Copia este pedido y pégalo tal cual en tu primera conversación."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Los pedidos exactos que le hago",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Estos dos pedidos cubren el montaje base y la entrega vertical. Cambia lo que está entre llaves."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El montaje base",
+            "texto": "Trabaja sobre la línea de tiempo {{nombre de la línea de tiempo}}.\nDuplícala primero y trabaja sobre la copia.\n1. Corrige el color de todos los clips y déjalos parejos entre sí.\n2. Arma el multicámara con las cámaras de la carpeta {{carpeta}} y sincronízalas.\n3. Normaliza el audio de los clips de voz al mismo nivel.\n4. Pon un marcador de color donde el audio quede más alto que el resto.\nNo borres ningún clip. Al terminar, dime qué cambiaste, uno por uno."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "La entrega vertical",
+            "texto": "Toma la línea de tiempo {{nombre de la línea de tiempo}} y prepara la versión para redes.\n1. Duplícala y llámala {{nombre}}-vertical.\n2. Reencuádrala a 9:16 y deja la cara centrada en cada plano.\n3. Renombra los clips en orden: {{proyecto}}_001, _002, _003.\n4. Mándala a la cola de render en H.265, 1080 x 1920.\nAntes de renderizar, muéstrame la lista de lo que vas a hacer y espera mi «dale»."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "pedir «espera mi dale» no es cortesía. Es lo que te deja revisar antes de que ocupe la máquina media hora renderizando lo que no era."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Prueba el montaje base en una línea de tiempo vieja, de un proyecto que ya entregaste."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Los planos que te faltan",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Resolve no genera imágenes. Para los planos que no filmaste, conéctale un generador."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "higgsfield",
+            "nombre": "Higgsfield",
+            "que_hace": "Genera imágenes y videos desde la conversación de Claude.",
+            "precio": "Suscripción paga: cada generación descuenta créditos",
+            "url": "https://higgsfield.ai",
+            "fuente": "f8"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Instala su programa de terminal.",
+                "codigo": "npm i -g @higgsfield/cli"
+              },
+              {
+                "texto": "Inicia sesión en el navegador.",
+                "codigo": "higgsfield auth login"
+              },
+              {
+                "texto": "Agrega las instrucciones para Claude.",
+                "codigo": "npx skills add higgsfield-ai/skills"
+              }
+            ]
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Cómo se lo pides",
+            "antes": "Falta un plano entre la escena 2 y la 3.",
+            "despues": "Genera un plano de una calle de noche bajo la lluvia, en 16:9, y ponlo en V1 entre el clip 4 y el 5.",
+            "etiquetas": [
+              "Lo que te pasa",
+              "Lo que escribes"
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pide un plano de prueba y mira cuántos créditos gastó."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando ya no es un video, son veinte",
+      "texto": "Conectarlo una vez y pedirle el montaje a mano está al alcance de cualquiera. Lo tienes resuelto con esta guía.\n\nLo difícil viene después: que el mismo pedido salga igual en los veinte videos del mes, que la versión vertical se arme sola cuando termina el corte, que alguien revise antes de renderizar y que quede registro de qué tocó el agente en cada proyecto.\n\nEso ya no es un prompt. Es un sistema."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tu montaje puede quedar automatizada esta semana."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Blackmagic Design — DaVinci Resolve",
+      "url": "https://www.blackmagicdesign.com/products/davinciresolve",
+      "dato": "DaVinci Resolve tiene una versión gratis y DaVinci Resolve Studio cuesta US$295, pago único.",
+      "cita": "$295",
+      "verificado": "2026-10-10",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Blackmagic Design — DaVinci Resolve Studio",
+      "url": "https://www.blackmagicdesign.com/products/davinciresolve/studio",
+      "dato": "La página oficial de la versión Studio, la única que trae el servidor MCP.",
+      "cita": "DaVinci Resolve Studio",
+      "verificado": "2026-10-10",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Newsshooter — Blackmagic Design DaVinci Resolve 21.1",
+      "url": "https://www.newsshooter.com/2026/09/07/blackmagic-design-davinci-resolve-21-1/",
+      "dato": "Las notas oficiales de la versión 21.1, publicada el 7 de septiembre de 2026, anuncian el servidor MCP nativo y las nuevas funciones de la API de scripting.",
+      "cita": "Native MCP server for interacting with AI assistants.",
+      "verificado": "2026-10-10",
+      "oficial": false
+    },
+    {
+      "id": "f4",
+      "titulo": "Digital Production — Resolve 21.1 adds MCP and presets for automation",
+      "url": "https://digitalproduction.com/2026/09/08/resolve-21-1-adds-mcp-and-finally-gets-presets/",
+      "dato": "La conexión se arma desde File > Setup AI Assistants, solo en Studio, con Claude, Claude Code y ChatGPT Codex. Blackmagic suma 20 funciones nuevas a la API: multicámara, normalización de audio, transiciones, velocidades y transcripciones.",
+      "cita": "The MCP server is configured through File > Setup AI Assistants in Resolve Studio 21.1.",
+      "verificado": "2026-10-10",
+      "oficial": false
+    },
+    {
+      "id": "f5",
+      "titulo": "Y.M.Cinema — DaVinci Resolve 21.1 Uses MCP to Let AI Assistants Control the Edit",
+      "url": "https://ymcinema.com/2026/09/17/davinci-resolve-21-1-mcp-ai-assistants-control-edit/",
+      "dato": "El manual de Resolve lista los pedidos de ejemplo: renderizar en varios formatos, renombrar clips en serie, marcadores a CSV, conversión S-Log3 a Rec709 y reencuadre a 9:16.",
+      "cita": "Reframe timelines to 9:16 vertical aspect ratio",
+      "verificado": "2026-10-10",
+      "oficial": false
+    },
+    {
+      "id": "f6",
+      "titulo": "ExplainX — DaVinci Resolve 21.1 MCP Server: Setup and What It Does",
+      "url": "https://explainx.ai/blog/davinci-resolve-21-1-mcp-server-ai-agents-2026",
+      "dato": "Hay que poner «External scripting using» en «Local» dentro de Preferences > System > General: si queda en None, la conexión falla sin avisar.",
+      "cita": "This preference toggle is critical—without it, MCP connections fail silently with no in-app error message.",
+      "verificado": "2026-10-10",
+      "oficial": false
+    },
+    {
+      "id": "f7",
+      "titulo": "Cutsio — How to Connect an AI Assistant to DaVinci Resolve 21.1 MCP",
+      "url": "https://cutsio.com/blog/how-to-connect-ai-assistant-davinci-resolve-21-1-mcp",
+      "dato": "La prueba recomendada antes de dejarlo tocar nada: pedirle que no modifique y que reporte proyecto, línea de tiempo, cuadros por segundo y clips por pista.",
+      "cita": "Do not modify anything. Report the active project name, the current timeline name, timeline frame rate, duration, track names, and the number of clips on each track.",
+      "verificado": "2026-10-10",
+      "oficial": false
+    },
+    {
+      "id": "f8",
+      "titulo": "Higgsfield — How to Connect Higgsfield to Claude or ChatGPT",
+      "url": "https://higgsfield.ai/creator-hub/help-center/integrations/how-do-i-connect-higgsfield-to-ai-agent",
+      "dato": "En Claude Code se conecta instalando el CLI de Higgsfield con npm, iniciando sesión y agregando las skills. Necesita una suscripción paga activa y cada generación descuenta créditos.",
+      "cita": "An active paid subscription is required",
+      "verificado": "2026-10-10",
+      "oficial": true
+    },
+    {
+      "id": "f9",
+      "titulo": "CineD — DaVinci Resolve 21.1 Released: AI Assistant Integration via MCP",
+      "url": "https://www.cined.com/davinci-resolve-21-1-released-ai-assistant-integration-via-mcp-individual-hdr-trims-and-python-scripting-moves-to-studio/",
+      "dato": "El scripting en Python salió de la versión gratis y quedó solo en Studio, que es la capa sobre la que corre el servidor MCP.",
+      "cita": "moved Python scripting out of the free version",
+      "verificado": "2026-10-10",
+      "oficial": false
+    }
+  ],
+  "herramientas": {
+    "davinciresolve": {
+      "nombre": "DaVinci Resolve",
+      "logo": "logos/davinciresolve.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "openai": {
+      "nombre": "ChatGPT",
+      "logo": "logos/openai.svg",
+      "fondo": "#FFFFFF"
+    },
+    "higgsfield": {
+      "nombre": "Higgsfield",
+      "logo": "logos/higgsfield.png",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "davinci-resolve-mcp-editar-con-claude.pdf",
+  "fecha": "2026-10-10",
+  "origen": {
+    "material": "2026-10-09-1009",
+    "version": 1
+  }
+}

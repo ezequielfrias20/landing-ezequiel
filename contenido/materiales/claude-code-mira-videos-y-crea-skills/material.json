@@ -1,0 +1,285 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1001",
+    "version": 1,
+    "guion_hash": "sha256:eb511ddfcd7ea9e9de4faeba10e1def65df4b861e1365c65deca57f406c52ad3",
+    "generado": "2026-10-12T21:45:00Z",
+    "verificado": "2026-10-12",
+    "formato": "plantilla",
+    "promesa": "los comandos exactos y los prompts listos para copiar para que Claude mire un video y lo convierta en una skill",
+    "palabra": "COMANDOS",
+    "nombre_pdf": "claude-code-mira-videos-y-crea-skills",
+    "portada": {
+      "titulo": "De un tutorial a tu skill",
+      "acento": "los comandos exactos",
+      "subtitulo": "Le pones ojos a Claude Code, le pasas el enlace de un video y sale una skill tuya. Todo lo que hay que pegar está aquí.",
+      "herramientas": [
+        "claude",
+        "github",
+        "ffmpeg",
+        "homebrew"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Las **dos líneas** que le ponen ojos a Claude Code.",
+        "El prompt que convierte cualquier tutorial en una **skill** tuya.",
+        "Dónde queda guardada la skill y cómo se enciende sola."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "Los dos comandos de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Ponle ojos a Claude Code",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pega dos líneas dentro de Claude Code. Con eso ya puede ver un video entero."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "github",
+            "nombre": "claude-video (skill watch)",
+            "que_hace": "Descarga el video, saca cuadros con ffmpeg, arma la transcripción y se la entrega a Claude para que responda sobre lo que pasa ahí.",
+            "precio": "Gratis, licencia MIT",
+            "url": "https://github.com/bradautomates/claude-video",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "dato",
+            "valor": "18.420",
+            "texto": "estrellas tiene el repositorio en GitHub. Es **abierto y gratis**, con licencia MIT.",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Abre Claude Code en tu terminal y suma el marketplace del plugin.",
+                "codigo": "/plugin marketplace add bradautomates/claude-video"
+              },
+              {
+                "texto": "Instala el plugin. Se llama watch.",
+                "codigo": "/plugin install watch@claude-video"
+              },
+              {
+                "texto": "Si estás en Mac y te falta alguna pieza, la instalas con Homebrew.",
+                "codigo": "brew install python ffmpeg yt-dlp"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si instalaste algo con Homebrew, cierra y vuelve a abrir la terminal y Claude Code. Si no, no encuentran las herramientas nuevas y te va a decir que no puede."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálalo ahora: son dos líneas y queda listo para el próximo tutorial que te pasen."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Pásale un video y pregúntale",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Escribe `/watch`, pega el enlace y haz tu pregunta en la misma línea."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "El enlace y la pregunta, uno detrás del otro.",
+                "codigo": "/watch https://youtu.be/tu-video ¿qué pasos sigue y con qué comandos?"
+              },
+              {
+                "texto": "¿Solo te importa lo que dicen? Agrega el parámetro de transcripción.",
+                "codigo": "/watch https://youtu.be/tu-video --detail transcript ¿qué herramientas nombra?"
+              }
+            ],
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "La pregunta hace la diferencia",
+            "etiquetas": [
+              "Vago",
+              "Concreto"
+            ],
+            "antes": "/watch <enlace> resume el video",
+            "despues": "/watch <enlace> dame los pasos en orden y los comandos tal cual se escriben"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pruébalo con ese tutorial que guardaste y nunca viste."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Conviértelo en una skill",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Copia este prompt y cambia lo que está entre llaves. Primero te muestra el método; escribe la skill recién cuando le des el visto bueno."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "De video a skill",
+            "texto": "Convierte este video en una skill: {{pega el enlace}}\n\n1. Míralo con /watch y saca el método: los pasos, los comandos y el orden.\n2. Muéstrame ese método y espera mi visto bueno antes de escribir nada.\n3. Escribe la skill en ~/.claude/skills/{{nombre-de-la-skill}}/SKILL.md, con su name y una description que diga cuándo usarla.\n4. Pruébala con un caso real y cuéntame qué salió."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Elige un video que ya viste y pídele la skill hoy."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Dónde queda guardada",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Decide si la skill vale para todo lo que haces o solo para un proyecto."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "",
+              "Para todo",
+              "Solo este proyecto"
+            ],
+            "filas": [
+              [
+                "La carpeta",
+                "`~/.claude/skills/`",
+                "`.claude/skills/`"
+              ],
+              [
+                "Cuándo",
+                "Tu método de siempre",
+                "Las reglas de un cliente"
+              ]
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "docs-skills.png",
+            "pie": "La documentación oficial: Claude usa la skill cuando viene al caso, o la llamas con `/nombre`.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pídele la tarea con tus palabras y mira si la skill se enciende sola."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Afínala con otro video",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pásale un segundo video del mismo tema para que corrija lo que faltaba."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Afinar la skill",
+            "texto": "Mira este otro video sobre lo mismo: {{enlace}}\n\nCompáralo con la skill {{nombre}} que ya tenemos.\nDime qué pasos cambian o faltan y espera mi respuesta.\nDespués actualiza el SKILL.md sin borrar lo que ya funciona."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el video puede estar viejo y Claude no lo sabe: copia el método igual. Si son comandos de una herramienta que cambia seguido, contrástalos con la documentación oficial antes de confiar."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre tu skill y arregla una sola línea: la description."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando la skill deja de ser tuya sola",
+      "texto": "Armar una skill un domingo es fácil. Lo difícil empieza después.\n\nQue tu equipo use la misma y no cinco versiones distintas. Que se actualice cuando la herramienta cambia. Que corra sola con lo que ya tienes: tu Drive, tu calendario, tus clientes.\n\nAhí deja de ser un truco y pasa a ser un sistema."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué tareas que hoy repites a mano pueden quedar como skills que trabajan solas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "claude-video — README (instalación y parámetros)",
+      "url": "https://github.com/bradautomates/claude-video",
+      "dato": "Los dos comandos de instalación dentro de Claude Code, el requisito de Mac con Homebrew, reabrir la terminal y el parámetro --detail transcript",
+      "cita": "/plugin marketplace add bradautomates/claude-video · /plugin install watch@claude-video · Install Homebrew, then `brew install python ffmpeg yt-dlp`. · reopen the terminal and agent after installation so they can find the new tools · transcript: Transcript only; cue frames can be requested explicitly",
+      "verificado": "2026-10-12",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "watch — SKILL.md del plugin",
+      "url": "https://github.com/bradautomates/claude-video/blob/main/skills/watch/SKILL.md",
+      "dato": "Qué hace la skill watch: descarga el video, extrae cuadros, saca la transcripción y se la entrega al agente",
+      "cita": "Watch a video (URL or local path). Downloads with yt-dlp, extracts auto-scaled frames with ffmpeg, pulls the transcript from captions (or local WhisperX / cloud Whisper fallback), and hands the result to the agent so it can answer questions about what's in the video.",
+      "verificado": "2026-10-12",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Extend Claude with skills — documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Dónde vive una skill personal (~/.claude/skills) y una de proyecto (.claude/skills), y que Claude la usa sola cuando viene al caso",
+      "cita": "Skills extend what Claude can do. Create a SKILL.md file with instructions, and Claude adds it to its toolkit. Claude uses skills when relevant, or you can invoke one directly with /skill-name.",
+      "verificado": "2026-10-12",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "claude-video — datos del repositorio (API de GitHub)",
+      "url": "https://api.github.com/repos/bradautomates/claude-video",
+      "dato": "18.420 estrellas y licencia MIT al 12 de octubre de 2026",
+      "cita": "\"stargazers_count\": 18420 · \"license\": { \"spdx_id\": \"MIT\" }",
+      "verificado": "2026-10-12",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "github": {
+      "nombre": "GitHub",
+      "logo": "logos/github.svg",
+      "fondo": "#FFFFFF"
+    },
+    "ffmpeg": {
+      "nombre": "FFmpeg",
+      "logo": "logos/ffmpeg.svg",
+      "fondo": "#FFFFFF"
+    },
+    "homebrew": {
+      "nombre": "Homebrew",
+      "logo": "logos/homebrew.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-mira-videos-y-crea-skills.pdf",
+  "fecha": "2026-10-12",
+  "origen": {
+    "material": "2026-10-09-1001",
+    "version": 1
+  }
+}

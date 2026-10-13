@@ -1,0 +1,304 @@
+{
+  "contenido": {
+    "id": "2026-09-29-4",
+    "version": 1,
+    "guion_hash": "sha256:388a65f492397d04644cd75c9a77da881c13b3ed5ae42575bc17ebe8c4d9593c",
+    "generado": "2026-10-05T19:22:57Z",
+    "verificado": "2026-10-05",
+    "formato": "plantilla",
+    "promesa": "el paso a paso con el prompt para adaptar outliers con Claude",
+    "palabra": "VIRAL",
+    "nombre_pdf": "claude-guiones-desde-outliers-de-reels",
+    "portada": {
+      "titulo": "25 guiones de reels",
+      "acento": "sin inventar ninguno",
+      "subtitulo": "Toma los reels que ya explotaron en tu nicho y conviértelos en guiones tuyos con Claude. El prompt exacto, listo para copiar.",
+      "herramientas": [
+        "instagram",
+        "googlegemini",
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El **prompt exacto** que convierte el guion de un reel ajeno en un guion tuyo.",
+        "Cómo sacar la transcripción sin escribirla: **Claude no lee video** y aquí está la vuelta.",
+        "La cuenta completa: **5 referentes × 5 reels = 25 guiones** con estructura probada."
+      ],
+      "tiempo": "20 minutos para tus primeros 5 guiones",
+      "empieza_por": "El prompt de la sección 03"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Encuentra los outliers",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Arma una lista de 5 cuentas grandes de tu nicho."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Elige cuentas que le hablen a **tu misma audiencia** y que publiquen seguido."
+              },
+              {
+                "texto": "Entra a su pestaña de Reels y ordénalos de más a menos vistos. Los de arriba son los **outliers**."
+              },
+              {
+                "texto": "Guarda esos 5 y anota en una frase qué problema resuelve cada uno."
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "un outlier lo es **dentro de su cuenta**. Un reel de 200 mil en una cuenta de un millón es normal; en una de 20 mil, es oro."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Elige tus 5 cuentas y guarda el reel más visto de cada una."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Saca la transcripción",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Guarda el reel como MP4 y súbelo a Gemini: te devuelve el texto que va a leer Claude."
+          },
+          {
+            "tipo": "dato",
+            "valor": "0",
+            "texto": "formatos de video acepta Claude. Solo lee documentos e imágenes: un MP4 no entra en el chat.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "googlegemini",
+            "nombre": "Google Gemini",
+            "que_hace": "El chat de IA de Google. Le subes el MP4 del reel y te devuelve la transcripción en texto.",
+            "precio": "Gratis hasta 5 minutos de video",
+            "url": "https://gemini.google.com",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Guarda el reel como archivo **MP4**."
+              },
+              {
+                "texto": "Abre Gemini, adjunta el MP4 y pégale esta instrucción.",
+                "codigo": "Transcribe este video completo, palabra por palabra, sin resumir.\nMarca el segundo en que empieza cada frase."
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "claude-formatos.png",
+            "pie": "Los formatos que acepta Claude: documentos e imágenes. Video no está en la lista.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "la transcripción no es el guion. Te da las palabras; la estructura la arma Claude."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Transcribe un solo outlier: el que más te gustó de tu lista."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Adapta el outlier a tu nicho",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pega la transcripción en Claude y encima el prompt de la página siguiente."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claude",
+            "nombre": "Claude",
+            "que_hace": "El chat de IA de Anthropic. Aquí entra la transcripción y sale tu guion.",
+            "precio": "Gratis; Pro desde US$17/mes",
+            "url": "https://claude.ai",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo outlier, otro nicho",
+            "etiquetas": [
+              "El reel ajeno",
+              "Tu guion"
+            ],
+            "antes": "«No tengo diseñador ni editor y publico 30 reels al mes. Lo primero: 5 referentes de tu nicho…»",
+            "despues": "«No tengo nutricionista y armo el menú de la semana en 10 minutos. Lo primero: 5 recetas que ya te salen…»"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si no le dices a quién le hablas, Claude te devuelve un guion correcto y genérico. Esas dos líneas cambian todo."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Adaptar un outlier",
+            "texto": "Eres mi estratega de contenido para Instagram.\nMi nicho: {{tu nicho}}. Le hablo a {{tu audiencia}}.\n\nAbajo va la transcripción de un reel ajeno que explotó\nen mi nicho. Primero desármalo:\n1. Qué problema concreto resuelve.\n2. Cómo es el hook: las dos primeras frases.\n3. La estructura beat por beat, con segundos.\n4. Por qué alguien lo guardaría.\n\nDespués escríbeme un guion nuevo de 45 a 70 segundos\ncon esa misma estructura y mi tema. Reglas:\n- Mismo problema, llevado a mi nicho.\n- Nada calcado: máximo 6 palabras seguidas iguales.\n- Frases cortas, de tú, español neutro de LATAM.\n- Un dato verificable con su fuente, o ninguno.\n- Cierra pidiendo que comenten {{tu PALABRA}}.\n\nDevuélveme el desarme y el guion con sus tiempos.\n\nTranscripción:\n{{pega aquí la transcripción}}"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre el prompt una vez, con la transcripción que ya tienes."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Revisa antes de grabar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pásale estas cuatro preguntas al guion que te devolvió Claude."
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "El problema es el mismo, pero el ejemplo es tuyo.",
+              "No hay 6 palabras seguidas iguales al original.",
+              "El hook se entiende sin sonido.",
+              "El cierre pide **tu** palabra, no la del original."
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "si copias la palabra del CTA original, compites con los comentarios de ese reel. Cámbiala siempre."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Marca la checklist en tu primer guion y mándale a Claude lo que falló."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Haz la cuenta: 25 guiones",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Repite el ciclo con los 5 reels de cada referente."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "",
+              "A mano",
+              "Con este sistema"
+            ],
+            "filas": [
+              [
+                "De dónde sale la idea",
+                "De lo que se te ocurra hoy",
+                "De un reel que ya funcionó"
+              ],
+              [
+                "Guiones por sesión",
+                "1 o 2",
+                "5, uno por outlier"
+              ],
+              [
+                "Qué tienes que decidir",
+                "Todo: tema, hook y estructura",
+                "Solo tu ejemplo y tu dato"
+              ]
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "25 guiones no son 25 publicaciones seguidas. Si sacas los cinco del mismo referente uno atrás del otro, se nota."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Bloquea 30 minutos en tu agenda para los 5 guiones del primer referente."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando son 30 reels al mes, el cuello de botella se muda",
+      "texto": "Con esto tienes guiones de sobra. El problema deja de ser qué grabar.\n\nAhora es otro: que alguien transcriba, adapte y ordene los 25 sin que tú abras un chat cada vez. Que el material de apoyo de cada reel exista antes de publicarlo. Y que los comentarios se conviertan solos en un DM con el recurso.\n\nEso ya no es un prompt. Es un sistema conectado a tu calendario de publicación."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tu contenido puede correr sola: la investigación, los guiones o la entrega del recurso por DM."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Upload files to Claude",
+      "url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude",
+      "dato": "Claude solo acepta documentos (PDF, DOCX, CSV, TXT, HTML, ODT, RTF, EPUB, JSON, XLSX) e imágenes (JPEG, PNG, GIF, WebP): no hay ningún formato de video ni de audio en la lista",
+      "cita": "Claude can work with the following document types: PDF, DOCX, CSV, TXT, HTML, ODT, RTF, EPUB, JSON, XLSX. Claude supports the following image formats: JPEG, PNG, GIF, WebP.",
+      "verificado": "2026-10-05",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Claude: planes y precios",
+      "url": "https://claude.com/pricing",
+      "dato": "El plan Free de Claude cuesta US$0 y Pro cuesta US$17 al mes con pago anual (US$20 al mes si se paga mes a mes)",
+      "cita": "Pro — $17/month with annual subscription",
+      "verificado": "2026-10-05",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Upload and analyze files in Gemini Apps",
+      "url": "https://support.google.com/gemini/answer/14903178",
+      "dato": "En las apps de Gemini cada video puede pesar hasta 2 GB y la duración total de video por prompt es de 5 minutos; Google AI Pro o Ultra la extienden a 1 hora",
+      "cita": "Each video can be up to 2 GB. Total video length can be up to 5 minutes. Upgrade to Google AI Pro or Google AI Ultra to extend total upload length to 1 hour.",
+      "verificado": "2026-10-05",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Instagram Ranking Explained",
+      "url": "https://about.instagram.com/blog/announcements/instagram-ranking-explained",
+      "dato": "Para recomendar reels, la señal más importante es la actividad del usuario: qué reels likeó, guardó, recompartió y comentó",
+      "cita": "We look at things like which reels you've liked, saved, reshared, commented on, and engaged with recently.",
+      "verificado": "2026-10-05",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "instagram": {
+      "nombre": "Instagram",
+      "logo": "logos/instagram.svg",
+      "fondo": "#FFFFFF"
+    },
+    "googlegemini": {
+      "nombre": "Gemini",
+      "logo": "logos/googlegemini.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-guiones-desde-outliers-de-reels.pdf",
+  "fecha": "2026-10-06",
+  "origen": {
+    "material": "2026-09-29-4",
+    "version": 1
+  }
+}
