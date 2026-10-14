@@ -1,0 +1,431 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1002",
+    "version": 1,
+    "guion_hash": "sha256:2ee07eb2872f43b1939121000195e70635b8b2f983cd2d3552b8f7d2ea22b100",
+    "generado": "2026-10-14T16:30:00Z",
+    "verificado": "2026-10-14",
+    "formato": "plantilla",
+    "promesa": "la lista con los links de las 11 galerías y cómo dárselos a tu IA",
+    "palabra": "GALERIAS",
+    "nombre_pdf": "11-galerias-de-diseno-para-tu-ia",
+    "portada": {
+      "titulo": "Que tu IA deje de inventar el diseño",
+      "acento": "11 links y el prompt",
+      "subtitulo": "Las once galerías gratis que abres antes de pedir una pantalla, con su link, y el prompt exacto para dárselas a Claude Code o Cursor.",
+      "herramientas": [
+        "21st",
+        "magicui",
+        "aceternityui",
+        "uiverse",
+        "componentgallery",
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Las **11 galerías** con su link, agrupadas por lo que resuelve cada una.",
+        "El **prompt** que convierte una referencia en una pantalla, listo para copiar.",
+        "Cómo meter el estilo de una web real en un archivo **DESIGN.md** que tu IA lee."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El prompt de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Las 11 galerías, con su link",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Guarda estas once páginas. Son el catálogo que abres antes de pedirle una pantalla."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Galería",
+              "Para qué la abres",
+              "Link"
+            ],
+            "filas": [
+              [
+                "Minimal Gallery",
+                "Webs minimalistas elegidas a mano",
+                "minimal.gallery"
+              ],
+              [
+                "DesignBookmark",
+                "Directorio de herramientas de diseño",
+                "designbookmark.com"
+              ],
+              [
+                "The Component Gallery",
+                "Componentes de sistemas de diseño reales",
+                "component.gallery"
+              ],
+              [
+                "CTA.gallery",
+                "Botones y formularios para el clic",
+                "cta.gallery"
+              ],
+              [
+                "21st",
+                "Componentes con su prompt listo",
+                "21st.dev"
+              ],
+              [
+                "Aceternity UI",
+                "Secciones animadas para una landing",
+                "ui.aceternity.com"
+              ]
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Galería",
+              "Para qué la abres",
+              "Link"
+            ],
+            "filas": [
+              [
+                "Magic UI",
+                "150+ componentes animados, gratis",
+                "magicui.design"
+              ],
+              [
+                "Motion Primitives",
+                "Movimientos suaves para copiar",
+                "motion-primitives.com"
+              ],
+              [
+                "Uiverse",
+                "Botones y tarjetas de la comunidad",
+                "uiverse.io"
+              ],
+              [
+                "3dicons",
+                "Iconos 3D con licencia libre",
+                "3dicons.co"
+              ],
+              [
+                "Refero Styles",
+                "El estilo de una web en un DESIGN.md",
+                "styles.refero.design"
+              ]
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "1.500+",
+            "texto": "renders de iconos 3D con licencia **CC0** en 3dicons: úsalos sin pedir permiso.",
+            "fuente": "f10"
+          },
+          {
+            "tipo": "dato",
+            "valor": "2.671",
+            "texto": "ejemplos sacados de **95 sistemas de diseño** reales en The Component Gallery.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre tres y guarda la que más se parezca a lo tuyo."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "El prompt que le pasas a tu IA",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Copia el prompt y pégale dos links de la lista."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Diseña con referencia",
+            "texto": "Vas a diseñar {{la pantalla}} para {{mi proyecto}}.\nAbre estas referencias y descríbelas: {{2 o 3 links}}.\nDe cada una anota: paleta, tipografía, tamaño de texto, aire y forma de los botones.\nArma con eso una guía de estilo corta y enséñamela.\nCuando la apruebe, construye la pantalla solo con esa guía.\nNo inventes colores ni fuentes que no estén ahí."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo pedido",
+            "antes": "Hazme una landing moderna y bonita.",
+            "despues": "Copia el aire y la tipografía de la web de Minimal Gallery, y el botón de CTA.gallery."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pásale el prompt a una pantalla que tengas a medias."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Pega la pieza ya hecha",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "No describas la pieza: cópiala."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "21st",
+            "nombre": "21st",
+            "que_hace": "Componentes de React y Tailwind con su prompt listo.",
+            "precio": "Gratis · 2 copias al día",
+            "url": "https://21st.dev/",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Busca la pieza y abre su ficha."
+              },
+              {
+                "texto": "Toca «Copy prompt» y pégalo en Claude Code."
+              },
+              {
+                "texto": "O conéctale su servidor MCP a la terminal.",
+                "codigo": "npx @21st-dev/cli@latest init --client claude"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "son dos copias gratis al día. Elige bien cuáles valen."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Copia una sola pieza hoy: el botón principal."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Copia el estilo de una web",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pásale el archivo, no un adjetivo."
+          },
+          {
+            "tipo": "dato",
+            "valor": "2.000+",
+            "texto": "webs en **Refero Styles**, ya traducidas al archivo de estilo que tu IA lee.",
+            "fuente": "f11"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Busca la web que te gusta en `styles.refero.design`."
+              },
+              {
+                "texto": "Copia su `DESIGN.md` a la raíz de tu proyecto."
+              },
+              {
+                "texto": "Dile a tu agente que esa es la única guía.",
+                "codigo": "Usa DESIGN.md como unica guia de estilo.\nSi un color o una fuente no esta ahi, preguntame."
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el archivo copia el estilo, no la licencia. Úsalo de referencia, no para clonar una marca."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Baja el DESIGN.md de una web y pégalo en tu proyecto."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Lo que se mueve, al final",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Deja las animaciones para el último paso."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "magicui",
+            "nombre": "Magic UI",
+            "que_hace": "150+ componentes y efectos animados para React.",
+            "precio": "Gratis y open source",
+            "url": "https://magicui.design/",
+            "fuente": "f7"
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "uiverse",
+            "nombre": "Uiverse",
+            "que_hace": "Más de 3.000 botones y tarjetas de la comunidad.",
+            "precio": "Gratis · licencia MIT",
+            "url": "https://uiverse.io/",
+            "fuente": "f9"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "una página con cinco animaciones no se ve moderna, se ve nerviosa. Elige una y repítela."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Agrega una sola animación: la del botón principal."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando la pantalla bonita tiene que trabajar",
+      "texto": "Copiar un componente es la parte fácil. Lo difícil empieza después: que la página cargue rápido en un celular viejo, que el formulario llegue a donde tienes tus clientes y que el contenido se actualice sin tocar código.\n\nY cuando sumas la quinta pantalla aparece el problema de verdad: que todas se vean de la misma familia. Ahí ya no alcanza con una galería. Hace falta un sistema: un archivo de estilo que mande sobre todo el proyecto, componentes que se reusen y una forma de publicar cambios sin romper lo que ya estaba."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos tu página: qué referencias te sirven, qué se puede copiar y qué hay que armar a medida."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Minimal Gallery",
+      "url": "https://minimal.gallery/",
+      "dato": "Qué es y qué junta: webs minimalistas elegidas a mano, con filtros por tipo y por plataforma. Gratis de navegar (el boletín semanal es de pago). Funciona desde 2013.",
+      "cita": "For the love of beautiful & functional websites",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "DesignBookmark",
+      "url": "https://designbookmark.com/",
+      "dato": "Directorio gratis de herramientas y webs de diseño: 2.548 recursos repartidos en 59 categorías.",
+      "cita": "DesignBookmark, all the design tools & websites you need",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "The Component Gallery",
+      "url": "https://component.gallery/",
+      "dato": "Repositorio gratis de componentes de interfaz sacados de sistemas de diseño reales: 60 componentes, 95 sistemas de diseño y 2.671 ejemplos.",
+      "cita": "60 components, 95 design systems, 2,671 examples.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "CTA.gallery",
+      "url": "https://cta.gallery/",
+      "dato": "Galería gratis de llamadas a la acción: botones, formularios, boletines, páginas de precios y modales de webs reales.",
+      "cita": "Curated gallery of Call-to-Actions (CTAs) designed to inspire creativity and maximize conversions.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "21st — componentes de React y Tailwind con su prompt",
+      "url": "https://21st.dev/",
+      "dato": "Catálogo de componentes de React, Tailwind y shadcn/ui. Cada pieza trae un botón «Copy prompt» para pegar en Claude Code o Cursor. Gratis con 2 copias de componente al día; la membresía las vuelve ilimitadas. El servidor MCP se conecta con npx @21st-dev/cli@latest init --client con cursor, claude, codex, vscode o devin.",
+      "cita": "12,000+ hand-crafted React and Tailwind CSS components, templates, and shadcn themes by real design engineers.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Aceternity UI",
+      "url": "https://ui.aceternity.com/",
+      "dato": "Librería de componentes animados de React y Tailwind para landings: más de 200 componentes, de los cuales 116+ son gratis; el resto va con un pase de pago.",
+      "cita": "The React component library for beautiful landing pages.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f7",
+      "titulo": "Magic UI",
+      "url": "https://magicui.design/",
+      "dato": "Más de 150 componentes y efectos animados para React y Tailwind, gratis y open source.",
+      "cita": "150+ free and open-source animated components and effects.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f8",
+      "titulo": "Motion Primitives",
+      "url": "https://motion-primitives.com/",
+      "dato": "Kit open source de componentes animados para copiar y pegar, con documentación y ejemplos.",
+      "cita": "UI kit to make beautiful, animated interfaces, faster.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f9",
+      "titulo": "Uiverse — repositorio oficial",
+      "url": "https://github.com/uiverse-io/galaxy",
+      "dato": "Más de 3.000 elementos de interfaz hechos por la comunidad, en CSS o Tailwind, publicados con licencia MIT: se pueden usar, modificar y distribuir.",
+      "cita": "The largest Open-Source UI Library! Community-made and free to use. Made with either CSS or Tailwind.",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f10",
+      "titulo": "3dicons",
+      "url": "https://3dicons.co/",
+      "dato": "Más de 1.500 renders de iconos 3D sobre más de 200 iconos únicos, con licencia CC0: uso personal o comercial, sin pedir permiso ni dar crédito.",
+      "cita": "Beautifully Crafted open source & premium 3D Icons",
+      "verificado": "2026-10-14",
+      "oficial": true
+    },
+    {
+      "id": "f11",
+      "titulo": "Refero Styles",
+      "url": "https://styles.refero.design/",
+      "dato": "Más de 2.000 sistemas de diseño extraídos de webs de producto y escritos como un archivo DESIGN.md (colores, tipografía, espaciados y componentes) para Cursor, Claude Code, Codex, v0 o Lovable.",
+      "cita": "Your favorite sites, in DESIGN.md",
+      "verificado": "2026-10-14",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "21st": {
+      "nombre": "21st",
+      "logo": "logos/21st.png",
+      "fondo": "#FFFFFF"
+    },
+    "magicui": {
+      "nombre": "Magic UI",
+      "logo": "logos/magicui.png",
+      "fondo": "#FFFFFF"
+    },
+    "aceternityui": {
+      "nombre": "Aceternity UI",
+      "logo": "logos/aceternityui.png",
+      "fondo": "#FFFFFF"
+    },
+    "uiverse": {
+      "nombre": "Uiverse",
+      "logo": "logos/uiverse.png",
+      "fondo": "#FFFFFF"
+    },
+    "componentgallery": {
+      "nombre": "The Component Gallery",
+      "logo": "logos/componentgallery.png",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "11-galerias-de-diseno-para-tu-ia.pdf",
+  "fecha": "2026-10-14",
+  "video": "https://www.instagram.com/reel/DefFiUfCjo5/",
+  "origen": {
+    "material": "2026-10-09-1002",
+    "version": 1
+  }
+}
