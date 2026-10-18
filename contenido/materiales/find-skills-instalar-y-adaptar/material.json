@@ -1,0 +1,298 @@
+{
+  "contenido": {
+    "id": "2026-10-09-1004",
+    "version": 1,
+    "guion_hash": "sha256:d4e43e84dcaea18afd5db84611fe1e335fcab3a6e5a48c9cde3db9ea00037340",
+    "generado": "2026-10-17T23:40:00Z",
+    "verificado": "2026-10-17",
+    "formato": "plantilla",
+    "promesa": "la guía para instalar find-skills y adaptarla a lo que haces",
+    "palabra": "CATALOGO",
+    "nombre_pdf": "find-skills-instalar-y-adaptar",
+    "portada": {
+      "titulo": "Una sola skill para encontrar todas",
+      "acento": "instalar find-skills y hacerla tuya",
+      "subtitulo": "El comando exacto para dejar find-skills en Claude Code, cómo pedirle skills con tus palabras, cómo revisar su seguridad y cómo guardar tu propia versión.",
+      "herramientas": [
+        "claude",
+        "vercel"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El comando exacto para instalar **find-skills** y que quede en todos tus proyectos.",
+        "Cómo pedirle una skill a Claude con tus palabras, sin saber el nombre.",
+        "El prompt para adaptar una skill a tu trabajo y guardarla con tu nombre."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El comando de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Por qué esta skill primero",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instala una sola skill: la que sabe buscar todas las demás. Una skill es una receta que le enseña a Claude algo que todavía no sabe hacer, y Claude no trae adentro la lista de las que existen."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "vercel",
+            "nombre": "find-skills, de Vercel Labs",
+            "que_hace": "Busca skills en el catálogo abierto, las compara por instalaciones y por reputación del autor, y te instala la que sirve.",
+            "precio": "Gratis, repo público con licencia MIT",
+            "url": "https://www.skills.sh/vercel-labs/skills/find-skills",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "dato",
+            "valor": "3,9 M",
+            "texto": "instalaciones: es la skill **número 1** de skills.sh, con 35,3 mil estrellas en su repo.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Entra a skills.sh y mira la lista de lo más instalado: en dos minutos sabes qué existe."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Instálala con un comando",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre la terminal y pega el comando. Queda en tu usuario, así la tienes en todos tus proyectos."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Pega este comando. `-a claude-code` elige el agente, `-g` la instala en tu usuario y `-y` salta las confirmaciones.",
+                "codigo": "npx skills add https://github.com/vercel-labs/skills --skill find-skills -a claude-code -g -y"
+              },
+              {
+                "texto": "Comprueba que quedó instalada.",
+                "codigo": "npx skills list"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "sin `-g` se instala solo en el proyecto donde corriste el comando. Con `-g` queda en `~/.claude/skills/` y la ves desde cualquier parte."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Instálala ahora y abre Claude Code: ya puede buscarte skills."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Pídele skills como hablas",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "No busques nombres. Cuéntale a Claude la tarea que te cuesta y deja que él salga a buscar."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Pedirlo con tus palabras",
+            "etiquetas": [
+              "Tú escribes",
+              "Claude hace"
+            ],
+            "antes": "¿Hay algo que me ayude a hacer mis facturas más rápido?",
+            "despues": "Busca en el catálogo y te muestra las opciones con sus instalaciones y su autor."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Dónde",
+              "Qué haces"
+            ],
+            "filas": [
+              [
+                "En Claude",
+                "Le cuentas la tarea con tus palabras"
+              ],
+              [
+                "En la terminal",
+                "`npx skills find` más tu palabra clave"
+              ],
+              [
+                "En la web",
+                "skills.sh: lo más instalado y lo nuevo"
+              ]
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Piensa en la tarea que más repites y pídesela a Claude en una frase."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Revisa la seguridad antes de instalar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Antes de instalar cualquier skill, pásala por las auditorías de skills.sh. Una skill toca lo mismo que tocas tú."
+          },
+          {
+            "tipo": "captura",
+            "archivo": "auditorias-skillssh.png",
+            "pie": "Tres escáneres por skill: Gen Agent Trust Hub, Socket y Snyk.",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "Pasa de 1.000 instalaciones. Debajo de 100, desconfía.",
+              "El autor es conocido: vercel-labs, anthropics, microsoft.",
+              "Su repo tiene más de 100 estrellas en GitHub."
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "ni la número uno pasa limpia: find-skills sale Safe en Gen y sin alertas en Socket, y aun así Snyk la marca Med Risk."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Busca en las auditorías la skill que ibas a instalar hoy."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Hazla tuya y guárdala con otro nombre",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Toma la skill que más se parezca a tu trabajo, pídele a Claude que la adapte y guárdala con tu propio nombre."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Adaptar una skill a cómo trabajas tú",
+            "texto": "Quiero adaptar una skill a mi forma de trabajar.\n\n1. Lee el archivo SKILL.md de {{la skill}}.\n2. Dime en tres líneas qué hace y qué decide por mí.\n3. Esto es lo mío: {{a qué te dedicas y cómo trabajas}}.\n4. Reescríbela para mi caso: cambia los ejemplos por los míos, agrega mis reglas fijas y saca lo que no uso.\n5. Guárdala en una carpeta nueva dentro de ~/.claude/skills/ con el nombre {{tu-nombre}}, y escribe una description que diga en qué momentos usarla.\n\nNo toques la original: me quiero quedar con las dos."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Mira dónde quedaron tus skills de usuario.",
+                "codigo": "ls ~/.claude/skills/"
+              },
+              {
+                "texto": "Duplica la carpeta con tu nombre.",
+                "codigo": "cp -r ~/.claude/skills/find-skills ~/.claude/skills/mi-buscador"
+              },
+              {
+                "texto": "En el SKILL.md de tu copia, cambia `name` y `description`. La `description` es lo único que Claude lee para decidir cuándo usar la skill, así que escribe ahí los pedidos con los que quieres que se dispare."
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "`npx skills update` actualiza a su última versión las skills que instalaste. Tu copia con otro nombre no entra en esa lista: por eso tus cambios siguen ahí mañana."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Duplica una skill que ya uses y cámbiale una sola regla por la tuya."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando dejas de instalar y empiezas a armar",
+      "texto": "Instalar una skill es la parte fácil. Lo que cuesta viene después: que tu equipo use las mismas, que no se pisen entre ellas y que una actualización no te rompa lo que ya funcionaba.\n\nY el salto de verdad es dejar de usar recetas de otros. Tu forma de cotizar, tu manera de responderle a un cliente, tu cierre de mes: eso convertido en skills que Claude sigue igual todos los días.\n\nAhí deja de ser una herramienta suelta y pasa a ser un sistema."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué partes de tu trabajo se pueden convertir en skills que corran solas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "find-skills en skills.sh",
+      "url": "https://www.skills.sh/vercel-labs/skills/find-skills",
+      "dato": "find-skills tiene 3.9M de instalaciones, 35.3K estrellas en GitHub, repo vercel-labs/skills verificado, y su comando de instalación oficial",
+      "cita": "npx skills add https://github.com/vercel-labs/skills --skill find-skills",
+      "verificado": "2026-10-17",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "SKILL.md de find-skills (vercel-labs/skills)",
+      "url": "https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md",
+      "dato": "Qué hace la skill, los comandos del CLI, los criterios para confiar en una skill y los flags -g e -y",
+      "cita": "Install count — Prefer skills with 1K+ installs. Be cautious with anything under 100. Source reputation — Official sources (vercel-labs, anthropics, microsoft) are more trustworthy than unknown authors. GitHub stars — A skill from a repo with <100 stars should be treated with skepticism.",
+      "verificado": "2026-10-17",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "README del CLI skills (vercel-labs/skills)",
+      "url": "https://github.com/vercel-labs/skills",
+      "dato": "Flags del CLI (-g global, -a agente, --skill, -y), dónde queda instalada cada skill, comandos list y update, licencia MIT y soporte para más de 75 agentes",
+      "cita": "-g, --global: Install to user directory (~/) instead of project. -a, --agent <agents...>: Target specific agents. -y, --yes: Skip confirmation prompts.",
+      "verificado": "2026-10-17",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Security Audits de skills.sh",
+      "url": "https://www.skills.sh/audits",
+      "dato": "Las auditorías combinan tres escáneres y find-skills sale Safe en Gen, 0 alertas en Socket y Med Risk en Snyk",
+      "cita": "Combined security audit results from Gen Agent Trust Hub, Socket, and Snyk.",
+      "verificado": "2026-10-17",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Skills — documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Las skills de usuario viven en ~/.claude/skills/<nombre>/SKILL.md y la description es lo que Claude lee para decidir cuándo usarlas",
+      "cita": "Every skill needs a SKILL.md file with two parts: YAML frontmatter between --- markers that tells Claude when to use the skill, and markdown content with the instructions Claude follows when the skill runs.",
+      "verificado": "2026-10-17",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "skills.sh — The Open Agent Skills Ecosystem",
+      "url": "https://skills.sh/",
+      "dato": "El tablero ordena las skills por instalaciones; find-skills es la número 1 del catálogo",
+      "cita": "",
+      "verificado": "2026-10-17",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "vercel": {
+      "nombre": "vercel",
+      "logo": "logos/vercel.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "find-skills-instalar-y-adaptar.pdf",
+  "fecha": "2026-10-17",
+  "video": "https://www.instagram.com/reel/DenWsRMjDsK/",
+  "origen": {
+    "material": "2026-10-09-1004",
+    "version": 1
+  }
+}
