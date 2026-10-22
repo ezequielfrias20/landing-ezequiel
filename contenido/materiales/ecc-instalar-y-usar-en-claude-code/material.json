@@ -1,0 +1,288 @@
+{
+  "contenido": {
+    "id": "2026-09-29-9",
+    "version": 1,
+    "guion_hash": "sha256:e85b64c6e5bed1b71c5e61a435b1ad0b7221ddb74be5ea7f907b00c7abc5e94f",
+    "generado": "2026-10-21T23:55:00Z",
+    "verificado": "2026-10-21",
+    "formato": "plantilla",
+    "promesa": "el link del repositorio y una guía para aprovecharlo a fondo",
+    "palabra": "REPO",
+    "nombre_pdf": "ecc-instalar-y-usar-en-claude-code",
+    "portada": {
+      "titulo": "ECC, instalado y trabajando",
+      "acento": "el repo y la guía",
+      "subtitulo": "El repositorio gratis que le da a tu asistente de código un equipo de agentes, con el link, los comandos exactos de instalación y el prompt para usarlo de punta a punta.",
+      "herramientas": [
+        "ecc",
+        "claude",
+        "github",
+        "nodedotjs"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El link del repo y los **dos comandos** que lo instalan dentro de Claude Code.",
+        "Los **cinco comandos** de ECC que cubren el trabajo de todos los días, con qué hace cada uno.",
+        "El prompt que lleva una función desde el plan hasta las pruebas, sin que tú dirijas cada paso."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "La instalación de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Qué es ECC y qué te instala",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Piensa en ECC como el manual de trabajo que tu asistente de código no trae de fábrica: lo instalas una vez y deja de improvisar."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "ecc",
+            "nombre": "ECC · Everything Claude Code",
+            "que_hace": "Un repositorio con **71 agentes**, **311 skills** y 97 comandos que le agregan plan, memoria, revisión y escaneo de seguridad a Claude Code, Codex y Cursor.",
+            "precio": "Gratis · licencia MIT",
+            "url": "https://github.com/affaan-m/ECC",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "dato",
+            "valor": "285 mil",
+            "texto": "estrellas en GitHub el 21 de octubre de 2026. Exactamente **285.699**, y el repositorio se publicó en enero de este año.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre el repo y lee el índice del README: `github.com/affaan-m/ECC`."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Instálalo en dos comandos",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Instálalo desde adentro de Claude Code. No tienes que clonar nada a mano."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Comprueba que tienes **Node 18** o más nuevo. Si el número es menor, actualiza Node.",
+                "codigo": "node --version"
+              },
+              {
+                "texto": "Abre Claude Code en tu proyecto, en la versión 2.1 o más nueva, y agrega el repo.",
+                "codigo": "/plugin marketplace add https://github.com/affaan-m/ECC"
+              },
+              {
+                "texto": "Instala el plugin. Al terminar, cierra y vuelve a abrir Claude Code.",
+                "codigo": "/plugin install ecc@ecc"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "¿Usas Codex, Cursor u otra herramienta? El instalador guiado corre en tu terminal, dentro de la carpeta del proyecto.",
+                "codigo": "npx ecc-universal@2.2.3 setup"
+              }
+            ]
+          },
+          {
+            "tipo": "captura",
+            "archivo": "ecc-tools.png",
+            "pie": "La página oficial de ECC, con el instalador guiado y las herramientas donde funciona.",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre los dos comandos en un proyecto de prueba, no en el que trabajas hoy."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Los cinco comandos que de verdad usas",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Olvídate de las 311 skills. Con estos cinco comandos cubres casi todo."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Escribes",
+              "Y pasa esto"
+            ],
+            "filas": [
+              [
+                "/ecc:plan",
+                "Arma el plan antes de tocar el código"
+              ],
+              [
+                "/code-review",
+                "Revisa el código con mirada nueva, como si no lo hubiera escrito él"
+              ],
+              [
+                "/build-fix",
+                "Resuelve los errores que no dejan compilar"
+              ],
+              [
+                "/security-scan",
+                "Audita el código contra los diez agujeros de seguridad más comunes"
+              ],
+              [
+                "/refactor-clean",
+                "Encuentra el código muerto y lo saca"
+              ]
+            ],
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `/security-scan` sobre un proyecto tuyo y mira qué te dice."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "El prompt de la idea a las pruebas",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pega este prompt, cambia lo que está entre llaves y deja que haga el recorrido."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Una función de punta a punta",
+            "texto": "Quiero agregar esta función: {{la función}}.\nTrabaja con ECC en este orden:\n1. Usa /ecc:plan y muéstrame el plan. No toques código.\n2. Espera mi OK.\n3. Escribe primero las pruebas y después el código.\n4. Corre /code-review y arregla lo que salga.\n5. Corre /security-scan y cierra lo que encuentre.\n6. No termines hasta pasar el 80% de cobertura.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Úsalo hoy con la función más chica de tu lista, no con la más grande."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Lo que es gratis y lo que no",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Mira dónde está el límite y comprueba estas cuatro cosas."
+          },
+          {
+            "tipo": "dato",
+            "valor": "US$19",
+            "texto": "por asiento al mes cuesta la app de GitHub que revisa **repos privados**. El repo y sus agentes son gratis: sin pagar, analiza repos públicos, 10 por mes.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "71 agentes no reemplazan a un ingeniero. Hacen su parte repetida: planear, revisar y probar. Qué se construye y qué sale a producción lo decides tú."
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "El plan salió **antes** del código. Si empezó a escribir, páralo y pídeselo.",
+              "Las pruebas corren solas y la cobertura pasa el 80%.",
+              "El escaneo de seguridad miró también tus claves y tus hooks, no solo el código.",
+              "Lo que aprendió quedó guardado en la memoria del proyecto, no en el chat."
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `ecc memory init --scope project` en tu proyecto principal."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando ECC ya está puesto y el cuello de botella eres tú",
+      "texto": "Instalarlo toma quince minutos. Lo difícil empieza al día siguiente.\n\nQue cada proyecto tenga sus propias reglas. Que la memoria guarde lo que sirve y no se llene de basura. Que el plan, la revisión y el escaneo corran solos cada vez que subes código, y que alguien te avise antes de que algo roto llegue a producción.\n\nEso ya no es instalar un repositorio. Es armar el sistema alrededor y conectarlo con cómo trabajas."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tu trabajo pueden tomar estos agentes, con qué reglas y qué conviene dejar en manos humanas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "affaan-m/ECC en GitHub (README)",
+      "url": "https://github.com/affaan-m/ECC",
+      "dato": "ECC trae 71 agentes, 311 skills y 97 comandos; se instala con /plugin marketplace add + /plugin install o con npx ecc-universal@2.2.3 setup; pide Node.js 18 o mayor y Claude Code 2.1+; los comandos principales son /ecc:plan, /code-review, /build-fix, /security-scan y /refactor-clean; la cobertura de pruebas que verifica es 80%+; licencia MIT",
+      "cita": "Access to 71 agents, 311 skills, and 97 legacy command shims, plus hooks, rules, memory, continuous learning, and AgentShield security scanning.",
+      "verificado": "2026-10-21",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "API de GitHub: estrellas y licencia de affaan-m/ECC",
+      "url": "https://api.github.com/repos/affaan-m/ECC",
+      "dato": "285.699 estrellas, 42.378 forks, repositorio creado el 18 de enero de 2026, licencia MIT",
+      "cita": "\"stargazers_count\": 285699, \"forks_count\": 42378, \"created_at\": \"2026-01-18T00:51:51Z\", \"license\": {\"spdx_id\": \"MIT\"}",
+      "verificado": "2026-10-21",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "ECC: precios",
+      "url": "https://ecc.tools/pricing",
+      "dato": "El repo open source es gratis; la app de GitHub Pro cuesta US$19 por asiento al mes; el nivel gratis analiza solo repos públicos, 10 análisis al mes",
+      "cita": "ECC OSS install stays free · Public repo GitHub App analysis only · 10 analyses per month, 200 commits per run — Pro: $19 /seat /month",
+      "verificado": "2026-10-21",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "ECC: sitio oficial",
+      "url": "https://ecc.tools",
+      "dato": "ECC se presenta como la capa operativa para agentes de código y lista los harnesses soportados (Claude Code, Codex, Cursor, OpenCode, Kimi)",
+      "cita": "The operating layer for agent harnesses. Skills, memory, planning and security.",
+      "verificado": "2026-10-21",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "ecc": {
+      "nombre": "ECC",
+      "logo": "logos/ecc.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "github": {
+      "nombre": "GitHub",
+      "logo": "logos/github.svg",
+      "fondo": "#FFFFFF"
+    },
+    "nodedotjs": {
+      "nombre": "nodedotjs",
+      "logo": "logos/nodedotjs.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "ecc-instalar-y-usar-en-claude-code.pdf",
+  "fecha": "2026-10-21",
+  "video": "https://www.instagram.com/reel/Dexwk1cDtcI/",
+  "origen": {
+    "material": "2026-09-29-9",
+    "version": 1
+  }
+}
