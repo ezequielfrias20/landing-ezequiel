@@ -1,0 +1,290 @@
+{
+  "contenido": {
+    "id": "2026-09-29-13",
+    "version": 1,
+    "guion_hash": "sha256:1b4d21975c9af9d8ad8e3f8823aa7a4f36145a501e337313ef46bdc6decebaae",
+    "generado": "2026-10-24T18:40:00Z",
+    "verificado": "2026-10-24",
+    "formato": "plantilla",
+    "promesa": "los cinco proyectos resumidos en una guía",
+    "palabra": "FINDE",
+    "nombre_pdf": "claude-cinco-proyectos-fin-de-semana",
+    "portada": {
+      "titulo": "Cinco proyectos con Claude",
+      "acento": "en un fin de semana",
+      "subtitulo": "El reporte de tu mañana, tu segundo cerebro, el agente que te revisa la semana, tu kit de marca y tu biblioteca. Con el prompt de cada uno, listo para copiar.",
+      "herramientas": [
+        "claude",
+        "notion",
+        "gmail",
+        "googlecalendar"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Los **cinco prompts** completos, uno por proyecto, listos para pegar.",
+        "Cómo dejar el reporte de la mañana **corriendo solo** cada día, sin escribir código.",
+        "Dónde se rompe cada proyecto y qué hacer hoy para que no te pase."
+      ],
+      "tiempo": "Un fin de semana. El primero, en 20 minutos.",
+      "empieza_por": "El proyecto 01: es el que usas todos los días"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Reporte de la mañana",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Deja tu reporte del día corriendo solo."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Activa **Gmail** y **Google Calendar**."
+              },
+              {
+                "texto": "En Claude Code Desktop: **New task**."
+              },
+              {
+                "texto": "Pega el prompt y marca **Daily** a tu hora."
+              }
+            ]
+          },
+          {
+            "tipo": "captura",
+            "archivo": "tareas-programadas.png",
+            "pie": "Las tareas programadas, en la documentación oficial.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Reporte de la mañana",
+            "texto": "Arma mi reporte de hoy en un solo archivo.\n\n1. Mira mi Google Calendar de hoy y lista cada evento con su hora.\n2. Mira mi Gmail de las ultimas 24 horas y separalo en tres grupos: lo que necesita mi respuesta hoy, lo que puede esperar y lo que es ruido.\n3. Abre el archivo pendientes.md de esta carpeta y dime que sigue.\n\nDevuelvemelo en este orden:\n- Las 3 cosas que si o si tengo que cerrar hoy.\n- Mi agenda, hora por hora, con los huecos libres marcados.\n- Los correos que respondo yo, con una linea de contexto cada uno.\n\nGuardalo en reporte-{{fecha de hoy}}.md. Sin relleno y sin saludos: si algo no aparece, dilo en una linea."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "la tarea local solo corre con la app abierta y la computadora despierta. Si tu laptop durmió toda la noche, el reporte de las 7 llega cuando la abres. La primera vez pulsa Run now y aprueba los permisos: las siguientes ya no preguntan."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Activa hoy los dos conectores y pide el reporte de mañana en un chat normal. Programarlo viene después."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Tu segundo cerebro",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Mete en un proyecto de Claude todo lo tuyo: contratos, seguros, facturas."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Crea un proyecto y llámalo **Mi vida**. Sube tus documentos."
+              },
+              {
+                "texto": "Pega esto en las instrucciones del proyecto.",
+                "codigo": "Eres mi archivo personal. Respondes solo con lo que esta\nen los documentos de este proyecto y dices de cual salio.\nSi algo no esta, lo dices y no lo supones."
+              },
+              {
+                "texto": "¿Lo quieres en **Notion**? Activa su conector en vez de subir."
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "5",
+            "texto": "proyectos puedes crear con una cuenta **gratis** de Claude. Los cinco de esta guía entran justo.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Sube un solo documento, el que más buscas, y pregúntale algo que hoy abrirías a mano."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Tu agente de revisión",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Deja una tarea de noche que cierre tu día."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Cierre del día",
+            "texto": "Eres mi revisor y hoy cierra el dia.\n\n1. Lee los archivos de la carpeta diario/ de esta semana.\n2. Mira mi calendario de hoy: que se movio y que no alcance.\n3. Escribe diario/{{fecha de hoy}}.md con tres partes: que salio bien hoy en 3 lineas, que no salio y por que sin excusas, y la unica cosa que cambiaria manana.\n4. No me felicites. Si algo no funciono, dilo con todas las letras.\n\nSi hoy es domingo, abre los siete archivos de la semana y escribe semana.md: el patron que se repite y las 3 cosas que muevo la semana que viene.\n\nHablame claro y directo, como un socio. Si la semana fue mala, dilo."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "sin materia prima no sirve. Si no escribes nada en el día, revisa tu calendario y poco más."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Crea la carpeta `diario/` y escribe dos líneas: qué cerraste hoy y qué te frenó."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Tu kit de marca",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Dale a Claude cómo hablas, qué vendes y a quién, y pídele el kit completo."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Kit de marca",
+            "texto": "Vas a crear el kit de marca de mi negocio.\n\nAsi hablo yo: {{pega un post, un correo y un mensaje a un cliente}}.\nMis valores: {{tres palabras}}.\nLo que vendo: {{una frase}}.\nA quien: {{tu cliente ideal, en una frase}}.\nMarcas que me gustan y por que: {{dos o tres}}.\n\nDevuelveme un solo archivo con:\n1. Mi tono de voz en 5 reglas, cada una con un ejemplo de lo que si y lo que no.\n2. Una paleta de 5 colores con su codigo hexadecimal y para que sirve cada uno.\n3. Dos fuentes gratis de Google Fonts, una para titulos y otra para texto.\n4. Mi bio, mi frase de una linea y tres aperturas de correo.\n\nNada generico. Si algo no se deduce de lo que te di, preguntamelo."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Guarda la respuesta como `kit-de-marca.md` y pégala en las instrucciones del proyecto desde donde escribes."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Tu Live Library",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Mete en un segundo proyecto todo lo que lees."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Crea el proyecto **Biblioteca** y sube libros y PDFs."
+              },
+              {
+                "texto": "¿Un video? Pega su transcripción en un `.txt`."
+              },
+              {
+                "texto": "Pon esto en las instrucciones del proyecto.",
+                "codigo": "Eres mi bibliotecario. Respondes solo con lo que esta en\nesta biblioteca y citas el titulo y la pagina o el minuto."
+              }
+            ]
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Una pregunta a tu biblioteca",
+            "etiquetas": [
+              "Tú preguntas",
+              "Claude responde"
+            ],
+            "antes": "¿Qué decían sobre precios los libros que subí?",
+            "despues": "Dos coinciden en subir antes de escalar y el tercero dice lo contrario, con su capítulo."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Sube los tres últimos PDFs que guardaste y hazles una pregunta que cruce los tres."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Lo que cuesta no es armarlos",
+      "texto": "Armar los cinco en un fin de semana es la parte entretenida. El lunes empieza la otra.\n\nQue el reporte llegue aunque tu laptop haya dormido. Que el segundo cerebro se actualice solo cuando entra un contrato nuevo. Que el agente de revisión le escriba a tu equipo y no a un archivo que nadie abre. Que cuando una herramienta cambie, no se caiga todo en silencio.\n\nEso ya no es un proyecto de fin de semana. Es un sistema, y se diseña distinto."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada, trae el proyecto de los cinco que más te sirve y salimos con el plan para dejarlo corriendo solo."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Use Google Workspace connectors",
+      "url": "https://support.claude.com/en/articles/10166901-use-google-workspace-connectors",
+      "dato": "Claude puede ver y crear eventos del calendario y buscar, leer y responder correos de Gmail; los conectores están disponibles para todos los usuarios",
+      "cita": "View events and calendars, including shared calendars you have access to. / Search and read emails using natural language queries. / These connectors are available for all users on Claude and Claude Desktop.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Schedule recurring tasks in Claude Code Desktop",
+      "url": "https://code.claude.com/docs/en/desktop-scheduled-tasks",
+      "dato": "Las tareas programadas abren una sesión sola a la hora que elijas; la local lee tus archivos pero solo corre con la app abierta y la computadora despierta, y los horarios son Hourly, Daily, Weekdays, Weekly, Manual y Custom",
+      "cita": "Scheduled tasks start a new session automatically at a time and frequency you choose. Use them for recurring work like daily code reviews, dependency update checks, or morning briefings that pull from your calendar and inbox. / Local task: runs on your machine with direct access to your files and tools, but only fires while the app is open and your computer is awake.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "What are projects?",
+      "url": "https://support.claude.com/en/articles/9517075-what-are-projects",
+      "dato": "Un proyecto es un espacio con su propio historial y su base de conocimiento; con cuenta gratis se pueden crear hasta cinco",
+      "cita": "Projects allow you to create self-contained workspaces with their own chat histories and knowledge bases. / Projects are available to all users, including those with free Claude accounts. Free users can create a maximum of five projects.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Upload files to Claude",
+      "url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude",
+      "dato": "Claude abre documentos e imágenes (PDF, DOCX, CSV, TXT, HTML, ODT, RTF, EPUB, JSON, XLSX); hasta 100 páginas lee texto e imágenes de un PDF y de 101 a 1000 solo el texto",
+      "cita": "Claude can work with the following document types: PDF, DOCX, CSV, TXT, HTML, ODT, RTF, EPUB, JSON, XLSX. / Claude analyzes both text and visual elements, such as images, charts and graphics, in PDFs of 100 pages or fewer. For PDFs from 101 to 1000 pages, Claude processes text only.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Use connectors to extend Claude's capabilities",
+      "url": "https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities",
+      "dato": "Los conectores se activan desde el menú del chat o en Settings, Customize, Connectors",
+      "cita": "Connectors let Claude access your apps and services, retrieve your data, and take action within connected services.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Notion connector",
+      "url": "https://claude.com/marketplace/connectors/notion",
+      "dato": "El conector de Notion deja a Claude buscar, crear y actualizar páginas y bases de datos del espacio de trabajo",
+      "cita": "Connect your Notion workspace to search, update, and power workflows across tools.",
+      "verificado": "2026-10-24",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "notion": {
+      "nombre": "notion",
+      "logo": "logos/notion.svg",
+      "fondo": "#FFFFFF"
+    },
+    "gmail": {
+      "nombre": "gmail",
+      "logo": "logos/gmail.svg",
+      "fondo": "#FFFFFF"
+    },
+    "googlecalendar": {
+      "nombre": "googlecalendar",
+      "logo": "logos/googlecalendar.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-cinco-proyectos-fin-de-semana.pdf",
+  "fecha": "2026-10-26",
+  "video": "https://www.instagram.com/reel/De9_GvfCQ1-/",
+  "origen": {
+    "material": "2026-09-29-13",
+    "version": 1
+  }
+}
