@@ -1,0 +1,407 @@
+{
+  "contenido": {
+    "id": "2026-09-29-10",
+    "version": 1,
+    "guion_hash": "sha256:534ef4265a8f9d5d10b803119a3f75d337f8ee7684760ffddce3d1c44fca37fd",
+    "generado": "2026-10-22T19:08:57Z",
+    "verificado": "2026-10-22",
+    "formato": "plantilla",
+    "promesa": "la lista de los nueve no negociables, con los comandos y los modelos que uso",
+    "palabra": "TOKENS",
+    "nombre_pdf": "claude-code-nueve-reglas-para-ahorrar-tokens",
+    "portada": {
+      "titulo": "Las nueve reglas con Claude",
+      "acento": "cada una con su comando",
+      "subtitulo": "Los nueve no negociables del reel, con el comando o el archivo exacto que deja cada uno funcionando. Todo contra la documentación oficial.",
+      "herramientas": [
+        "claude",
+        "whatsapp",
+        "nodedotjs"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Las nueve reglas en una tabla, cada una con **lo único que tienes que escribir**.",
+        "El prompt del **loop**: Claude no te entrega la tarea hasta terminarla.",
+        "Qué modelo le toca a cada tarea, con los **alias oficiales** de Claude Code."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "La tabla de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Las nueve, y la primera",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Léelas, y activa la primera hoy."
+          },
+          {
+            "tipo": "comparativa",
+            "fuente": "f4",
+            "columnas": [
+              "La regla",
+              "Lo que escribes"
+            ],
+            "filas": [
+              [
+                "1. Conéctalo a tus apps",
+                "`claude mcp add`"
+              ],
+              [
+                "2. Loops, no prompts",
+                "Sección 02"
+              ],
+              [
+                "3. Sin tokens, enruta",
+                "`ccr ui`"
+              ],
+              [
+                "4. Lo repetitivo, a una skill",
+                "`SKILL.md`"
+              ],
+              [
+                "5. Lo automático, a un hook",
+                "`settings.json`"
+              ],
+              [
+                "6. Una tarea, un subagente",
+                "`.claude/agents/`"
+              ],
+              [
+                "7. Cada tarea, su modelo",
+                "`/model`"
+              ],
+              [
+                "8. Al terminar, compacta",
+                "`/compact`"
+              ],
+              [
+                "9. Lo grande, en modo plan",
+                "`/plan`"
+              ]
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f6",
+            "items": [
+              {
+                "texto": "Agrega el servidor. Con `--scope user` queda en todos tus proyectos.",
+                "codigo": "claude mcp add --transport http notion --scope user https://mcp.notion.com/mcp"
+              },
+              {
+                "texto": "Dentro de Claude Code, autoriza tu cuenta en el navegador.",
+                "codigo": "/mcp"
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "3",
+            "texto": "alcances por servidor: solo tú, compartido con tu equipo en `.mcp.json`, o en todos tus proyectos.",
+            "fuente": "f6"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "cada MCP conectado mete los nombres de sus herramientas en el contexto **antes** de que escribas nada. Conecta los que usas, no todos los que existen.",
+            "fuente": "f8"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Conecta un solo MCP hoy: el de la app donde más copias y pegas."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Pide un loop, no un prompt",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Un loop pide la cosa y cuándo parar."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El loop que no se rinde",
+            "texto": "Tarea: {{la tarea}}\nTermina cuando: {{la condición que la da por terminada}}\n\n1. Hazlo.\n2. Verifícalo tú, con una prueba real.\n3. Si falla, arréglalo y vuelve al paso 2.\n4. No me entregues nada mientras el 2 encuentre algo."
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo pedido",
+            "etiquetas": [
+              "Prompt",
+              "Loop"
+            ],
+            "antes": "Arregla el formulario.",
+            "despues": "Arregla el formulario. Termina cuando el mensaje llegue al correo."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Agrégale una línea: «termina cuando…»."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Enséñale una vez y deja de repetirte",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Dos archivos de texto. Uno para lo que repites a mano, otro para lo que quieres que pase solo."
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f2",
+            "items": [
+              {
+                "texto": "**La tarea que repites, a una skill.** Guarda esto en `.claude/skills/resumir-cambios/SKILL.md` y la llamas con `/resumir-cambios`.",
+                "codigo": "---\nname: resumir-cambios\ndescription: Resume los cambios sin guardar y marca lo riesgoso\n---\nResume los cambios pendientes. Separa lo seguro de lo riesgoso."
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "una skill no te cuesta contexto hasta que se usa. Un `CLAUDE.md` se carga **siempre**. Si la instrucción no aplica a todo, es una skill, no una regla del proyecto.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f3",
+            "items": [
+              {
+                "texto": "**Lo que debe pasar solo, a un hook.** Va en `.claude/settings.json` y se dispara sin que lo pidas, cada vez que Claude edita un archivo.",
+                "codigo": "{\n  \"hooks\": {\n    \"PostToolUse\": [{\n      \"matcher\": \"Edit\",\n      \"hooks\": [{ \"type\": \"command\", \"command\": \"npm run lint\" }]\n    }]\n  }\n}"
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "30+",
+            "texto": "momentos pueden disparar un hook: antes de una herramienta, después, al terminar el turno, al compactar, al cerrar la sesión.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Busca la instrucción que pegaste dos veces esta semana y hazla tu skill."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Un subagente por tarea",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Un subagente es un archivo de texto, con su modelo elegido."
+          },
+          {
+            "tipo": "dato",
+            "valor": "1",
+            "texto": "ventana de contexto **por subagente**: lo pesado no te llena la tuya.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "comparativa",
+            "fuente": "f7",
+            "columnas": [
+              "Alias",
+              "Para qué tarea"
+            ],
+            "filas": [
+              [
+                "fable",
+                "Lo más difícil y lo más largo"
+              ],
+              [
+                "opus",
+                "Razonamiento complejo"
+              ],
+              [
+                "sonnet",
+                "El trabajo diario"
+              ],
+              [
+                "haiku",
+                "Lo rápido y lo simple"
+              ]
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Crea tu primer subagente en `.claude/agents/`."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Libera contexto y tokens",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Tres movimientos para una sesión larga."
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f4",
+            "items": [
+              {
+                "texto": "**Al terminar una tarea, compacta con un foco.**",
+                "codigo": "/compact céntrate en el error del login"
+              },
+              {
+                "texto": "**Lo grande, en modo plan.** También con Shift+Tab.",
+                "codigo": "/plan migrar el login a la API nueva"
+              },
+              {
+                "texto": "**Sin tokens, enruta.** Corre `ccr ui` y apúntalo a otro proveedor. Gratis la pasarela, no los tokens.",
+                "codigo": "npm install -g @musistudio/claude-code-router"
+              }
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "0",
+            "texto": "ediciones hace Claude en modo plan: lee, explora y escribe el plan, pero **no toca tu código** hasta que lo apruebas.",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre `/context` y mira qué ocupa tu ventana."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando las nueve tienen que ser el sistema, no tu memoria",
+      "texto": "Aplicarlas a mano funciona la primera semana. Después se te olvida compactar, el hook lo tienes solo en tu laptop y cada persona del equipo usa el modelo que se le ocurre.\n\nLo difícil no es saber las reglas. Es que el proyecto las traiga puestas: las skills versionadas en el repo, los hooks que no dependen de que alguien se acuerde, los subagentes con su modelo ya elegido y alguien mirando el gasto de tokens.\n\nEso ya no es configuración. Es el sistema de trabajo de tu negocio con IA."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos qué tareas tuyas se convierten en skills, qué se automatiza con hooks y cuánto te estás gastando de más en tokens."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Subagents (Claude Code)",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "dato": "Cada subagente corre en su propia ventana de contexto, con su prompt, sus herramientas y sus permisos, y no ve la conversación principal. Los archivos van en .claude/agents/ (proyecto) o ~/.claude/agents/ (todos tus proyectos); solo name y description son obligatorios, y el campo model elige el modelo",
+      "cita": "Each subagent runs in its own context window with a custom system prompt, specific tool access, and independent permissions.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Skills (Claude Code)",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Una skill es un SKILL.md con frontmatter y instrucciones, en ~/.claude/skills/<nombre>/ o .claude/skills/<nombre>/. Claude la usa cuando es relevante o la invocas con /nombre. Las skills cargan su contenido solo cuando se usan, a diferencia de CLAUDE.md, que se carga siempre",
+      "cita": "Skills extend what Claude can do. Create a SKILL.md file with instructions, and Claude adds it to its toolkit. Claude uses skills when relevant, or you can invoke one directly with /skill-name.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Hooks (Claude Code)",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "dato": "Los hooks se ejecutan automáticamente en puntos del ciclo de vida de Claude Code. Hay más de 30 eventos (PreToolUse, PostToolUse, Stop, PreCompact, SubagentStop, SessionStart…) y se configuran en ~/.claude/settings.json o .claude/settings.json",
+      "cita": "Hooks are user-defined shell commands, HTTP endpoints, MCP tool calls, LLM prompts, or subagents that execute automatically at specific points in Claude Code's lifecycle.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Commands (Claude Code)",
+      "url": "https://code.claude.com/docs/en/commands",
+      "dato": "/compact libera contexto resumiendo la conversación y acepta instrucciones de foco; /context muestra qué está llenando la ventana; /plan entra en modo plan desde el prompt; /clear empieza de cero; /model y /effort cambian modelo y razonamiento. Todos vienen de fábrica en Claude Code",
+      "cita": "/compact [instructions] | Free up context by summarizing the conversation so far. Optionally pass focus instructions for the summary.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Permission modes: plan mode (Claude Code)",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "dato": "En modo plan Claude investiga y propone cambios sin hacerlos: lee archivos, corre comandos para explorar y escribe el plan, pero no edita el código. Se entra con Shift+Tab o con /plan, y las ediciones siguen bloqueadas hasta que apruebas el plan",
+      "cita": "Plan mode tells Claude to research and propose changes without making them. Claude reads files, runs shell commands to explore, and writes a plan, but does not edit your source.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Connect Claude Code to tools via MCP",
+      "url": "https://code.claude.com/docs/en/mcp",
+      "dato": "Un servidor MCP remoto se agrega con «claude mcp add --transport http <nombre> <url>». Hay tres alcances: local (solo tú, este proyecto), project (se guarda en .mcp.json y se comparte por el repo) y user (todos tus proyectos). /mcp autoriza con OAuth en el navegador y muestra el estado; claude mcp list lista los servidores",
+      "cita": "claude mcp add --transport http notion https://mcp.notion.com/mcp",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f7",
+      "titulo": "Model configuration (Claude Code)",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "dato": "Alias de modelo en Claude Code: fable (lo más difícil y lo más largo), opus (razonamiento complejo), sonnet (el trabajo diario), haiku (rápido y simple), best (el más capaz disponible) y opusplan (opus para planear, sonnet para ejecutar). Se cambian con /model, con claude --model o con el campo model del subagente",
+      "cita": "fable | Uses the Fable model for your provider for hardest and longest-running tasks",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f8",
+      "titulo": "Explore the context window (Claude Code)",
+      "url": "https://code.claude.com/docs/en/context-window",
+      "dato": "Al compactar, Claude Code reemplaza la conversación por un resumen; el CLAUDE.md del proyecto, la memoria automática, las descripciones de skills y el plan del modo plan se reinyectan desde el disco, y vuelve a leer hasta cinco de los archivos que tocó, los modificados más tarde. Antes de que escribas nada ya cargan CLAUDE.md, la memoria, los nombres de las herramientas MCP y las descripciones de skills",
+      "cita": "Right after compaction, Claude Code re-reads up to five of the files Claude has read or edited in the session, choosing the ones modified most recently.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f9",
+      "titulo": "claude-code-router (musistudio)",
+      "url": "https://github.com/musistudio/claude-code-router",
+      "dato": "Claude Code Router es una pasarela local de modelos para agentes de código: se instala con «npm install -g @musistudio/claude-code-router» y se abre con «ccr ui». Soporta OpenAI, Anthropic Messages, Gemini, OpenRouter, DeepSeek, Moonshot, Mistral, Z.AI y proveedores compatibles. Licencia MIT",
+      "cita": "This project is licensed under the MIT License.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    },
+    {
+      "id": "f10",
+      "titulo": "OpenRouter",
+      "url": "https://openrouter.ai/",
+      "dato": "OpenRouter da acceso a cientos de modelos por un solo endpoint, con fallbacks y seguimiento de costo. Algunos modelos tienen variante gratis, a 0 dólares por millón de tokens de entrada y de salida",
+      "cita": "A unified API for every major LLM. One endpoint, hundreds of models, with routing, fallbacks, and cost tracking across providers.",
+      "verificado": "2026-10-22",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "whatsapp": {
+      "nombre": "WhatsApp",
+      "logo": "logos/whatsapp.svg",
+      "fondo": "#FFFFFF"
+    },
+    "nodedotjs": {
+      "nombre": "nodedotjs",
+      "logo": "logos/nodedotjs.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-nueve-reglas-para-ahorrar-tokens.pdf",
+  "fecha": "2026-10-27",
+  "video": "https://www.instagram.com/reel/DfAnv2MFmJY/",
+  "origen": {
+    "material": "2026-09-29-10",
+    "version": 1
+  }
+}
