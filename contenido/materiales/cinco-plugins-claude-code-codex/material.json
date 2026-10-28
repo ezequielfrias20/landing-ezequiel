@@ -1,0 +1,364 @@
+{
+  "contenido": {
+    "id": "2026-09-29-14",
+    "version": 1,
+    "guion_hash": "sha256:597afdf6c4e4cfa86881cdf868f8f36e568965bf7b6b7b35133609db3194a56d",
+    "generado": "2026-10-27T15:05:00Z",
+    "verificado": "2026-10-27",
+    "formato": "plantilla",
+    "promesa": "la lista de los cinco plugins con lo que hace cada uno",
+    "palabra": "PLUGINS",
+    "nombre_pdf": "cinco-plugins-claude-code-codex",
+    "portada": {
+      "titulo": "Los cinco plugins que te faltan",
+      "acento": "en Claude Code y en Codex",
+      "subtitulo": "Qué hace cada uno, el comando exacto para conectarlo en tu terminal y el límite que nadie te cuenta.",
+      "herramientas": [
+        "playwright",
+        "supabase",
+        "strix",
+        "context7",
+        "claude",
+        "openai"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "Qué es cada uno de verdad: tres son **servidores MCP** y dos se corren en tu terminal.",
+        "El **comando exacto** de cada uno, para Claude Code y para Codex.",
+        "Qué cuesta, qué necesita y dónde se rompe cada uno."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El comando de la sección 01: los tres servidores MCP se agregan igual"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Deja que la IA vea tu web",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Conéctalo y tu asistente abre tu web, hace clic y te dice qué se rompió."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "playwright",
+            "nombre": "Playwright MCP",
+            "que_hace": "Le presta un navegador a tu asistente: navega, llena formularios y saca capturas. Pide Node 18.",
+            "precio": "Gratis y de código abierto",
+            "url": "https://github.com/microsoft/playwright-mcp",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f8",
+            "items": [
+              {
+                "texto": "Pega la línea de tu asistente.",
+                "codigo": "claude mcp add playwright npx @playwright/mcp@latest\ncodex mcp add playwright -- npx -y @playwright/mcp@latest"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "fuente": "f7",
+            "texto": "ninguno es un plugin a la antigua. Tres son **servidores MCP** y se agregan con `claude mcp add`."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pídele que abra tu sitio y revise el celular."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Maneja tu base sin el panel",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Conéctalo y tu asistente crea las tablas y corre las consultas por ti."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "supabase",
+            "nombre": "Supabase MCP",
+            "que_hace": "El servidor oficial. Corre SQL y migraciones, lee el esquema y revisa los logs.",
+            "precio": "Gratis, con tu cuenta de Supabase",
+            "url": "https://supabase.com/docs/guides/getting-started/mcp",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f2",
+            "items": [
+              {
+                "texto": "Dentro de tu proyecto y en **solo lectura**.",
+                "codigo": "claude mcp add --scope project --transport http supabase \"https://mcp.supabase.com/mcp?read_only=true&project_ref=TU_ID\"\nclaude /mcp"
+              }
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Pídele el esquema de tu base de prueba."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Haz que te hackeen primero",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Corre Strix sobre tu proyecto y te devuelve las fallas de seguridad reales."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "strix",
+            "nombre": "Strix",
+            "que_hace": "Agentes de IA que actúan como un hacker: corren tu código, encuentran fallas y las confirman atacando.",
+            "precio": "Gratis, licencia Apache 2.0",
+            "url": "https://github.com/usestrix/strix",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f3",
+            "items": [
+              {
+                "texto": "Instálalo. Necesitas Docker andando.",
+                "codigo": "curl -sSL https://strix.ai/install | bash"
+              },
+              {
+                "texto": "Dile con qué modelo trabaja y lánzalo.",
+                "codigo": "export STRIX_LLM=\"openrouter/z-ai/glm-5.3\"\nexport LLM_API_KEY=\"tu-api-key\"\nstrix --target ./mi-app"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "dato",
+            "valor": "72 mil",
+            "texto": "estrellas en GitHub. Corre en tu máquina, dentro de Docker, y te deja los hallazgos en disco.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "ojo",
+            "fuente": "f3",
+            "texto": "gratis no quiere decir sin costo: Strix corre con **tu propia API key** de IA, y lo que gaste el agente lo pagas tú. Deja todo lo que encuentra en la carpeta `strix_runs`."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Córrelo sobre un proyecto chico y lee el primer hallazgo."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Copia el diseño que te gusta",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Pásale el link de una web y deja su sistema de diseño listo para Claude Code."
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f4",
+            "items": [
+              {
+                "texto": "Instálalo con npm.",
+                "codigo": "npm install -g skillui"
+              },
+              {
+                "texto": "Apúntalo a la web que te gusta.",
+                "codigo": "skillui --url https://tusitio.com --mode ultra"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "fuente": "f4",
+            "texto": "no copia la web: mide sus colores, tipografías, espacios y animaciones y los escribe en un `DESIGN.md`. No usa IA ni pide API key, así que no interpreta nada."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Córrelo sobre tu web favorita y abre el `DESIGN.md`."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Dale la documentación al día",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Conéctalo y tu asistente deja de inventar funciones."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "context7",
+            "nombre": "Context7",
+            "que_hace": "Documentación actual de cada librería, desde la fuente.",
+            "precio": "Gratis; con API key tienes más límite",
+            "url": "https://github.com/upstash/context7",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "pasos",
+            "fuente": "f6",
+            "items": [
+              {
+                "texto": "Pega la línea de tu asistente.",
+                "codigo": "claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp --api-key TU_API_KEY\ncodex mcp add context7 -- npx -y @upstash/context7-mcp"
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "Dos palabras cambian la respuesta",
+            "etiquetas": [
+              "Lo normal",
+              "Con Context7"
+            ],
+            "antes": "Hazme el login con Supabase.",
+            "despues": "Hazme el login con Supabase. use context7"
+          },
+          {
+            "tipo": "ojo",
+            "fuente": "f5",
+            "texto": "también le puedes pedir una librería exacta: `use library /supabase/supabase`. Y la API key gratis sube tu límite de consultas."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Agrega `use context7` a tu próximo pedido."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando los cinco tienen que convivir",
+      "texto": "Instalar uno es fácil. Tenerlos los cinco andando a la vez es otra cosa: cada uno pide su llave, su permiso y su versión de Node.\n\nY lo que de verdad te cambia la semana no es el plugin. Es el flujo: que Strix revise solo cada cambio, que Supabase nunca toque producción, que el diseño que sacaste con SkillUI quede escrito como regla del proyecto y no en un archivo suelto.\n\nEso ya no se instala con un comando. Se arma una vez y después trabaja para ti."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y vemos qué parte de tu trabajo puede hacer un agente con estas herramientas conectadas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Playwright MCP · repositorio oficial de Microsoft",
+      "url": "https://github.com/microsoft/playwright-mcp",
+      "dato": "Qué hace Playwright MCP, el comando de instalación en Claude Code, que pide Node 18 o más nuevo, que es Apache-2.0 y que tiene 38.701 estrellas",
+      "cita": "claude mcp add playwright npx @playwright/mcp@latest — Requirements: Node.js 18 or newer. A Model Context Protocol (MCP) server that provides browser automation capabilities using Playwright, through structured accessibility snapshots.",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Model context protocol (MCP) · documentación de Supabase",
+      "url": "https://supabase.com/docs/guides/getting-started/mcp",
+      "dato": "El comando de Claude Code para el servidor MCP de Supabase, la autenticación con /mcp, qué puede hacer el servidor y los parámetros de seguridad read_only y project_ref",
+      "cita": "claude mcp add --scope project --transport http supabase \"https://mcp.supabase.com/mcp\" — Scope your MCP server to a specific project, limiting access to only that project's resources. Set unattended monitoring and diagnostic routines to read-only mode, which executes SQL queries as a read-only Postgres user. Connect to a production project only when the task requires production evidence.",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Strix · repositorio oficial",
+      "url": "https://github.com/usestrix/strix",
+      "dato": "Qué hace Strix, el comando de instalación, las variables STRIX_LLM y LLM_API_KEY, que pide Docker, dónde deja los resultados, la licencia Apache-2.0 y sus 72.274 estrellas",
+      "cita": "Open-source AI penetration testing tool to find and fix your app's vulnerabilities. Prerequisites: Docker (running), An LLM API key from any supported provider. curl -sSL https://strix.ai/install | bash — strix --target ./app-directory — Results are saved to strix_runs/<run-name>",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "skillui · sitio oficial",
+      "url": "https://skillui.vercel.app/",
+      "dato": "El comando de instalación y de uso de SkillUI, los modos, qué extrae, los archivos que deja y que no usa IA ni API keys",
+      "cita": "npm install -g skillui — skillui --url https://yoursite.com --mode ultra — No API keys. No AI. No cloud. Pure static analysis. Get exact colors, fonts, spacing, components, animations, and scroll journeys packaged as a .skill file. Then open Claude Code and build the UI.",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Context7 · repositorio oficial de Upstash",
+      "url": "https://github.com/upstash/context7",
+      "dato": "Qué hace Context7, cómo se invoca con «use context7» y que la API key gratuita sirve para tener más límite de uso",
+      "cita": "Context7 pulls up-to-date, version-specific documentation and code examples straight from the source — and gives them to your coding agent. Add «use context7» to your prompt. Get a free API key at context7.com/dashboard for higher rate limits.",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f6",
+      "titulo": "Context7 · instalación en todos los clientes",
+      "url": "https://context7.com/docs/resources/all-clients",
+      "dato": "El comando exacto para conectar Context7 a Claude Code",
+      "cita": "claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp --api-key YOUR_API_KEY",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f7",
+      "titulo": "Model Context Protocol (MCP) · documentación de Claude Code",
+      "url": "https://code.claude.com/docs/en/mcp",
+      "dato": "Cómo se agrega un servidor MCP en Claude Code, cómo se listan los que ya tienes y qué hace el comando /mcp",
+      "cita": "claude mcp add [options] <name> -- <command> [args...] — claude mcp add --transport http <name> <url> — claude mcp list: List all configured servers — /mcp: Check server status within Claude Code",
+      "verificado": "2026-10-27",
+      "oficial": true
+    },
+    {
+      "id": "f8",
+      "titulo": "MCP en Codex CLI · documentación de OpenAI",
+      "url": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli",
+      "dato": "Cómo se agrega un servidor MCP en Codex y cómo se listan",
+      "cita": "codex mcp add <server-name> --env VAR1=VALUE1 -- <stdio server-command> — codex mcp add context7 -- npx -y @upstash/context7-mcp — codex mcp list",
+      "verificado": "2026-10-27",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "playwright": {
+      "nombre": "Playwright",
+      "logo": "logos/playwright.svg",
+      "fondo": "#FFFFFF"
+    },
+    "supabase": {
+      "nombre": "supabase",
+      "logo": "logos/supabase.svg",
+      "fondo": "#FFFFFF"
+    },
+    "strix": {
+      "nombre": "Strix",
+      "logo": "logos/strix.png",
+      "fondo": "#FFFFFF"
+    },
+    "context7": {
+      "nombre": "Context7",
+      "logo": "logos/context7.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "openai": {
+      "nombre": "ChatGPT",
+      "logo": "logos/openai.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "cinco-plugins-claude-code-codex.pdf",
+  "fecha": "2026-10-28",
+  "video": "https://www.instagram.com/reel/DfDIrB9j4e3/",
+  "origen": {
+    "material": "2026-09-29-14",
+    "version": 1
+  }
+}
