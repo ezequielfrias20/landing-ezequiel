@@ -1,0 +1,235 @@
+{
+  "contenido": {
+    "id": "2026-10-31-14",
+    "version": 1,
+    "guion_hash": "sha256:e7185e983d753feb97b80778641fb5b4c89754c7d7e774020c5af786c7769996",
+    "generado": "2026-11-24T16:33:05Z",
+    "verificado": "2026-11-24",
+    "formato": "plantilla",
+    "promesa": "el prompt exacto para pedir ese resumen",
+    "palabra": "RESUMEN",
+    "nombre_pdf": "prompt-de-resumen-para-reiniciar-el-chat",
+    "portada": {
+      "titulo": "El prompt del resumen",
+      "acento": "cuando la IA ya se perdió",
+      "subtitulo": "Cuando el chat se alarga, la IA responde peor. Aquí tienes el prompt exacto para rescatar todo lo que ya le dijiste y arrancar de nuevo sin repetir nada.",
+      "herramientas": [
+        "openai",
+        "claude",
+        "googlegemini"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El **prompt exacto** para que la IA resuma todo lo que ya le dijiste, listo para pegar en un chat nuevo.",
+        "Las **tres señales** de que el chat ya se perdió y corregir no lo va a salvar.",
+        "La plantilla del primer mensaje para que el próximo chat **no se pierda**."
+      ],
+      "tiempo": "15 minutos",
+      "empieza_por": "El prompt de la sección 02"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "No te explicaste mal",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Antes de culparte por explicarte mal, mira el número: la IA rinde peor cuando le das la tarea de a poco."
+          },
+          {
+            "tipo": "dato",
+            "valor": "39%",
+            "texto": "peor rinden los modelos cuando la **misma tarea** se reparte en varios mensajes en vez de darla completa en el primero. Promedio de seis tipos de tarea, en más de 200.000 conversaciones simuladas.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "captura",
+            "archivo": "paper-arxiv.png",
+            "pie": "El estudio, de Microsoft Research y Salesforce Research, publicado en mayo de 2025.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "ojo",
+            "texto": "probaron 15 modelos de 2025, entre ellos GPT-4.1, Claude 3.7 Sonnet y Gemini 2.5 Pro, y a los más potentes les pasó igual que a los más chicos. Y no hace falta un chat largo: la caída aparece ya en conversaciones de **dos turnos**.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre tu chat más largo de la semana y fíjate si arrastra un error que ya le corregiste."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "El prompt del rescate",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Cuando veas que se perdió, deja de corregir. Pégale este prompt y quédate solo con lo que te devuelva."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Consolidar antes de reintentar",
+            "texto": "Vamos a cerrar esta conversación y seguir en una nueva.\nAntes, resume todo lo que te he dicho hasta ahora en un solo mensaje, para que otro chat pueda continuar sin leer nada de esta conversación.\n\nEscribe el resumen con estos cuatro apartados:\n1. Objetivo: qué quiero lograr, en una frase.\n2. Datos y reglas: todo lo que te di. Nombres, cifras, links, formato, tono y restricciones.\n3. Decisiones tomadas: lo que ya acordamos y no se vuelve a discutir.\n4. Lo que falta: lo que quedó pendiente o sin resolver.\n\nReglas del resumen:\n- Usa mis palabras y mis cifras exactas. No las generalices.\n- No propongas soluciones ni escribas la respuesta final.\n- No agregues nada que yo no haya dicho. Si falta un dato, ponlo en «Lo que falta».\n- Devuélvelo como texto plano, listo para copiar."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Guarda el prompt en una nota de tu celular. Lo vas a usar hoy mismo."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Pégalo en un chat nuevo",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "El resumen no sirve de nada en el mismo chat. Su único destino es una conversación nueva y vacía."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Lee el resumen y corrige tú lo que esté mal, directo sobre el texto. Es más rápido que discutirlo con la IA."
+              },
+              {
+                "texto": "Abre un chat nuevo. Nuevo de verdad: no una pestaña vieja ni el mismo hilo."
+              },
+              {
+                "texto": "Pega el resumen y, en ese **mismo mensaje**, escribe el pedido completo debajo.",
+                "codigo": "Contexto de lo que ya trabajé:\n<pega aquí el resumen>\n\nLo que necesito ahora:\n<tu pedido completo, con el formato y el largo que quieres>"
+              },
+              {
+                "texto": "Si el chat nuevo también se pierde, repite el ciclo. Nunca vuelvas al chat viejo a rescatarlo."
+              }
+            ]
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo problema, dos salidas",
+            "etiquetas": [
+              "Lo que hace casi todo el mundo",
+              "Lo que hace el resumen"
+            ],
+            "antes": "Mensaje 14 del mismo chat: «No, te dije que el tono era informal. Hazlo de nuevo».\n\nLa IA vuelve a entregar una variante de su primera respuesta.",
+            "despues": "Chat nuevo, mensaje 1: el resumen con el objetivo, el tono informal, las tres reglas y lo que falta. Debajo, el pedido completo.\n\nLa IA ve todo antes de responder por primera vez."
+          },
+          {
+            "tipo": "ojo",
+            "texto": "el resumen es tuyo, no de la IA. Si le pides que además resuelva la tarea en ese mensaje, vuelve a comprometerse con una respuesta temprana y acabas de repetir el problema."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Haz la prueba hoy con un chat que ya tengas atascado y compara las dos respuestas."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Las tres señales",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Actúa en cuanto veas una de estas tres."
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "**Se adelantó**: te dio la respuesta final antes de que terminaras de explicar, y ahora la defiende.",
+              "**Las respuestas se inflan**: cada una repite la anterior y suma cosas que no pediste.",
+              "**Solo oye el último mensaje**: olvida lo que acordaron a mitad del chat."
+            ]
+          },
+          {
+            "tipo": "dato",
+            "valor": "112%",
+            "texto": "sube la **falta de fiabilidad**: no sabe menos, responde distinto cada vez.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Si corriges dos veces seguidas, pide el resumen."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Que no vuelva a pasar",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Dale todo en el primer mensaje. Es lo único que el estudio encontró realmente efectivo."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El primer mensaje completo",
+            "texto": "Objetivo: {{qué quiero lograr, en una frase}}\nPara quién es: {{quién lo va a leer o usar}}\nDatos que tienes que usar: {{cifras, nombres, links, textos}}\nFormato de salida: {{largo, estructura, dónde lo voy a pegar}}\nTono: {{cómo quiero que suene}}\nQué no quiero: {{lo que debe evitar}}\nEjemplo de lo que me gusta: {{pega uno}}\n\nSi te falta algo, pregúntamelo todo junto en una sola lista antes de empezar."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Reescribe con esta plantilla tu último pedido largo."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando el contexto ya no cabe en un chat",
+      "texto": "El prompt del resumen rescata una conversación. Lo que no rescata es tener que hacerlo a mano, una y otra vez, cada semana.\n\nEn un negocio el contexto no es un chat: son tus clientes, tus precios, tus documentos y lo que se decidió el mes pasado. Eso no se resume a mano todos los días, y si lo olvidas, la IA te responde con la mitad de la historia.\n\nAhí la solución deja de ser un prompt y pasa a ser un sistema: un lugar donde el contexto vive, se actualiza solo y la IA lo lee antes de abrir la boca."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada y revisamos qué partes de tu trabajo con IA se están perdiendo por falta de contexto, y cuáles pueden quedar corriendo solas."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "LLMs Get Lost In Multi-Turn Conversation (resumen en arXiv)",
+      "url": "https://arxiv.org/abs/2505.06120",
+      "dato": "Caída promedio del 39% en multi-turno frente a un solo mensaje, sobre seis tareas de generación, a partir de más de 200.000 conversaciones simuladas. Paper de Philippe Laban y Jennifer Neville (Microsoft Research) con Hiroaki Hayashi e Yingbo Zhou (Salesforce Research), publicado el 9 de mayo de 2025.",
+      "cita": "Our experiments confirm that all the top open- and closed-weight LLMs we test exhibit significantly lower performance in multi-turn conversations than single-turn, with an average drop of 39% across six generation tasks. Analysis of 200,000+ simulated conversations decomposes the performance degradation into two components: a minor loss in aptitude and a significant increase in unreliability.",
+      "verificado": "2026-11-24",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "LLMs Get Lost In Multi-Turn Conversation (paper completo en PDF)",
+      "url": "https://arxiv.org/pdf/2505.06120v1",
+      "dato": "Sección 7.4: la recomendación a los usuarios es pedirle al modelo que consolide todo lo dicho y llevar esa respuesta a una conversación nueva. Sección 6.2: la aptitud baja 16% y la falta de fiabilidad sube 112%. Sección 5: 15 modelos, 600 instrucciones, más de 200.000 simulaciones. Sección 1: la caída aparece incluso en conversaciones de dos turnos. Sección 6.3: dar toda la información de una sola vez es el único método efectivo.",
+      "cita": "When a user notices that a model is lost in conversation, they can ask the LLM: \"Please consolidate everything I've told you so far,\" then bring the response to a new conversation, alleviating the need for manual consolidation.",
+      "verificado": "2026-11-24",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "openai": {
+      "nombre": "ChatGPT",
+      "logo": "logos/openai.svg",
+      "fondo": "#FFFFFF"
+    },
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "googlegemini": {
+      "nombre": "Gemini",
+      "logo": "logos/googlegemini.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "prompt-de-resumen-para-reiniciar-el-chat.pdf",
+  "fecha": "2026-11-24",
+  "video": "https://www.instagram.com/reel/DgIqGG6CNCw/",
+  "origen": {
+    "material": "2026-10-31-14",
+    "version": 1
+  }
+}
