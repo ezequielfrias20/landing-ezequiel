@@ -1,0 +1,267 @@
+{
+  "contenido": {
+    "id": "2026-10-31-9",
+    "version": 1,
+    "guion_hash": "sha256:5b54f95eb0c9ff8192ae0077510b449bda024acdb6483ffdf8748c9ad00bd7a1",
+    "generado": "2026-11-25T18:44:43Z",
+    "verificado": "2026-11-25",
+    "formato": "mapa",
+    "promesa": "el mapa de cómo está armado el sistema que arma mis reels, agente por agente",
+    "palabra": "FABRICA",
+    "nombre_pdf": "claude-code-un-agente-por-trabajo",
+    "portada": {
+      "titulo": "Un agente para cada trabajo",
+      "acento": "el mapa completo",
+      "subtitulo": "Cómo está armado el tablero que arma mis 30 reels al mes: qué hace cada agente, cómo se escribe uno y el prompt para partir tu proceso.",
+      "herramientas": [
+        "claude",
+        "instagram"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El mapa de los **cinco agentes**: qué recibe y qué devuelve cada uno.",
+        "Cómo se escribe un agente: una carpeta, un archivo y dos líneas.",
+        "El prompt para partir **tu** proceso en agentes."
+      ],
+      "tiempo": "20 minutos",
+      "empieza_por": "El mapa de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "El mapa, agente por agente",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "De los virales de otros a un reel publicado. Lo que no está en la tabla lo hago yo: elijo, grabo y reviso."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Agente",
+              "Recibe",
+              "Devuelve"
+            ],
+            "filas": [
+              [
+                "Ideas",
+                "Los virales de mis referentes",
+                "30 ideas con hook y guion"
+              ],
+              [
+                "Plan",
+                "Una idea",
+                "El plan de edición, toma por toma"
+              ],
+              [
+                "Edición",
+                "El video y su plan",
+                "Un MP4 para Instagram y otro para TikTok"
+              ],
+              [
+                "Material",
+                "Una idea",
+                "El PDF y los textos del DM"
+              ],
+              [
+                "Calendario",
+                "Una idea por día",
+                "El reel publicado en Instagram"
+              ]
+            ]
+          },
+          {
+            "tipo": "micro",
+            "texto": "Escribe los pasos de tu proceso y ponle un nombre a cada uno."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "La regla: un agente, un trabajo",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Dale un solo trabajo a cada agente. En cuanto uno hace dos cosas, las dos salen peor."
+          },
+          {
+            "tipo": "dato",
+            "valor": "1",
+            "texto": "ventana de contexto **por cada agente**, con su propio prompt, sus herramientas y sus permisos. Lo que ve uno no le estorba al otro.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El mismo proceso, repartido",
+            "antes": "Un agente de contenido que busca ideas, escribe el guion, arma el plan de edición y diseña el PDF.",
+            "despues": "Cuatro agentes. Uno busca ideas. Otro arma el plan. Otro edita. Otro diseña el PDF. Cada uno con su archivo de instrucciones."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Marca en tu lista el paso que hoy hace dos cosas y pártelo en dos."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "Cada agente es una carpeta con un archivo",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Un agente no es un programa: es una carpeta con un archivo de texto que dice cuándo usarlo y qué hacer."
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claude",
+            "nombre": "Claude Code",
+            "que_hace": "El agente de Claude que trabaja en tu terminal: lee tus archivos, corre comandos y sigue las instrucciones que le dejaste escritas.",
+            "precio": "Incluido en Pro, Max y Ultra. Pro cuesta US$20/mes, o US$17 pagando el año",
+            "url": "https://www.claude.com/product/claude-code",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Crea la carpeta del agente dentro de tu proyecto. El nombre de la carpeta es el nombre del agente.",
+                "codigo": "mkdir -p .claude/skills/generador-ideas"
+              },
+              {
+                "texto": "Adentro, escribe el archivo SKILL.md: arriba, cuándo usarlo; abajo, las instrucciones.",
+                "codigo": "---\ndescription: Genera ideas de reels desde los virales de mis referentes. Úsala cuando pida ideas nuevas.\n---\n\n1. Lee los últimos 30 reels de cada referente.\n2. Quédate con los que superaron su promedio de views.\n3. Devuelve 30 ideas, cada una con hook, guion y la PALABRA del CTA."
+              },
+              {
+                "texto": "Llámalo cuando lo necesites: escribe `/generador-ideas` en Claude Code."
+              }
+            ],
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Convierte en agente la tarea que más repites esta semana."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Haz que algo lo dispare por ti",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "El tablero no hace el trabajo: llama al agente que toca y guarda lo que devuelve. La llamada es una línea."
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Pruébalo a mano, sin abrir la sesión interactiva.",
+                "codigo": "claude -p \"/generador-ideas 2026-11-25\""
+              },
+              {
+                "texto": "Si lo dispara un tablero y nadie puede contestar los permisos, agrega las dos banderas.",
+                "codigo": "claude -p \"/generador-ideas 2026-11-25\" \\\n  --allowedTools \"Read,Write,Bash\" \\\n  --permission-prompts none"
+              }
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "corre con los permisos que le diste. Déjalo escribir solo donde entrega su trabajo, no en todo el proyecto.",
+            "fuente": "f3"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Corre tu agente con `claude -p` y mira qué te devuelve."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "El prompt para partir tu proceso",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Copia este prompt, pega adentro los pasos de tu proceso y Claude te devuelve el reparto de agentes."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "Partir un proceso en agentes",
+            "texto": "Este es mi proceso de {{tu proceso}}, paso por paso:\n{{pega aquí los pasos, uno por línea}}\n\nPártelo en agentes con una sola regla: un agente, un trabajo.\nDe cada agente dime el nombre, qué recibe, qué devuelve y cuándo usarlo.\nSi uno hace dos cosas, pártelo en dos.\nMarca los pasos que conviene seguir haciendo a mano.\nDevuelve la lista y nada más."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Córrelo hoy con tu proceso y quédate con los nombres."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Cuando tiene que correr sin ti",
+      "texto": "Escribir los agentes es la parte entretenida. Se hace en un fin de semana.\n\nLo que cuesta es lo demás: que algo los dispare a la hora que toca, que lo que devuelven quede donde tú lo ves, que te avise cuando uno falla y que al cambiar una herramienta no se caiga el resto.\n\nEso ya no es una carpeta de archivos. Es un tablero. Y es la parte que casi nadie termina."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada, traes tu proceso y salimos con el reparto de agentes y por cuál empezar."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Extend Claude with skills — Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/skills",
+      "dato": "Cada skill es una carpeta con un archivo SKILL.md; la ruta del proyecto es .claude/skills/<skill-name>/SKILL.md, el frontmatter lleva la description y se invoca escribiendo /skill-name.",
+      "cita": "Skills extend what Claude can do. Create a `SKILL.md` file with instructions, and Claude adds it to its toolkit. Claude uses skills when relevant, or you can invoke one directly with `/skill-name`.",
+      "verificado": "2026-11-25",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Create custom subagents — Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "dato": "Cada subagente corre en su propia ventana de contexto, con su propio prompt de sistema, sus herramientas y sus permisos.",
+      "cita": "Each subagent runs in its own context window with a custom system prompt, specific tool access, and independent permissions.",
+      "verificado": "2026-11-25",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Run Claude Code programmatically — Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/headless",
+      "dato": "La bandera -p corre Claude Code sin la sesión interactiva, acepta /skill-name dentro del prompt, --allowedTools para aprobar herramientas y --permission-prompts none cuando nadie puede contestar los permisos.",
+      "cita": "Add the `-p` (or `--print`) flag to any `claude` command to run it non-interactively. […] User-invoked skills and custom commands work. Include `/skill-name` in the prompt string and Claude Code expands it before running. […] Pass `--permission-prompts none` when nobody is available to answer permission prompts, for example in a scheduled job.",
+      "verificado": "2026-11-25",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "Pricing — Claude",
+      "url": "https://www.claude.com/pricing",
+      "dato": "Claude Code viene incluido en los planes Pro, Max y Ultra, y no en el plan Free. Pro cuesta 17 dólares al mes pagando el año por adelantado, o 20 al mes.",
+      "cita": "Pro — $17 — Per month with annual subscription discount ($200 billed up front). $20 if billed monthly. […] Everything in Free, plus: Claude Code",
+      "verificado": "2026-11-25",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    },
+    "instagram": {
+      "nombre": "Instagram",
+      "logo": "logos/instagram.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-un-agente-por-trabajo.pdf",
+  "fecha": "2026-11-25",
+  "video": "https://www.instagram.com/reel/DgLUkaFobTB/",
+  "origen": {
+    "material": "2026-10-31-9",
+    "version": 1
+  }
+}
