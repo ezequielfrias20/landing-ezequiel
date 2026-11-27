@@ -1,0 +1,277 @@
+{
+  "contenido": {
+    "id": "2026-10-31-1",
+    "version": 1,
+    "guion_hash": "sha256:dd528cb35249a2041280129fbd345031f1849610e0edb57d9b6808886a1725db",
+    "generado": "2026-11-26T17:55:00Z",
+    "verificado": "2026-11-26",
+    "formato": "plantilla",
+    "promesa": "el plan por etapas que le di a Claude para armar el sistema",
+    "palabra": "SISTEMA",
+    "nombre_pdf": "claude-code-plan-por-etapas-del-sistema",
+    "portada": {
+      "titulo": "El plan por etapas",
+      "acento": "para que Claude construya tu sistema",
+      "subtitulo": "Los dos prompts que uso: uno para que Claude entienda cómo trabaja el negocio y otro para convertir eso en un plan que construye una etapa a la vez.",
+      "herramientas": [
+        "claude"
+      ]
+    },
+    "te_llevas": {
+      "puntos": [
+        "El prompt para que Claude te **entreviste** sobre el negocio y lo deje escrito.",
+        "El prompt del **plan por etapas**, con las reglas que hacen que el orden funcione.",
+        "La revisión de 5 puntos para cerrar una etapa antes de abrir la siguiente."
+      ],
+      "tiempo": "20 minutos",
+      "empieza_por": "El prompt de la sección 01"
+    },
+    "secciones": [
+      {
+        "id": "s1",
+        "titulo": "Cuéntale el negocio",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "No pidas el sistema todavía. Haz que Claude te entreviste sobre el negocio."
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "La entrevista del negocio",
+            "texto": "Quiero un sistema para {{el negocio}}.\nTodavía no lo tengo claro, así que no escribas código ni propongas nada.\nEntrevístame hasta que puedas escribir cómo funciona el negocio: quién lo usa y qué hace cada quien, qué se vende, cómo se cobra y qué pasa al cerrar el día.\nHazme las preguntas de a tres y dame opciones para elegir.\nCuando ya puedas responderlas tú, escríbelo todo en NEGOCIO.md.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Responde hoy solo la primera tanda. Con eso ya tienes medio documento."
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "titulo": "Pide el plan por etapas",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Abre una sesión nueva, sin el ruido de la entrevista, y pide el plan. Todavía sin código.",
+            "fuente": "f1"
+          },
+          {
+            "tipo": "prompt",
+            "titulo": "El plan por etapas",
+            "texto": "Lee @NEGOCIO.md.\nArma un plan por etapas para construir el sistema. No escribas código.\nReglas del plan:\n- Cada etapa deja algo que el negocio ya puede usar ese mismo día.\n- La etapa 1 es la base: los datos que todas las demás necesitan.\n- Lo que mueve dinero va antes que lo que solo informa.\n- Ninguna etapa depende de otra que venga después.\n- Si una etapa pasa de un día de trabajo, pártela en dos.\n- Cada etapa dice cómo comprobar que quedó lista, con algo que yo pueda correr.\n- Marca cuáles me puedo saltar si tengo prisa.\nEntrégalo como una tabla: número, nombre, qué queda funcionando y cómo se comprueba.\nGuárdalo en PLAN.md."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Lee la tabla y borra las etapas que no necesitas este mes. El plan es tuyo."
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "titulo": "El plan de la tienda",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Compara tu plan con el de la tienda. Si al tuyo le falta un escalón, pídeselo."
+          },
+          {
+            "tipo": "comparativa",
+            "columnas": [
+              "Ejemplo",
+              "Qué quedó funcionando",
+              "Por qué ahí"
+            ],
+            "filas": [
+              [
+                "Día 1",
+                "Productos, inventario y clientes",
+                "Los datos que todo lo demás usa"
+              ],
+              [
+                "Día 2",
+                "Caja, reportes y permisos",
+                "El dinero, sobre esa base"
+              ],
+              [
+                "Día 3",
+                "Pago en cuotas con Cashea",
+                "Un agregado, ya con el sistema andando"
+              ]
+            ]
+          },
+          {
+            "tipo": "ejemplo",
+            "titulo": "El pedido que cambia el resultado",
+            "etiquetas": [
+              "Lo que casi todos piden",
+              "Lo que le pedí yo"
+            ],
+            "antes": "Hazme un sistema para una tienda.",
+            "despues": "Te cuento cómo trabaja la tienda: quién cobra y cómo se cuadra la caja. Con eso, arma el plan."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Marca cuál es tu etapa 1. Si hay dos, una de las dos va después."
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "titulo": "Construye una etapa a la vez",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Una sesión por etapa y en modo plan: Claude propone, pero no toca un archivo hasta que apruebes."
+          },
+          {
+            "tipo": "dato",
+            "valor": "0",
+            "texto": "archivos toca Claude en modo plan: lee, explora y escribe un plan, pero no edita nada hasta que apruebes.",
+            "fuente": "f2"
+          },
+          {
+            "tipo": "herramienta",
+            "slug": "claude",
+            "nombre": "Claude Code",
+            "que_hace": "El agente de Claude que trabaja en tu terminal: lee el proyecto, escribe los archivos y corre los comandos.",
+            "precio": "Incluido en Pro, Max y Ultra · Pro desde US$20/mes",
+            "url": "https://code.claude.com/docs",
+            "fuente": "f5"
+          },
+          {
+            "tipo": "dato",
+            "valor": "200",
+            "texto": "líneas es el techo que recomienda la documentación para tu `CLAUDE.md`. Más largo, Claude le hace menos caso.",
+            "fuente": "f4"
+          },
+          {
+            "tipo": "pagina"
+          },
+          {
+            "tipo": "pasos",
+            "items": [
+              {
+                "texto": "Deja escrito lo que Claude no puede adivinar del código. Lo lee al empezar cada sesión.",
+                "codigo": "# CLAUDE.md\n- Instalar: npm install\n- Probar: npm test\n- Los precios se guardan en centavos\n- Ninguna venta se borra: se anula"
+              },
+              {
+                "texto": "Abre la sesión de la etapa en modo plan: lee y propone, pero no edita nada.",
+                "codigo": "claude --permission-mode plan"
+              },
+              {
+                "texto": "Pide la etapa, y solo esa.",
+                "codigo": "Construye la etapa 2 de @PLAN.md.\nNada de la etapa 3."
+              },
+              {
+                "texto": "Lee el plan antes de aprobar. Si algo no cuadra, elige «No, keep planning» y dile qué cambiar."
+              }
+            ],
+            "fuente": "f2"
+          },
+          {
+            "tipo": "micro",
+            "texto": "Abre hoy una sesión en modo plan y pídele solo la etapa 1."
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "titulo": "Cierra bien cada etapa",
+        "bloques": [
+          {
+            "tipo": "haz",
+            "texto": "Dale a Claude un comando que diga «pasa» o «falla» antes de cerrar la etapa."
+          },
+          {
+            "tipo": "checklist",
+            "items": [
+              "Hace lo que decía el plan, ni más ni menos.",
+              "La probaste con un caso real, no inventado.",
+              "Hay un comando que dice «pasa» o «falla».",
+              "Guardaste el avance en Git.",
+              "Ninguna contraseña quedó dentro del proyecto."
+            ]
+          },
+          {
+            "tipo": "ojo",
+            "texto": "claude no reemplaza entender el negocio. Eso lo pones tú. Documento flojo, sistema flojo."
+          },
+          {
+            "tipo": "micro",
+            "texto": "Elige hoy tu comando de «pasa o falla»."
+          }
+        ]
+      }
+    ],
+    "despues": {
+      "titulo": "Lo difícil no es construirlo",
+      "texto": "Tener el sistema andando en tu computadora es la parte que acabas de resolver.\n\nLo que viene después es otra cosa: ponerlo donde los empleados entren desde la tienda, que los datos se respalden solos, que nadie vea lo que no le toca y que el día que se caiga haya alguien que lo levante.\n\nEso no sale de un prompt. Se diseña una vez y se mantiene."
+    },
+    "cierre": {
+      "titulo": "¿Lo quieres funcionando en tu negocio?",
+      "texto": "Agenda una llamada, cuéntame cómo trabajas hoy y salimos con el plan por etapas de tu sistema."
+    }
+  },
+  "fuentes": [
+    {
+      "id": "f1",
+      "titulo": "Best practices for Claude Code",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "dato": "Que puedes pedirle a Claude que te entreviste hasta poder escribir el spec y lo guarde en un archivo, que conviene empezar la construcción en una sesión nueva desde ese archivo, y que sin algo que devuelva «pasa o falla» Claude se detiene cuando el trabajo «parece» listo.",
+      "cita": "Interview me until you could write the spec, then write it to SPEC.md.",
+      "verificado": "2026-11-26",
+      "oficial": true
+    },
+    {
+      "id": "f2",
+      "titulo": "Common workflows — Plan before editing",
+      "url": "https://code.claude.com/docs/en/common-workflows",
+      "dato": "Cómo se entra al modo plan (claude --permission-mode plan o Shift+Tab) y que Claude no toca ningún archivo hasta que apruebas. También que claude --continue retoma la última sesión de esa carpeta.",
+      "cita": "Claude reads files and proposes a plan but makes no edits until you approve. The status bar shows ⏸ plan mode on while plan mode is active.",
+      "verificado": "2026-11-26",
+      "oficial": true
+    },
+    {
+      "id": "f3",
+      "titulo": "Permission modes — Analyze before you edit with plan mode",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "dato": "Qué opciones te da Claude cuando presenta el plan (aprobar, aprobar revisando cada edición, seguir planeando), que con Ctrl+G abres el plan en tu editor para corregirlo, y que puedes volver a planear con /plan al inicio del mensaje.",
+      "cita": "Plan mode tells Claude to research and propose changes without making them. Claude reads files, runs shell commands to explore, and writes a plan, but does not edit your source.",
+      "verificado": "2026-11-26",
+      "oficial": true
+    },
+    {
+      "id": "f4",
+      "titulo": "How Claude remembers your project (CLAUDE.md)",
+      "url": "https://code.claude.com/docs/en/memory",
+      "dato": "Dónde va el archivo CLAUDE.md (./CLAUDE.md o ./.claude/CLAUDE.md), que Claude lo lee al empezar cada sesión, que /init genera una primera versión y que conviene mantenerlo bajo 200 líneas.",
+      "cita": "Size: target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence.",
+      "verificado": "2026-11-26",
+      "oficial": true
+    },
+    {
+      "id": "f5",
+      "titulo": "Pricing — Claude",
+      "url": "https://claude.com/pricing",
+      "dato": "Que Claude Code está incluido en los planes Pro, Max y Ultra (no en el plan gratis) y que Pro cuesta US$20 al mes pagando mes a mes.",
+      "cita": "$17 Per month with annual subscription discount ($200 billed up front). $20 if billed monthly.",
+      "verificado": "2026-11-26",
+      "oficial": true
+    }
+  ],
+  "herramientas": {
+    "claude": {
+      "nombre": "Claude",
+      "logo": "logos/claude.svg",
+      "fondo": "#FFFFFF"
+    }
+  },
+  "pdf": "claude-code-plan-por-etapas-del-sistema.pdf",
+  "fecha": "2026-11-26",
+  "video": "https://www.instagram.com/reel/DgOV-otu5ba/",
+  "origen": {
+    "material": "2026-10-31-1",
+    "version": 1
+  }
+}
